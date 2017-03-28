@@ -1,0 +1,24 @@
+{
+  "name": "coral-group",
+  "description": "coral-group",
+  "main": "index.html",
+  "authors": [
+    "Agafonov Igor"
+  ],
+  "license": "MIT",
+  "keywords": [
+    "coral-group"
+  ],
+  "homepage": "https://github.com/IVAgafonov/coral-group",
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "test",
+    "tests"
+  ],
+  "dependencies": {
+    "angular": "1.6.3",
+    "angular-ui-router": "1.0.0-rc.1"
+  }
+}
