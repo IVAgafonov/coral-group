@@ -1,0 +1,8 @@
+#dirs
+/node_modules/
+/bower_components/
+/vendor/
+/tests/
+/.idea/
+/dev/
+/prod/

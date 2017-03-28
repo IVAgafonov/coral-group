@@ -1,0 +1,32 @@
+{
+  "name": "coral-group",
+  "version": "1.0.0",
+  "description": "coral-group",
+  "main": "index.html",
+  "scripts": {
+    "test": "test"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/IVAgafonov/coral-group.git"
+  },
+  "keywords": [
+    "coral-group"
+  ],
+  "author": "Agafonov Igor",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/IVAgafonov/coral-group/issues"
+  },
+  "homepage": "https://github.com/IVAgafonov/coral-group#readme",
+  "devDependencies": {
+    "gulp": "^3.9.1",
+    "gulp-concat": "^2.6.1",
+    "gulp-inject": "^4.2.0",
+    "gulp-load-plugins": "^1.5.0",
+    "gulp-sass": "^3.1.0",
+    "gulp-scss": "^1.4.0",
+    "gulp-uglify": "^2.1.2",
+    "main-bower-files": "^2.13.1"
+  }
+}
