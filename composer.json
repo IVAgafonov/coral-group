@@ -1,0 +1,11 @@
+{
+  "name": "coral group",
+  "description": "coral group",
+  "autoload": {
+    "psr-4": {
+      "Coral\\": "apiv1"
+    }
+  },
+  "require": {
+  }
+}

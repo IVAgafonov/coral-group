@@ -6,3 +6,5 @@
 /.idea/
 /dev/
 /prod/
+#files
+*.global.php
