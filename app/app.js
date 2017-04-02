@@ -1,3 +1,4 @@
-/**
- * Created by igor on 28.03.2017.
- */
+(function () {
+    'use strict';
+    angular.module('app', ['app.router', 'systemModule', 'pageModule']);
+})();
