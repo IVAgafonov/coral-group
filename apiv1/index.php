@@ -2,7 +2,13 @@
 
 require_once "../vendor/autoload.php";
 
-use Coral\Controller\AuthController;
+use Coral\System\Router\Router;
 
-$c = new AuthController();
-var_dump($_SERVER);
+$router = new Router();
+
+try {
+   $router->run(); 
+} catch (Exception $ex) {
+    echo json_encode(["error" => $ex->getMessage()]);
+    exit();
+}

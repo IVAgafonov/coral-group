@@ -2,31 +2,64 @@
 
 namespace Coral\Controller;
 
+use Coral\System\Acl\Acl;
+use Coral\System\Data\DataProvider;
+
 /**
  * Class AbstractController
  * @package Coral\Controller
  */
-class AbstractController implements ControllerInterface {
+abstract class AbstractController implements ControllerInterface {
 
     protected $config;
+    protected $method;
+    protected $user;
+    protected $params = [];
+    protected $db;
     /**
      * AbstractController constructor.
      */
     public function __construct()
     {
-        $local = include "../System/Config/config.local.php";
-        var_dump($local);
-        $this->config = array_merge_recursive($local, include "../System/Config/config.global.php");
-        header("Content-Type: application/json");
-        var_dump($this->config);
+        $this->config = array_merge(include __DIR__.'/../System/Config/config.local.php', include __DIR__."/../System/Config/config.global.php");
+        $this->db = new DataProvider();
     }
 
+    public function setMethod($method)
+    {
+        $this->method = $method;
+    }
+
+    public function getMethod()
+    {
+        return $this->method;
+    }
+
+    public function setParams($params)
+    {
+        $this->params = $params + $this->params;
+    }
+
+    public function getParams()
+    {
+        return $this->params;
+    }
+    
+    public function setUser($user)
+    {
+        $this->user = $user;
+    }
+
+    public function getUser()
+    {
+        return $this->user;
+    }
     /**
      * @return mixed
      */
     public function index()
     {
         header("HTTP/1.1 404 Not found");
-        echo json_encode(['error' => 'controller not found']);
+        throw new \Exception('Controller not found');
     }
 }

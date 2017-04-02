@@ -1,0 +1,7 @@
+<h1>Login</h1>
+<input type="text" name="login" ng-model="$ctrl.uname" ngMinlength="3" ngMaxlength="60" ng-focus="$ctrl.error=false">
+<input type="password" name="credential" ng-model="$ctrl.credential" ngMinlength="3" ngMaxlength="24" ng-focus="$ctrl.error=false">
+<div ng-show="$ctrl.error">
+    <p>{{$ctrl.error}}</p>
+</div>
+<button ng-click="$ctrl.login()">login</button>

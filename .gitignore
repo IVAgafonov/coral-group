@@ -4,7 +4,9 @@
 /vendor/
 /tests/
 /.idea/
+/nbproject/
 /dev/
 /prod/
 #files
 *.global.php
+/nbproject/private/
