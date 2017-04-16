@@ -38,7 +38,7 @@ class Acl {
         if (empty($this->permissions[$controller][$checkedAction][$checkedMethod])) {
             $checkedMethod = "";
             if (empty($this->permissions[$controller][$checkedAction][$checkedMethod])) {
-                header("HTTP/1.1 400 Bad request");
+                header("HTTP/1.1 405 Method not allowed");
                 throw new \Exception('ACL: Method not allowed');
             }
         }

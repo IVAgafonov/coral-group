@@ -12,6 +12,11 @@ return [
             'GET' => ['guest', 'user', 'admin']
         ]
     ],
+    'Translate' => [
+        'get' => [
+            'GET' => ['guest']
+        ]
+    ],
     'Test' => [
         '' => [
             '' => ['guest', 'user', 'admin']

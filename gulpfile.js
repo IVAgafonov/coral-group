@@ -16,3 +16,7 @@ function getTask(taskName) {
 }
 
 gulp.task('dev', getTask('buildDev'));
+
+gulp.task('watchDev', function() {
+    gulp.watch([paths.scripts, paths.images, paths.index], getTask('buildDev'));
+});
