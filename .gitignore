@@ -1,0 +1,12 @@
+#dirs
+/node_modules/
+/bower_components/
+/vendor/
+/tests/
+/.idea/
+/nbproject/
+/dev/
+/prod/
+#files
+*.global.php
+/nbproject/private/
