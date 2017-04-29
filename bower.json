@@ -19,6 +19,14 @@
   ],
   "dependencies": {
     "angular": "1.6.3",
-    "angular-ui-router": "1.0.0-rc.1"
+    "angular-ui-router": "1.0.0-rc.1",
+    "angular-translate": "^2.15.1",
+    "fullpage.js": "^2.9.4",
+    "angular-bootstrap": "^2.5.0",
+    "angular-cookies": "^1.6.4",
+    "angular-load": "^0.4.1"
+  },
+  "devDependencies": {
+    "angular-cookies": "^1.6.4"
   }
 }

@@ -1,4 +1,5 @@
 (function () {
     'use strict';
-    angular.module('app', ['app.router', 'systemModule', 'pageModule']);
+    angular.module('app', ['ngCookies', 'app.router', 'ui.bootstrap', 'systemModule', 'pageModule'])
+        .constant('adminCssFile', 'admin.css?v=0.0.1');
 })();

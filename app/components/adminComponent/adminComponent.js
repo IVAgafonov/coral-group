@@ -3,17 +3,18 @@
     angular.module('pageModule')
         .component('adminComponent', {
             templateUrl: 'components/adminComponent/adminComponent.html',
-            controller: ['authService', adminController]
+            controller: ['authService', '$state', adminController]
                 
     });
     
-    function adminController(authService) {
+    function adminController(authService, $state) {
         var vm = this;
         vm.userName = 'unnamed';
+        
         vm.logout = function() {
-            var res = authService.logout();
-            console.log(res);
-        }
+            authService.logout();
+            $state.go('app.login');
+        };
     }
 })();
 

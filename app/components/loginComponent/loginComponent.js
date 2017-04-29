@@ -12,7 +12,7 @@
         authService.check().then(function (response) {
             if (response.auth) {
                 $rootScope.auth = true;
-                $state.go('admin');
+                $state.go('app.admin');
             }
         });
         
@@ -21,8 +21,9 @@
             authService.login(vm.uname, vm.credential).then(function(response){
                 if (response.auth) {
                     $rootScope.auth = true;
-                    $state.go('admin');
+                    $state.go('app.admin');
                 } else {
+                    console.log(response);
                     vm.error = 'Invalid email or password';
                 }
             }, function (error) {

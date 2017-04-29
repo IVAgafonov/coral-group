@@ -1,7 +1,28 @@
-<h1>admin panel</h1>
-<div>
-    <p>{{vm.userName}}</p>
+<div class="navbar navbar-inverse navbar-fixed-top">
+    <div class="container-fluid">
+        <div class="navbar-header">
+            <a class="navbar-brand" ui-sref="app.admin">© coral-group - admin panel</a>
+        </div>
+        <div class="navbar-collapse collapse">
+            <ul class="nav navbar-nav navbar-right">
+                <li>
+                    <a href="" ui-sref="app.logout" >logout</a>
+                </li>
+            </ul>
+        </div>
+    </div>
 </div>
-<nav><a href="" ui-sref="logout" >logout</a></nav>
-<div ui-viev></div>
-<footer>&#169; coral-group</footer>
+<div class="row" style="display: block; height: 50px;"></div>
+<div class="container-fluid">
+    <div class="row">
+        <div class="col-sm-3 col-md-2 sidebar">
+            <ul class="nav nav-sidebar">
+                <li>
+                    <a ui-sref="app.admin.translate">Translations</a>
+                </li>
+            </ul>
+        </div>
+    </div>
+</div>
+<ui-viev></ui-viev>
+
