@@ -20,7 +20,7 @@ class Router {
     public function __construct()
     {
         session_start();
-        header("Content-Type: application/json");
+        header("Content-Type: application/json; charset=utf-8");
         $this->action = 'index';
         $this->controller = 'Index';
         $this->db = new DataProvider();

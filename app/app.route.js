@@ -7,16 +7,26 @@
             $stateProvider.state('app', {
                 abstract: true,
                 url: '/{locale}',
-                controller: ['$state', '$stateParams', '$translate', 'translateService', '$cookies', function($state, $stateParams, $translate, translateService, $cookies) {
+                controller: ['$rootScope', '$state', '$stateParams', '$translate', 'translateService', '$cookies', 'menuService' ,function($rootScope, $state, $stateParams, $translate, translateService, $cookies, menuService) {
+
+                    var cookiesLocale = $cookies.get('locale');
                     if (!['ru', 'en'].includes($stateParams.locale)) {
-                        var cookiesLocale = $cookies.get('locale');
                         if (!['ru', 'en'].includes(cookiesLocale)) {
                             cookiesLocale = 'ru';
                         }
                         $state.go('app.main', {locale: cookiesLocale});
                     }
                     var locale = $stateParams.locale;
+
                     $cookies.put('locale', locale);
+                    $rootScope.locale = locale;
+                    menuService.getMenu($rootScope.locale).then(function(response) {
+                        if (!$rootScope.mainMenu || cookiesLocale != locale) {
+                            $rootScope.mainMenu = response.data;
+                        }
+                    }, function(error) {
+
+                    });
                     $translateProvider.useSanitizeValueStrategy('escape');
                     translateService.getTranslate(locale).then(function(response) {
                         $translateProvider.translations(locale, response);
@@ -27,6 +37,8 @@
                 }]
             });
 
+
+
             $stateProvider.state('app.main', {
                url: '/',
                component: 'mainComponent',
@@ -35,12 +47,43 @@
                }
             });
 
+            $stateProvider.state('app.news', {
+                url: '/news',
+                component: 'newsComponent',
+                data: {
+                    requiresLogin: false
+                }
+            });
+
+            $stateProvider.state('app.about', {
+                url: '/about',
+                component: 'aboutComponent',
+                data: {
+                    requiresLogin: false
+                }
+            });
+
+            $stateProvider.state('app.service', {
+                url: '/service/{name}',
+                component: 'serviceComponent',
+                data: {
+                    requiresLogin: false
+                }
+            });
+
             $stateProvider.state('app.login', {
                 url: '/login',
                 component: 'loginComponent',
                 data: {
                     requiresLogin: false
-                }
+                },
+                onEnter: ['angularLoad', 'adminCssFile', function(angularLoad, adminCssFile) {
+                    angularLoad.loadCSS('/css/' + adminCssFile).then(function(response) {
+
+                    }, function(error) {
+
+                    });
+                }]
             });
             
             $stateProvider.state('app.logout', {
@@ -58,7 +101,7 @@
                 data: {
                     requiresLogin: true
                 },
-                onEnter: ['$state', 'authService', 'angularLoad', 'adminCssFile',function($state, authService, angularLoad, adminCssFile) {
+                onEnter: ['$state', 'authService', 'angularLoad', 'adminCssFile', function($state, authService, angularLoad, adminCssFile) {
                     authService.check().then(function(response) {
                         if (response.auth != true) {
                             $state.go('app.login');
@@ -68,7 +111,6 @@
                         $state.go('app.login');
                     });
                     angularLoad.loadCSS('/css/' + adminCssFile).then(function(response) {
-                        
                     }, function(error) {
                         
                     });
@@ -76,6 +118,7 @@
             });
         }])
         .run(['$rootScope', '$state', 'authService', function ($rootScope, $state, authService) {
+
             $rootScope.$on('$stateChangeStart', function(event, toStart, toParams, fromStart, fromParams) {
                 var requiredLogin = toState.data.requiresLogin;
                 if (requiredLogin) {

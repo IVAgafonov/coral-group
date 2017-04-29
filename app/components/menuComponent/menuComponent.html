@@ -1,0 +1,13 @@
+menu
+<nav>
+    <ul>
+        <li ng-repeat="item in $root.mainMenu track by $index" ui-sref-active="active">
+            <a ui-sref="{{'app.' + item.uri}}">{{item.name | translate}}</a>
+            <ul>
+                <li ng-repeat="subItem in item.child" ui-sref-active="active">
+                    <a ui-sref="{{'app.' + item.uri + '({name: \'' + subItem.uri + '\'})'}}">{{subItem.name  | translate}}</a>
+                </li>
+            </ul>
+        </li>
+    </ul>
+</nav>

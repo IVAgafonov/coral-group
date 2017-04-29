@@ -21,7 +21,7 @@ abstract class AbstractController implements ControllerInterface {
      */
     public function __construct()
     {
-        $this->config = array_merge(include __DIR__.'/../System/Config/config.local.php', include __DIR__."/../System/Config/config.global.php");
+        $this->config = array_merge(include __DIR__.'/../../System/Config/config.local.php', include __DIR__."/../../System/Config/config.global.php");
         $this->db = new DataProvider();
     }
 
@@ -54,9 +54,7 @@ abstract class AbstractController implements ControllerInterface {
     {
         return $this->user;
     }
-    /**
-     * @return mixed
-     */
+
     public function index()
     {
         header("HTTP/1.1 404 Not found");

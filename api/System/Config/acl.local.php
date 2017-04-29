@@ -17,6 +17,11 @@ return [
             'GET' => ['guest']
         ]
     ],
+    'Menu' => [
+        'get' => [
+            'GET' => ['guest']
+        ]
+    ],
     'Test' => [
         '' => [
             '' => ['guest', 'user', 'admin']

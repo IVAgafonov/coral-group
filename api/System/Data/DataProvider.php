@@ -12,7 +12,7 @@ class DataProvider implements DataProviderInterface {
         if (empty($config['dbHost']) || empty($config['dbName']) || empty($config['dbUser']) || empty($config['dbPass'])) {
             throw new \Exception("Invalid database params");
         }
-        $this->db = new \PDO("mysql:dbname=".$config['dbName'].";host=".$config['dbHost'], $config['dbUser'], $config['dbPass']);
+        $this->db = new \PDO("mysql:dbname=".$config['dbName'].";host=".$config['dbHost'].";charset=utf8", $config['dbUser'], $config['dbPass']);
         if (!$this->db) {
             throw new \Exception("Can't init data provider");
         }
