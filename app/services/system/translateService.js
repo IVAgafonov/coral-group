@@ -6,7 +6,7 @@
             getTranslate: function(locale) {
                 return $http({
                    method: 'GET',
-                   url: 'http://dev4.agafonov.me/apiv1/index.php/translate/get?locale=' + locale
+                   url: '/api/v1/translate/get?locale=' + locale
                 }).then(function(response){
                     return response.data;
                 }, function(error) {

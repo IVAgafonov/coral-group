@@ -1,20 +1,26 @@
 (function() {
     'use strict';
-    angular.module('app.router', ['ui.router', 'pascalprecht.translate'])
+    angular.module('app.router', ['ui.router', 'pascalprecht.translate', 'angularLoad'])
         .config(['$stateProvider', '$urlServiceProvider', '$translateProvider', function($stateProvider, $urlServiceProvider, $translateProvider) {
-            $urlServiceProvider.rules.otherwise({ state: 'app.main'});
+            $urlServiceProvider.rules.otherwise('/nolang/');
 
             $stateProvider.state('app', {
                 abstract: true,
                 url: '/{locale}',
-                controller: ['$state', '$stateParams', '$translate', 'translateService', function($state, $stateParams, $translate, translateService) {
+                controller: ['$state', '$stateParams', '$translate', 'translateService', '$cookies', function($state, $stateParams, $translate, translateService, $cookies) {
                     if (!['ru', 'en'].includes($stateParams.locale)) {
-                        $state.go('app.main', {locale: 'ru'});
-                    }                  
-                    
-                    translateService.getTranslate($stateParams.locale).then(function(response) {
-                        $translateProvider.translations($stateParams.locale, response);
-                        $translate.use($stateParams.locale);
+                        var cookiesLocale = $cookies.get('locale');
+                        if (!['ru', 'en'].includes(cookiesLocale)) {
+                            cookiesLocale = 'ru';
+                        }
+                        $state.go('app.main', {locale: cookiesLocale});
+                    }
+                    var locale = $stateParams.locale;
+                    $cookies.put('locale', locale);
+                    $translateProvider.useSanitizeValueStrategy('escape');
+                    translateService.getTranslate(locale).then(function(response) {
+                        $translateProvider.translations(locale, response);
+                        $translate.use(locale);
                     }, function(error) {
                        console.log(error); 
                     });
@@ -52,7 +58,7 @@
                 data: {
                     requiresLogin: true
                 },
-                onEnter: function($state, authService) {
+                onEnter: ['$state', 'authService', 'angularLoad', 'adminCssFile',function($state, authService, angularLoad, adminCssFile) {
                     authService.check().then(function(response) {
                         if (response.auth != true) {
                             $state.go('app.login');
@@ -61,16 +67,15 @@
                         console.log('server made a boo boo');
                         $state.go('app.login');
                     });
-                }
+                    angularLoad.loadCSS('/css/' + adminCssFile).then(function(response) {
+                        
+                    }, function(error) {
+                        
+                    });
+                }]
             });
         }])
-        .run(['$rootScope', '$state', 'authService', '$stateParams',function ($rootScope, $state, authService, $stateParams) {
-            if (!$stateParams.locale) {
-                
-                $state.go('app.main', {locale: 'ru'});
-            } else {
-                
-            }
+        .run(['$rootScope', '$state', 'authService', function ($rootScope, $state, authService) {
             $rootScope.$on('$stateChangeStart', function(event, toStart, toParams, fromStart, fromParams) {
                 var requiredLogin = toState.data.requiresLogin;
                 if (requiredLogin) {

@@ -3,7 +3,8 @@ var plugins = require('gulp-load-plugins')();
 
 var paths = {
     scripts: './app/**/*.js',
-    styles: ['./app/styles/**/*.scss', './app/styles/**/*.sass'],
+    styles: './app/styles/template.sass',
+    adminStyles: './app/styles/admin.sass',
     images: './app/images/**/*',
     index: './app/index.html',
     partials: ['./app/**/*.html', '!app/index.html'],

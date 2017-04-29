@@ -10,6 +10,7 @@
     function adminController(authService, $state) {
         var vm = this;
         vm.userName = 'unnamed';
+        
         vm.logout = function() {
             authService.logout();
             $state.go('app.login');
