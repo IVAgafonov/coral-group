@@ -6,25 +6,42 @@ return [
             'POST' => ['guest']
         ],
         'logout' => [
-            'GET' => ['user', 'admin']
+            'GET' => ['user']
         ],
         'check' => [
-            'GET' => ['guest', 'user', 'admin']
+            'GET' => ['guest']
         ]
     ],
     'Translate' => [
         'get' => [
-            'GET' => ['guest']
+            '' => ['guest']
+        ],
+        'translate' => [
+            '' => ['user']
         ]
     ],
     'Menu' => [
         'get' => [
             'GET' => ['guest']
+        ],
+        'getaslist' => [
+            '' => ['user']
+        ],
+        'menu' => [
+            '' => ['user']
+        ]
+    ],
+    'Mpitems' => [
+        'get' => [
+            'GET' => ['guest']
+        ],
+        'items' => [
+            '' => ['user']
         ]
     ],
     'Test' => [
         '' => [
-            '' => ['guest', 'user', 'admin']
+            '' => ['guest']
         ]
     ]
 ];

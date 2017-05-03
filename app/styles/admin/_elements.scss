@@ -11,3 +11,61 @@
     background-color: #f5f5f5;
     border-right: 1px solid #eee;
 }
+
+.glyphicon:before {
+    visibility: visible;
+}
+.glyphicon.glyphicon-star-empty:checked:before {
+    content: "\e006";
+}
+input[type=checkbox].glyphicon{
+    visibility: hidden;
+}
+
+.glyphicon:before {
+    visibility: visible;
+}
+
+.glyphicon.glyphicon-remove-circle {
+    color: #990c05;
+}
+
+.glyphicon.glyphicon-remove-circle:checked:before {
+    content: "\e089";
+    color: #117f15;
+}
+input[type=checkbox].glyphicon{
+    visibility: hidden;
+}
+
+.nav-sidebar > .active > a, .nav-sidebar > .active > a:hover, .nav-sidebar > .active > a:focus {
+    color: #fff;
+    background-color: #428bca;
+}
+
+button.glyphicon {
+    background: none;
+    border: 0px;
+}
+
+ul.dndList {
+    list-style-type: none;
+    display: block;
+}
+
+ul.dndList > li {
+    padding: 5px 15px;
+    width: 500px;
+    background: #f3f3f3;
+}
+
+ul.dndList > li > ul.dndList {
+    padding: 20px 0px 0px 20px;
+    background: #d9ecff;
+    display: block;
+}
+
+ul.dndList > li > ul.dndList > li {
+    padding: 5px 15px;
+    width: 450px;
+}

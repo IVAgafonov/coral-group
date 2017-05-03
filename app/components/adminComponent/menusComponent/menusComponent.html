@@ -1,10 +1,43 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <title>Title</title>
-</head>
-<body>
+<h1 class="page-header" id="addMenuHash">{{'AdmMenuPageTitle' | translate }}</h1>
+<div uib-alert ng-show="$ctrl.messageText" ng-class="'alert-' + $ctrl.messageType" close="$ctrl.messageText=''">{{$ctrl.messageText | translate}}</div>
+<h2 class="sub-header">{{'AdmMenuAddTitle' | translate}}</h2>
+<form class="form-inline">
+    <div class="form-group">
+        <label for="menuTemplate">{{'AdmMenuTemplate' | translate}}</label>
+        <input class="form-control" type="text" id="menuTemplate" ng-model="$ctrl.menuTemplate">
+    </div>
+    <div class="form-group">
+        <label for="menuUri">{{'AdmMenuUri' | translate}}</label>
+        <input class="form-control" type="text" id="menuUri" ng-model="$ctrl.menuUri">
+    </div>
+    <button type="submit" class="btn btn-success" ng-click="$ctrl.saveMenu()">{{'AdmSave' | translate}}</button>
+</form>
+<h2 class="sub-header">{{'AdmMenuList' | translate}}</h2>
+<div class="row">
+    <div>
+        <ul dnd-list="$ctrl.menuList" class="dndList">
+            <li ng-repeat="item in $ctrl.menuList" dnd-draggable="item" dnd-effect-allowed="move" dnd-moved="$ctrl.menuList.splice($index, 1); $ctrl.sortMenu()" dnd-selected="models.selected = item">
+                <p>{{item.name}}
+                    <span class="pull-right">
+                        <button class="glyphicon glyphicon-edit" aria-hidden="true" ng-click="$ctrl.editMenu(item.id)"></button>
+                        <button class="glyphicon glyphicon-remove" aria-hidden="true" ng-click="$ctrl.deleteMenu(item.id)"></button>
+                        <input class="glyphicon glyphicon-remove-circle" type="checkbox" ng-change="$ctrl.changeActive(item)" ng-model="item.active" ng-true-value="'1'" ng-false-value="'0'">
+                    </span>
 
-</body>
-</html>
+                </p>
+                <ul dnd-list="item.child" class="dndList">
+                    <li ng-repeat="itemChild in item.child" dnd-draggable="itemChild" dnd-effect-allowed="move" dnd-moved="item.child.splice($index, 1); $ctrl.sortMenu()" dnd-selected="models.selected = item">
+                        <p>
+                            {{itemChild.name}}
+                            <span class="pull-right">
+                                <button class="glyphicon glyphicon-edit" aria-hidden="true" ng-click="$ctrl.editMenu(itemChild.id)"></button>
+                                <button class="glyphicon glyphicon-remove" aria-hidden="true" ng-click="$ctrl.deleteMenu(itemChild.id)"></button>
+                                <input class="glyphicon glyphicon-remove-circle" type="checkbox" ng-change="$ctrl.changeActive(itemChild)" ng-model="itemChild.active" ng-true-value="'1'" ng-false-value="'0'">
+                            </span>
+                        </p>
+                    </li>
+                </ul>
+            </li>
+        </ul>
+    </div>
+</div>

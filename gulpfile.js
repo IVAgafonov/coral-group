@@ -7,7 +7,9 @@ var paths = {
     adminStyles: './app/styles/admin.sass',
     images: './app/images/**/*',
     index: './app/index.html',
+    favicon: './app/favicon.ico',
     partials: ['./app/**/*.html', '!app/index.html'],
+    fonts: './node_modules/bootstrap-sass/assets/fonts/**/*',
     dev : './dev',
     prod: './prod'
 };

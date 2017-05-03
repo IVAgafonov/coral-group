@@ -5,11 +5,11 @@
     function menuComponentFn() {
         return {
             templateUrl: 'components/menuComponent/menuComponent.html',
-            controller: ['$rootScope', 'menuService', menuControllerFn]
+            controller: menuControllerFn
         }
     }
 
-    function menuControllerFn($rootScope, menuService) {
+    function menuControllerFn() {
 
     }
 })();

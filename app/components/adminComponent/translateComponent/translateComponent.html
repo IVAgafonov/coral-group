@@ -1,10 +1,66 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <title>Title</title>
-</head>
-<body>
-
-</body>
-</html>
+<h1 class="page-header" id="addTranslateHash">{{'AdmTranslationPageTitle' | translate}}</h1>
+<div uib-alert ng-show="$ctrl.messageText" ng-class="'alert-' + $ctrl.messageType" close="$ctrl.messageText=''">{{$ctrl.messageText | translate}}</div>
+<h2 class="sub-header">{{'AdmTranslationAddTitle' | translate}}</h2>
+<form class="form-inline">
+    <div class="form-group">
+        <label for="translateTemplate">{{'AdmTranslateTemplate' | translate}}</label>
+        <input class="form-control" type="text" id="translateTemplate" ng-model="$ctrl.translateTemplate">
+    </div>
+    <div class="form-group">
+        <label for="translateLocale">{{'AdmTranslateLocale' | translate}}</label>
+        <select class="form-control" id="translateLocale" ng-model="$ctrl.translateLocale">
+            <option value="RU" selected="selected">{{'LocaleRu' | translate}}</option>
+            <option value="EN">{{'LocaleEn' | translate}}</option>
+        </select>
+    </div>
+    <div class="form-group">
+        <label for="translateTranslate">{{'AdmTranslateTranslate' | translate}}</label>
+        <input class="form-control" type="text" id="translateTranslate" ng-model="$ctrl.translateTranslate">
+    </div>
+    <div class="form-group">
+        <label for="translateImportant">{{'AdmTranslateImportant' | translate}}</label>
+        <input class="glyphicon glyphicon-star-empty" type="checkbox" id="translateImportant" ng-model="$ctrl.translateImportant">
+    </div>
+    <button type="submit" class="btn btn-success" ng-click="$ctrl.save()">{{'AdmSave' | translate}}</button>
+</form>
+<h2 class="sub-header">{{'AdmTranslationFilters' | translate}}</h2>
+<form class="form-inline">
+    <div class="form-group">
+        <label for="translateTextFilter">{{'AdmTranslateTextFilter' | translate}}</label>
+        <input class="form-control" type="text" ng-change="$ctrl.loadTranslate()" id="translateTextFilter" ng-model="$ctrl.translateTextFilter">
+    </div>
+    <select class="form-control" ng-change="$ctrl.loadTranslate()" id="translateFilterLocale" ng-model="$ctrl.translateLocaleFilter">
+        <option value="" selected="selected">{{'LocaleAny' | translate}}</option>
+        <option value="ru">{{'LocaleRu' | translate}}</option>
+        <option value="en">{{'LocaleEn' | translate}}</option>
+    </select>
+    <div class="form-group">
+        <label for="translateImportant">{{'AdmTranslateImportant' | translate}}</label>
+        <input ng-change="$ctrl.loadTranslate()" class="glyphicon glyphicon-star-empty" type="checkbox" id="translateFilterImportant" ng-model="$ctrl.translateImportantFilter">
+    </div>
+</form>
+<h2 class="sub-header">{{'AdmTranslationTranslations' | translate}}</h2>
+<div class="table-responsive">
+    <table class="table table-fixed">
+        <thead>
+            <tr>
+                <th>№</th>
+                <th>{{'AdmTranslateTemplate' | translate}}</th>
+                <th>{{'AdmTranslateTranslate' | translate}}</th>
+                <th>{{'AdmTranslateLocale' | translate}}</th>
+                <th>{{'AdmTranslateImportant' | translate}}</th>
+                <th>{{'AdmActions' | translate}}</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr ng-repeat="translate in $ctrl.translateList track by $index">
+                <td>{{$index + 1}}</td>
+                <td>{{translate.template}}</td>
+                <td>{{translate.translate}}</td>
+                <td>{{translate.locale}}</td>
+                <td><input class="glyphicon glyphicon-star-empty" type="checkbox" ng-change="$ctrl.changeImportant($index)" ng-model="translate.is_important" ng-true-value="'1'" ng-false-value="'0'"></td>
+                <td><button class="glyphicon glyphicon-edit" aria-hidden="true" ng-click="$ctrl.editTranslate($index)"></button><button class="glyphicon glyphicon-remove" aria-hidden="true" ng-click="$ctrl.deleteTranslate($index)"></button></td>
+            </tr>
+        </tbody>
+    </table>
+</div>

@@ -60,16 +60,24 @@ module.exports = function (gulp, plugins, paths) {
     
     pipes.moveFonts = function () {
         return gulp.src(paths.fonts)
-            .pipe(gulp.dest(paths.dev) + '/fonts');
+            .pipe(gulp.dest(paths.dev + '/fonts'));
+    };
+
+    pipes.moveFavicon = function () {
+        return gulp.src(paths.favicon)
+            .pipe(gulp.dest(paths.dev));
     };
 
     pipes.buildDev = function () {
         var vendorScripts = pipes.vendorScripts();
         var otherScripts = pipes.otherScripts();
-        var stylesAdminCss = pipes.stylesAdminCss();
         var stylesCss = pipes.stylesCss();
+
         pipes.movePartials();
         pipes.moveImages();
+        pipes.moveFonts();
+        pipes.stylesAdminCss();
+        pipes.moveFavicon();
 
         var v = Date.now();
 

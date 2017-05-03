@@ -1,6 +1,6 @@
 (function() {
     'use strict';
-    angular.module('app.router', ['ui.router', 'pascalprecht.translate', 'angularLoad'])
+    angular.module('app.router', ['ui.router', 'pascalprecht.translate', 'angularCSS'])
         .config(['$stateProvider', '$urlServiceProvider', '$translateProvider', function($stateProvider, $urlServiceProvider, $translateProvider) {
             $urlServiceProvider.rules.otherwise('/nolang/');
 
@@ -20,7 +20,7 @@
 
                     $cookies.put('locale', locale);
                     $rootScope.locale = locale;
-                    menuService.getMenu($rootScope.locale).then(function(response) {
+                    menuService.get().then(function(response) {
                         if (!$rootScope.mainMenu || cookiesLocale != locale) {
                             $rootScope.mainMenu = response.data;
                         }
@@ -28,16 +28,14 @@
 
                     });
                     $translateProvider.useSanitizeValueStrategy('escape');
-                    translateService.getTranslate(locale).then(function(response) {
-                        $translateProvider.translations(locale, response);
+                    translateService.get(locale).then(function(response) {
+                        $translateProvider.translations(locale, response.data);
                         $translate.use(locale);
                     }, function(error) {
                        console.log(error); 
                     });
                 }]
             });
-
-
 
             $stateProvider.state('app.main', {
                url: '/',
@@ -77,12 +75,12 @@
                 data: {
                     requiresLogin: false
                 },
-                onEnter: ['angularLoad', 'adminCssFile', function(angularLoad, adminCssFile) {
-                    angularLoad.loadCSS('/css/' + adminCssFile).then(function(response) {
 
-                    }, function(error) {
-
-                    });
+                onEnter: ['$css', 'adminCssFile', function($css, adminCssFile) {
+                    $css.add('/css/' + adminCssFile);
+                }],
+                onExit: ['$css', 'adminCssFile', function($css, adminCssFile) {
+                    $css.remove('/css/' + adminCssFile);
                 }]
             });
             
@@ -101,7 +99,7 @@
                 data: {
                     requiresLogin: true
                 },
-                onEnter: ['$state', 'authService', 'angularLoad', 'adminCssFile', function($state, authService, angularLoad, adminCssFile) {
+                onEnter: ['$state', 'authService', '$css', 'adminCssFile', function($state, authService, $css, adminCssFile) {
                     authService.check().then(function(response) {
                         if (response.auth != true) {
                             $state.go('app.login');
@@ -110,27 +108,29 @@
                         console.log('server made a boo boo');
                         $state.go('app.login');
                     });
-                    angularLoad.loadCSS('/css/' + adminCssFile).then(function(response) {
-                    }, function(error) {
-                        
-                    });
+                    $css.add('/css/' + adminCssFile);
+                }],
+                onExit: ['$css', 'adminCssFile', function($css, adminCssFile) {
+                    $css.remove('/css/' + adminCssFile);
                 }]
             });
-        }])
-        .run(['$rootScope', '$state', 'authService', function ($rootScope, $state, authService) {
 
-            $rootScope.$on('$stateChangeStart', function(event, toStart, toParams, fromStart, fromParams) {
-                var requiredLogin = toState.data.requiresLogin;
-                if (requiredLogin) {
-                    authService.check().then(function(response) {
-                        if (response.auth == false) {
-                            $state.go('app.login');
-                        }
-                    }, function() {
-                        console.log('server made a boo boo');
-                        $state.go('app.login');
-                    });
-                }
+            $stateProvider.state('app.admin.translate', {
+                url: '/translate',
+                component: 'translateComponent'
             });
+
+            $stateProvider.state('app.admin.menus', {
+                url: '/menus',
+                component: 'menusComponent'
+            });
+
+            $stateProvider.state('app.admin.mpitems', {
+                url: '/mpitems',
+                component: 'mpItemsComponent'
+            });
+        }])
+        .run(['$rootScope', function ($rootScope) {
+
         }]);
 })();

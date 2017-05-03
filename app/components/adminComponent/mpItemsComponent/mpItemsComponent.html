@@ -1,0 +1,33 @@
+<h1 class="page-header" id="addMenuHash">{{'AdmMainPageItems' | translate}}</h1>
+<div uib-alert ng-show="$ctrl.messageText" ng-class="'alert-' + $ctrl.messageType" close="$ctrl.messageText=''">{{$ctrl.messageText | translate}}</div>
+<h2 class="sub-header">{{'MainPageItemsAdd' | translate}}</h2>
+<form class="form-inline">
+    <div class="form-group">
+        <label for="menuTemplate">{{'AdmMpitemTemplate' | translate}}</label>
+        <input class="form-control" type="text" id="menuTemplate" ng-model="$ctrl.item.itemTemplate">
+    </div>
+    <div class="form-group">
+        <label for="menuUri">{{'AdmMenuItemBind' | translate}}</label>
+        <select id="menuUri" class="form-control" ng-model="$ctrl.item.menuItemId">
+            <option ng-value="0">without bind</option>
+            <option ng-repeat="menuItem in $ctrl.menuList track by $index" ng-value="menuItem.id">{{menuItem.name | translate}}</option>
+        </select>
+    </div>
+    <button type="submit" class="btn btn-success" ng-click="$ctrl.saveItem()">{{'AdmSave' | translate}}</button>
+</form>
+<h2 class="sub-header">{{'AdmMainPageItems' | translate}}</h2>
+<div class="row">
+    <div>
+        <ul dnd-list="$ctrl.items" class="dndList">
+            <li ng-repeat="item in $ctrl.items" dnd-draggable="item" dnd-effect-allowed="move" dnd-moved="$ctrl.items.splice($index, 1); $ctrl.sortItems()" dnd-selected="models.selected = item">
+                <p>{{item.text_template | translate}}
+                    <span class="pull-right">
+                        <button class="glyphicon glyphicon-edit" aria-hidden="true" ng-click="$ctrl.editItem(item)"></button>
+                        <button class="glyphicon glyphicon-remove" aria-hidden="true" ng-click="$ctrl.deleteItem(item.id)"></button>
+                        <input class="glyphicon glyphicon-remove-circle" type="checkbox" ng-change="$ctrl.changeActive(item)" ng-model="item.active" ng-true-value="'1'" ng-false-value="'0'">
+                    </span>
+                </p>
+            </li>
+        </ul>
+    </div>
+</div>

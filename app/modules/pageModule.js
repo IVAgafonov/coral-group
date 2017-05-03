@@ -1,4 +1,4 @@
 (function () {
     'use strict';
-    angular.module('pageModule', []);
+    angular.module('pageModule', ['dndLists']);
 })();
