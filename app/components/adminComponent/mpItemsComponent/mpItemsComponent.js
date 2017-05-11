@@ -5,16 +5,36 @@
     function mpItemsComponentFn() {
         return {
             templateUrl: 'components/adminComponent/mpItemsComponent/mpItemsComponent.html',
-            controller:  ['mpitemsService', 'menuService', '$timeout', mpItemsControllerFn]
+            controller:  ['mpitemsService', 'menuService', '$timeout', 'FileUploader', mpItemsControllerFn]
         }
     }
 
-    function mpItemsControllerFn(mpitemsService, menuService, $timeout) {
+    function mpItemsControllerFn(mpitemsService, menuService, $timeout, FileUploader) {
         var vm = this;
+
+        vm.messageText = '';
+        vm.messageType = '';
 
         vm.menuItemId = 0;
 
         vm.item = {};
+
+        vm.uploader = new FileUploader({
+            url: '/api/v1/mpitems/itemsimage',
+            autoUpload: true,
+            removeAfterUpload: true
+        });
+
+        vm.uploader.onSuccessItem = function (fileItem, response, status, headers) {
+            if (response.error) {
+                vm.messageType = 'danger';
+                vm.messageText = response.error;
+                $timeout(function() {
+                    vm.messageText = '';
+                }, 2000);
+            }
+            vm.loadElements();
+        };
 
         vm.loadElements = function() {
             menuService.getAsList().then(function(response) {
@@ -28,7 +48,16 @@
             }, function(error) {
 
             });
+        };
 
+        vm.deleteImage = function(item) {
+            mpitemsService.deleteItemsImage(item.id).then(function(response) {
+                if (response.data.status && response.data.status == 'ok') {
+                    item.image = '';
+                }
+            }, function(error) {
+
+            })
         };
 
         vm.editItem = function(item) {

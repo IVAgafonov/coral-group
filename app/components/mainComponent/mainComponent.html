@@ -1,10 +1,29 @@
-<div class="desctop">
-    <div class="language">
-        <a href="" ui-sref="app.main({locale: 'ru'})">ru</a>
-        <a href="" ui-sref="app.main({locale: 'en'})">en</a>
-        <a href="" ui-sref="app.login">login</a>
+<header class="main">
+    <div class="topline">
+        <div class="container">
+            <p>
+                <a href="" ui-sref="app.main">
+                    {{ 'PersonalAccount' | translate }}
+                </a>
+            </p>
+        </div>
     </div>
-</div>
+    <div class="head">
+        <div class="container">
+            <div class="mainlogo">
+                <a href="" ui-sref="app.main"></a>
+            </div>
+            <nav>
+                <menu-component></menu-component>
+            </nav>
+            <div class="language">
+                <a href="" ui-sref="app.main({locale: 'ru'})">ru</a>
+                <a href="" ui-sref="app.main({locale: 'en'})">en</a>
+            </div>
+        </div>
+    </div>
+</header>
+
 <div id="fullpage">
     <div class="section">
         <h1>{{ 'Slide1' | translate }}</h1>

@@ -55,7 +55,12 @@ class DataProvider implements DataProviderInterface {
     public function getValue($query)
     {
         $this->statement = $this->db->query($query);
-        return $this->statement;
+        $result = $this->statement->execute();
+        if ($result) {
+            $value = $this->statement->fetch(\PDO::FETCH_BOTH);
+            return $value[0];
+        }
+        return false;
     }
     public function doQuery($query)
     {

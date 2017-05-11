@@ -20,13 +20,31 @@
     <div>
         <ul dnd-list="$ctrl.items" class="dndList">
             <li ng-repeat="item in $ctrl.items" dnd-draggable="item" dnd-effect-allowed="move" dnd-moved="$ctrl.items.splice($index, 1); $ctrl.sortItems()" dnd-selected="models.selected = item">
-                <p>{{item.text_template | translate}}
-                    <span class="pull-right">
-                        <button class="glyphicon glyphicon-edit" aria-hidden="true" ng-click="$ctrl.editItem(item)"></button>
-                        <button class="glyphicon glyphicon-remove" aria-hidden="true" ng-click="$ctrl.deleteItem(item.id)"></button>
-                        <input class="glyphicon glyphicon-remove-circle" type="checkbox" ng-change="$ctrl.changeActive(item)" ng-model="item.active" ng-true-value="'1'" ng-false-value="'0'">
-                    </span>
-                </p>
+                <div >
+                    <table class='table-list-image'>
+                        <tbody>
+                            <tr>
+                                <td>
+                                    <img ng-src="/images/mpItems/{{item.image ? item.image : 'no-image.png'}}" class="rounded float-left image-thumb">
+                                    <label ng-show="!item.image" class="glyphicon glyphicon-plus pos-top-right" aria-hidden="true">
+                                        <input type="file" nv-file-select="" id="fileSelect{{item.id}}" accept=".png" uploader="$ctrl.uploader" options="{formData: [{id: item.id}], queueLimit: 1}" class="hide">
+                                    </label>
+                                    <button ng-show="item.image" class="glyphicon glyphicon-remove pos-top-right" aria-hidden="true" ng-click="$ctrl.deleteImage(item)"></button>
+                                </td>
+                                <td>
+                                    <p>{{item.text_template | translate}}
+                                        <span class="pull-right">
+                                            <button class="glyphicon glyphicon-edit" aria-hidden="true" ng-click="$ctrl.editItem(item)"></button>
+                                            <button class="glyphicon glyphicon-remove" aria-hidden="true" ng-click="$ctrl.deleteItem(item.id)"></button>
+                                            <input class="glyphicon glyphicon-remove-circle" type="checkbox" ng-change="$ctrl.changeActive(item)" ng-model="item.active" ng-true-value="'1'" ng-false-value="'0'">
+                                        </span>
+                                    </p>
+                                </td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+
             </li>
         </ul>
     </div>

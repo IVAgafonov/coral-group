@@ -51,21 +51,61 @@ button.glyphicon {
 ul.dndList {
     list-style-type: none;
     display: block;
+    background: #efefef;
+    width: 520px;
+    margin: 0px 0px 0px 20px;
+    padding: 10px;
+    border-radius: 2px;
 }
 
 ul.dndList > li {
-    padding: 5px 15px;
+    padding: 5px 5px;
     width: 500px;
-    background: #f3f3f3;
+    background: #d8d8d8;
+    margin: 4px 0px;
+    border-radius: 2px;
 }
 
 ul.dndList > li > ul.dndList {
-    padding: 20px 0px 0px 20px;
+    padding: 10px 0 10px 10px;
     background: #d9ecff;
     display: block;
+    margin: 0px;
+    width: 490px;
 }
 
 ul.dndList > li > ul.dndList > li {
     padding: 5px 15px;
-    width: 450px;
+    width: 470px;
+}
+
+.table-list-image {
+    width: 100%;
+}
+
+.table-list-image > tbody > tr > td:first-child {
+    background: #9a9a9a;
+    padding: 4px;
+    width: 90px;
+    position: relative;
+}
+
+.table-list-image > tbody > tr > td:last-child {
+    padding: 4px;
+    vertical-align: top;
+}
+
+.table-list-image > tbody > tr > td > img {
+    width: 80px;
+}
+
+.pos-top-right {
+    position: absolute;
+    top: 5px;
+    right: 5px;
+    padding: 0px;
+}
+
+.glyphicon {
+    outline: none;
 }

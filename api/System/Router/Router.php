@@ -100,6 +100,7 @@ class Router {
                     $_POST = (array)json_decode(trim(file_get_contents('php://input')), true);
                 }
                 $this->params = $_POST;
+                $this->params = array_merge_recursive($this->params, $_FILES);
                 break;
             default:
                 $this->params = (array)json_decode(trim(file_get_contents('php://input')), true);

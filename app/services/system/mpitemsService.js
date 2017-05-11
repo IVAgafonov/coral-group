@@ -55,7 +55,7 @@
                 },
                 deleteItemsImage: function(id) {
                     return $http({
-                        url: '/api/v1/mpitems/itemsImage',
+                        url: '/api/v1/mpitems/itemsimage',
                         method: 'DELETE',
                         data: {
                             id: id

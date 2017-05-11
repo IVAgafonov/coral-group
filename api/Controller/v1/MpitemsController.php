@@ -70,4 +70,43 @@ class MpitemsController extends AbstractController implements ControllerInterfac
                 exit();
         }
     }
+
+    public function itemsimage() {
+        switch ($this->method) {
+            case 'POST':
+                if (file_exists( __DIR__."/../../../images/mpItems/".$this->params['file']['name'])) {
+                    echo json_encode(['error' => 'FileAlreadyExists']);
+                    exit();
+                }
+
+                if (copy($this->params['file']['tmp_name'], __DIR__."/../../../images/mpItems/".$this->params['file']['name'])) {
+                    $this->db->doQuery("UPDATE `cg_mpelements` SET image = '".$this->params['file']['name']."' WHERE id = ".(int)$this->params['id']);
+                    if ($this->db->getAffectedRows()) {
+                        echo json_encode(['status' => 'ok']);
+                        exit();
+                    } else {
+                        unlink( __DIR__."/../../../images/mpItems/".$this->params['file']['name']);
+                        header('HTTP/1.1 500 Internal server error');
+                        exit();
+                    }
+                }
+                echo json_encode(['error' => 'ErrorInvalidRequest']);
+                break;
+            case 'DELETE':
+                if (isset($this->params['id'])) {
+                    $fileName = $this->db->getValue("SELECT image FROM `cg_mpelements` WHERE id = ".(int)$this->params['id']);
+                    unlink( __DIR__."/../../../images/mpItems/".$fileName);
+                    $this->db->doQuery("UPDATE `cg_mpelements` SET image = '' WHERE id = ".(int)$this->params['id']);
+                    if ($this->db->getAffectedRows()) {
+                        echo json_encode(['status' => 'ok']);
+                        exit();
+                    }
+                }
+                echo json_encode(['error' => 'ErrorInvalidRequest']);
+                break;
+            default:
+                header('HTTP/1.1 405 Method not allowed');
+                exit();
+        }
+    }
 }

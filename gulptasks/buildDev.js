@@ -55,7 +55,7 @@ module.exports = function (gulp, plugins, paths) {
 
     pipes.moveImages = function () {
         return gulp.src(paths.images)
-            .pipe(gulp.dest(paths.dev));
+            .pipe(gulp.dest(paths.dev + '/images'));
     };
     
     pipes.moveFonts = function () {
@@ -68,6 +68,16 @@ module.exports = function (gulp, plugins, paths) {
             .pipe(gulp.dest(paths.dev));
     };
 
+    pipes.movePhp = function() {
+        return gulp.src(paths.php)
+            .pipe(gulp.dest(paths.dev + '/api'));
+    };
+
+    pipes.movePhpVendor = function() {
+        return gulp.src(paths.phpVendor)
+            .pipe(gulp.dest(paths.dev + '/vendor'));
+    };
+
     pipes.buildDev = function () {
         var vendorScripts = pipes.vendorScripts();
         var otherScripts = pipes.otherScripts();
@@ -78,6 +88,8 @@ module.exports = function (gulp, plugins, paths) {
         pipes.moveFonts();
         pipes.stylesAdminCss();
         pipes.moveFavicon();
+        pipes.movePhp();
+        pipes.movePhpVendor();
 
         var v = Date.now();
 
@@ -91,7 +103,7 @@ module.exports = function (gulp, plugins, paths) {
 
     pipes.buildDev();
 
-    gulp.watch([paths.index, paths.scripts, paths.partials, paths.styles, paths.images], function () {
+    gulp.watch([paths.index, paths.scripts, paths.partials, paths.styles, paths.images, paths.php, paths.phpVendor], function () {
         pipes.buildDev();
     });
 };

@@ -37,6 +37,9 @@ return [
         ],
         'items' => [
             '' => ['user']
+        ],
+        'itemsimage' => [
+            '' => ['user']
         ]
     ],
     'Test' => [

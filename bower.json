@@ -25,7 +25,8 @@
     "angular-bootstrap": "^2.5.0",
     "angular-cookies": "^1.6.4",
     "angular-css": "^1.0.8",
-    "angular-drag-and-drop-lists": "^2.1.0"
+    "angular-drag-and-drop-lists": "^2.1.0",
+    "angular-file-upload": "^2.5.0"
   },
   "devDependencies": {
   }
