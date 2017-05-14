@@ -1,41 +1,17 @@
-<header class="main">
-    <div class="topline">
-        <div class="container">
-            <p>
-                <a href="" ui-sref="app.main">
-                    {{ 'PersonalAccount' | translate }}
-                </a>
-            </p>
-        </div>
-    </div>
-    <div class="head">
-        <div class="container">
-            <div class="mainlogo">
-                <a href="" ui-sref="app.main"></a>
-            </div>
-            <nav>
-                <menu-component></menu-component>
-            </nav>
-            <div class="language">
-                <a href="" ui-sref="app.main({locale: 'ru'})">ru</a>
-                <a href="" ui-sref="app.main({locale: 'en'})">en</a>
-            </div>
-        </div>
-    </div>
-</header>
-
+<header-component></header-component>
 <div id="fullpage">
-    <div class="section">
-        <h1>{{ 'Slide1' | translate }}</h1>
-        <a href="" >next</a>
+    <div class="section slide1">
+
     </div>
-    <div class="section">
-        <h1>{{ 'Slide2' | translate }}</h1>
-        <a href="" >prev</a>
-        <a href="" >next</a>
+    <div class="section slide2">
+        <div class="slideServices">
+            <div ng-repeat="service in $ctrl.services">
+                <a class="serviceImage" style="background-image: url('/images/mpItems/{{service.image}}')"></a>
+                <a class="serviceImage" ui-sref="{{service.menu_id}}">{{service.text_template}}</a>
+            </div>
+        </div>
     </div>
-    <div class="section">
-        <h1>{{ 'Slide3' | translate }}</h1>
-        <a href="" >prev</a>
+    <div class="section slide3">
+        <footer-component></footer-component>
     </div>
 </div>

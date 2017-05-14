@@ -1,0 +1,35 @@
+<header class="main">
+    <div class="topline">
+        <div class="container">
+            <p>
+                <a ng-click="showMenu = !showMenu" ng-class="{'active' : showMenu}" class="mobile-menu-btn">
+
+                </a>
+                <a class="personal" href="" ui-sref="app.main">
+                    {{ 'PersonalAccount' | translate }}
+                </a>
+            </p>
+        </div>
+    </div>
+    <div class="menumobile" ng-class="{'showMobileMenu' : showMenu}">
+        <nav>
+            <menu-component></menu-component>
+        </nav>
+    </div>
+    <div class="head" ng-class="{'forceShow': $root.showHeader == true}">
+        <div class="container">
+            <div class="mainlogo">
+                <a href="" ui-sref="app.main"></a>
+            </div>
+            <div class="menumain">
+                <nav>
+                    <menu-component></menu-component>
+                </nav>
+            </div>
+            <div class="language">
+                <a href="" ng-class="{'active': $root.locale == 'ru'}" ui-sref="app.main({locale: 'ru'})">ru</a>
+                <a href="" ng-class="{'active': $root.locale == 'en'}" ui-sref="app.main({locale: 'en'})">en</a>
+            </div>
+        </div>
+    </div>
+</header>

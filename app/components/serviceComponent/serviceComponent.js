@@ -6,11 +6,11 @@
     function serviceComponentFn() {
         return {
             templateUrl: 'components/serviceComponent/serviceComponent.html',
-            controller: serviceControllerFn()
+            controller: ['$rootScope', serviceControllerFn]
         }
     }
 
-    function serviceControllerFn() {
-
+    function serviceControllerFn($rootScope) {
+        $rootScope.showHeader = true;
     }
 })();

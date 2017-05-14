@@ -103,7 +103,7 @@ module.exports = function (gulp, plugins, paths) {
 
     pipes.buildDev();
 
-    gulp.watch([paths.index, paths.scripts, paths.partials, paths.styles, paths.images, paths.php, paths.phpVendor], function () {
+    gulp.watch([paths.index, paths.scripts, paths.partials, paths.styles, paths.images, paths.php, paths.phpVendor, paths.stylesWatch], function () {
         pipes.buildDev();
     });
 };

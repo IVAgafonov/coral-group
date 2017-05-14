@@ -8,7 +8,6 @@
                 abstract: true,
                 url: '/{locale}',
                 controller: ['$rootScope', '$state', '$stateParams', '$translate', 'translateService', '$cookies', 'menuService' ,function($rootScope, $state, $stateParams, $translate, translateService, $cookies, menuService) {
-
                     var cookiesLocale = $cookies.get('locale');
                     if (!['ru', 'en'].includes($stateParams.locale)) {
                         if (!['ru', 'en'].includes(cookiesLocale)) {
@@ -38,11 +37,16 @@
             });
 
             $stateProvider.state('app.main', {
-               url: '/',
-               component: 'mainComponent',
-               data: {
-                   requiresLogin: false
-               }
+                url: '/',
+                component: 'mainComponent',
+                data: {
+                    requiresLogin: false
+                },
+                onExit: function() {
+                    if ($.fn.fullpage.destroy) {
+                        $.fn.fullpage.destroy('all');
+                    }
+                }
             });
 
             $stateProvider.state('app.news', {
@@ -75,7 +79,6 @@
                 data: {
                     requiresLogin: false
                 },
-
                 onEnter: ['$css', 'adminCssFile', function($css, adminCssFile) {
                     $css.add('/css/' + adminCssFile);
                 }],

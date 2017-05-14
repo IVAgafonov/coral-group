@@ -6,11 +6,11 @@
     function newsComponentFn() {
         return {
             templateUrl: 'components/newsComponent/newsComponent.html',
-            controller: newsControllerFn()
+            controller: ['$rootScope', newsControllerFn]
         }
     }
 
-    function newsControllerFn() {
-
+    function newsControllerFn($rootScope) {
+        $rootScope.showHeader = true;
     }
 })();

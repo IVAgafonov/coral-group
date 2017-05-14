@@ -4,7 +4,7 @@
 
     function menuComponentFn() {
         return {
-            templateUrl: 'components/menuComponent/menuComponent.html',
+            templateUrl: 'components/segmentComponent/menuComponent/menuComponent.html',
             controller: menuControllerFn
         }
     }
