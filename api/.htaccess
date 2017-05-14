@@ -1,0 +1,7 @@
+RewriteEngine On
+
+RewriteBase /
+
+Options -Indexes -MultiViews
+RewriteCond %{REQUEST_URI} !index.php
+RewriteRule (.*) api/index.php/$1 [L]

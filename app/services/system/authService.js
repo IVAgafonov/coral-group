@@ -6,7 +6,7 @@
                 login: function (login, credential) {
                     return $http({
                         method: 'POST',
-                        url: 'http://dev4.agafonov.me/apiv1/index.php/auth/login',
+                        url: '/api/v1/auth/login',
                         data: {
                             login: login,
                             credential: credential
@@ -20,7 +20,7 @@
                 logout: function () {
                     return $http({
                         method: 'GET',
-                        url: 'http://dev4.agafonov.me/apiv1/index.php/auth/logout',
+                        url: '/api/v1/auth/logout',
                     }).then(function (response) {
                         return response.data;
                     }, function (error) {
@@ -30,7 +30,7 @@
                 check: function () {
                     return $http({
                         method: 'GET',
-                        url: 'http://dev4.agafonov.me/apiv1/index.php/auth/check',
+                        url: '/api/v1/auth/check',
                     }).then(function (response) {
                         return response.data;
                     }, function (error) {

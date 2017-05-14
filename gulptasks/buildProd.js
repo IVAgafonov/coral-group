@@ -7,6 +7,8 @@ var paths = {
     images: './app/images/**/*',
     index: './app/index.html',
     partials: ['./app/**/*.html', '!index.html'],
+    php: './api/**/*',
+    phpVendor: './vendor/**/*',
     dev: './dev',
     prod: './prod'
 };
@@ -16,3 +18,8 @@ function getTask(taskName) {
 }
 
 gulp.task('dev', getTask(buildDev));
+gulp.task('watchDev', function() {
+    gulp.watch([paths.scripts, paths.images, paths.index], function() {
+        getTask(buildDev)(gulp, plugins, paths);
+    });
+});
