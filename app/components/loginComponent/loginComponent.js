@@ -30,7 +30,7 @@
                 vm.error = 'Invalid operation';
                 console.log(error);
             });
-        }
+        };
         
         vm.logout = function () {
             

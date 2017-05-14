@@ -1,0 +1,87 @@
+
+header.main {
+  position: absolute;
+  top: 0px;
+  width: 100%;
+  z-index: 999;
+  &:hover > div.head {
+    @include respond-to(desctop) {
+      top: 0px;
+    }
+  }
+  & > div.topline {
+    background: #00204b;
+    height: 40px;
+    position: relative;
+    z-index: 999;
+    & > div.container {
+      & > p {
+        display: block;
+        margin: 0px;
+        & > a.mobile-menu-btn {
+          display: none;
+          @include respond-to(mobile) {
+            display: block;
+          }
+        }
+        & > a.personal {
+          color: #fff;
+          text-decoration: none;
+          float: right;
+          line-height: 20px;
+          padding: 10px 0px 0px 0px;
+          &:hover {
+            border-bottom: 1px dashed #ffffff;
+          }
+        }
+      }
+    }
+  }
+  & > div.head {
+    background: #bfc0c8;
+    display: inline-block;
+    position: relative;
+    width: 100%;
+    height: 120px;
+    top: -200px;
+    transition: top 0.5s;
+    &.forceShow {
+      top: 0px;
+    }
+    & > div.container {
+      & > div.mainlogo {
+        & > a {
+          width: 209px;
+          height: 56px;
+          display: block;
+          background: url(/images/template/logomain.png);
+          float: left;
+          margin: 30px 0px 0px 0px;
+        }
+      }
+    }
+  }
+}
+
+div.language {
+  position: absolute;
+  top: 47px;
+  right: 0px;
+  & > a {
+    text-decoration: none;
+    text-transform: uppercase;
+    color: #a5a5a5;
+    background: #ffffff;
+    font-size: 9pt;
+    display: inline-block;
+    border-radius: 50%;
+    height: 26px;
+    width: 26px;
+    text-align: center;
+    line-height: 26px;
+    &.active {
+      color: #e0e0e0;
+      background: #0097d4;
+    }
+  }
+}
