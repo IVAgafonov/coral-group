@@ -31,9 +31,7 @@
                 console.log(error);
             });
         };
-        
         vm.logout = function () {
-            
         }
     }
 })();
