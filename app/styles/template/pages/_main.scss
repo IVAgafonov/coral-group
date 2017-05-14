@@ -1,0 +1,39 @@
+.slide1 {
+  background-image: url('/images/template/bunnerp1_1366.png');
+  @include respond-to(medium) {
+    background-image: url('/images/template/bunnerp1_1366.png');
+  }
+  @include respond-to(large) {
+    background-image: url('/images/template/bunnerp1_1920.png');
+  }
+}
+
+.slide2 {
+  background-image: url('/images/template/bunnerp2_1366.png');
+  @include respond-to(medium) {
+    background-image: url('/images/template/bunnerp2_1366.png');
+  }
+  @include respond-to(large) {
+    background-image: url('/images/template/bunnerp2_1920.png');
+  }
+}
+
+.slide3 {
+  background-image: url('/images/template/bunnerp3_1366.png');
+  @include respond-to(medium) {
+    background-image: url('/images/template/bunnerp3_1366.png');
+  }
+  @include respond-to(large) {
+    background-image: url('/images/template/bunnerp3_1920.png');
+  }
+}
+
+.slide1, .slide2, .slide3 {
+  background-position: 50%;
+  background-size: cover;
+  position: relative;
+}
+
+.slide3 footer {
+  position: absolute;
+}

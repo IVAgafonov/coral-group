@@ -6,11 +6,11 @@
     function aboutComponentFn() {
         return {
             templateUrl: 'components/aboutComponent/aboutComponent.html',
-            controller: aboutControllerFn()
+            controller: ['$rootScope', aboutControllerFn]
         }
     }
 
-    function aboutControllerFn() {
-
+    function aboutControllerFn($rootScope) {
+        $rootScope.showHeader = true;
     }
 })();
