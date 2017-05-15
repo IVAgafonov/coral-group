@@ -37,3 +37,85 @@
 .slide3 footer {
   position: absolute;
 }
+
+.slide2 .slideServices {
+  @include respond-to(large) {
+    width: 50%;
+  }
+  @include respond-to(medium) {
+    width: 60%;
+  }
+  @include respond-to(small) {
+    width: 70%;
+  }
+  margin: 0px auto;
+  padding: 250px 0px;
+  @include respond-to(phone) {
+    padding: 80px 0px;
+  }
+  @include respond-to(tablet) {
+    padding: 150px 0px;
+  }
+  & > div {
+    display: inline-block;
+    width: 33%;
+    @include respond-to(phone) {
+      width: 50%;
+    }
+    text-align: center;
+    vertical-align: top;
+    & > a.serviceImage {
+      width: 150px;
+      height: 150px;
+      @include respond-to(phone) {
+        width: 85px;
+        height: 85px;
+      }
+      @include respond-to(tablet) {
+        width: 120px;
+        height: 120px;
+      }
+      display: block;
+      background-size: 100%;
+      margin: 0px auto;
+      cursor: pointer;
+      border-radius: 50%;
+    }
+    & > table.vgcenter {
+      margin: 0 auto 20px auto;
+      width: 170px;
+      @include respond-to(phone) {
+        width: 65px;
+        margin: 0 auto 0px auto;
+      }
+      @include respond-to(tablet) {
+        width: 100px;
+      }
+      & td {
+        height: 120px;
+        vertical-align: middle;
+        @include respond-to(phone) {
+          height: 32px;
+        }
+        & a.serviceDesc {
+          color: #ffffff;
+          text-align: center;
+          height: 120px;
+          display: table-cell;
+          vertical-align: middle;
+          text-decoration: none;
+          text-transform: uppercase;
+          font-weight: bold;
+          font-size: 14pt;
+          @include respond-to(phone) {
+            height: 28px;
+            font-size: 7pt;
+          }
+          @include respond-to(tablet) {
+            font-size: 11pt;
+          }
+        }
+      }
+    }
+  }
+}

@@ -11,7 +11,7 @@ class MpitemsController extends AbstractController implements ControllerInterfac
     public function get() {
         switch ($this->method) {
             case 'GET':
-                $items = $this->db->getArrays("SELECT el.*, mn.uri FROM `cg_mpelements` el RIGHT JOIN `cg_menu` mn ON el.menu_id = mn.id WHERE el.active > 0 ORDER BY el.priority LIMIT 6");
+                $items = $this->db->getArrays("SELECT el.*, mn.uri as uri FROM `cg_mpelements` el RIGHT JOIN `cg_menu` mn ON el.menu_id = mn.id WHERE el.active > 0 ORDER BY el.priority LIMIT 6");
                 echo json_encode($items);
                 break;
             default:
