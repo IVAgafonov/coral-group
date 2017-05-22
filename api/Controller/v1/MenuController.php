@@ -12,14 +12,18 @@ class MenuController extends AbstractController implements ControllerInterface {
         switch ($this->method) {
             case 'GET':
                 $menus = $this->db->getArrays("SELECT * FROM `cg_menu` WHERE active > 0 ORDER BY priority");
-                $menuList = array_combine(array_column($menus, 'id'), $menus);
-                foreach ($menuList as $key => $menu) {
+                foreach ($menus as $key => $menu) {
                     if ($menu['parent'] != 0) {
-                        $menuList[$menu['parent']]['child'][] = $menu;
-                        unset($menuList[$key]);
+                        foreach ($menus as $keyIn => $menuIn) {
+                            if ($menu['parent'] == $menuIn['id']) {
+                                $menus[$keyIn]['child'][] = $menu;
+                                unset($menus[$key]);
+                                break;
+                            }
+                        }
                     }
                 }
-                echo json_encode($menuList);
+                echo json_encode($menus);
                 break;
             default:
                 header('HTTP/1.1 404 Not found');
@@ -73,11 +77,11 @@ class MenuController extends AbstractController implements ControllerInterface {
                 if (!empty($this->params['list'])) {
                     foreach ($this->params['list'] as $item) {
                         $i++;
-                        $this->db->doQuery("UPDATE `cg_menu` SET priority = ".$i." WHERE id = ".$item['id']);
+                        $this->db->doQuery("UPDATE `cg_menu` SET priority = ".$i.", parent = 0 WHERE id = ".$item['id']);
                         if ($item['child']) {
-                            foreach ($item['child'] as $item) {
+                            foreach ($item['child'] as $child) {
                                 $i++;
-                                $this->db->doQuery("UPDATE `cg_menu` SET priority = ".$i." WHERE id = ".$item['id']);
+                                $this->db->doQuery("UPDATE `cg_menu` SET priority = ".$i.", parent = ".$item['id']." WHERE id = ".$child['id']);
                             }
                         }
                     }
