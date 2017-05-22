@@ -31,6 +31,7 @@
                 console.log(error);
             });
 <<<<<<< HEAD
+<<<<<<< HEAD
         }
         
         vm.logout = function () {
@@ -39,6 +40,10 @@
         };
         vm.logout = function () {
 >>>>>>> master
+=======
+        };
+        vm.logout = function () {
+>>>>>>> 3b9dd66bc40fc480b04345d86a64f653e66d8842
         }
     }
 })();

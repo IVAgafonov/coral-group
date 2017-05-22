@@ -19,6 +19,9 @@ div.menumain > nav > menu-component{
         border-top: 5px solid #bfc0c8;
         margin: 0px 14px;
         line-height: 115px;
+        @include respond-to(small) {
+          font-size: 10pt;
+        }
         &:hover {
           border-top: 5px solid #0097d4;
         }
@@ -35,6 +38,9 @@ div.menumain > nav > menu-component{
           & > a {
             line-height: 45px;
             padding: 0px 40px 0px 14px;
+            @include respond-to(small) {
+              font-size: 10pt;
+            }
             &:hover {
               background: #cdced6;
             }
@@ -79,7 +85,8 @@ div.menumobile > nav > menu-component{
       & > a {
         margin: 0;
         padding: 0px 80px 0px 40px;
-        line-height: 48px;
+        line-height: 32px;
+        font-size: 10pt;
         text-align: left;
         &:hover {
           background-color: #0097d4;
@@ -98,8 +105,9 @@ div.menumobile > nav > menu-component{
           }
           & > a {
             margin: 0px;
-            line-height: 48px;
-            padding: 0px 80px 0px 60px;
+            line-height: 18px;
+            padding: 8px 30px 7px 60px;
+            font-size: 10pt;
           }
         }
       }
@@ -136,7 +144,7 @@ menu-component > ul {
       & > li {
 
         & > a {
-
+          text-align: left;
         }
       }
     }
