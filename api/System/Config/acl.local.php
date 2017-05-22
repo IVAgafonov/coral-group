@@ -42,6 +42,14 @@ return [
             '' => ['user']
         ]
     ],
+    'Abitems' => [
+        'get' => [
+            'GET' => ['guest']
+        ],
+        'items' => [
+            '' => ['user']
+        ]
+    ],
     'Test' => [
         '' => [
             '' => ['guest']

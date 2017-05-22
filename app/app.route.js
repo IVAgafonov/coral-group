@@ -132,6 +132,11 @@
                 url: '/mpitems',
                 component: 'mpItemsComponent'
             });
+
+            $stateProvider.state('app.admin.abitems', {
+                url: '/abitems',
+                component: 'abItemsComponent'
+            });
         }])
         .run(['$rootScope', function ($rootScope) {
 
