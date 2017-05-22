@@ -1,48 +1,19 @@
-<header-component></header-component>
-<h1>about</h1>
-<p>about</p>
-<p>about</p>
-<p>about</p>
-<p>about</p>
-<p>about</p>
-<p>about</p>
-<p>about</p>
-<p>about</p>
-<p>about</p>
-<p>about</p>
-<p>about</p>
-<p>about</p>
-<p>about</p>
-<p>about</p>
-<p>about</p>
-<p>about</p>
-<p>about</p>
-<p>about</p>
-<p>about</p>
-<p>about</p>
-<p>about</p>
-<p>about</p>
-<p>about</p>
-<p>about</p>
-<p>about</p>
-<p>about</p>
-<p>about</p>
-<p>about</p>
-<p>about</p>
-<p>about</p>
-<p>about</p>
-<p>about</p>
-<p>about</p>
-<p>about</p>
-<p>about</p>
-<p>about</p>
-<p>about</p>
-<p>about</p>
-<p>about</p>
-<p>about</p>
-<p>about</p>
-<p>about</p>
-<p>about</p>
-<p>about</p>
-<p>about</p>
-<footer-component></footer-component>
+<div class="aboutpage">
+    <header-component></header-component>
+    <div class="aboutbg">
+    </div>
+    <div class="container">
+        <h2 class="abouttext">{{"aboutMainText" | translate}}</h2>
+        <div class="play">
+            <a class="showcoralfilm">{{"showCoralFilm" | translate}}</a>
+        </div>
+        <div class="aboutitems">
+            <div class="aboutitem" ng-repeat="item in $ctrl.items track by $index">
+                <p><span>{{item.template_year | translate}}</span></p>
+                <p>{{item.template_desc | translate}}</p>
+            </div>
+        </div>
+
+    </div>
+    <footer-component></footer-component>
+</div>

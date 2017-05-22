@@ -5,18 +5,22 @@
     </div>
     <div class="section slide2">
         <div class="container">
-            <div class="slideServices">
-                <div ng-repeat="service in $ctrl.services">
-                    <a class="serviceImage" style="background-image: url('/images/mpItems/{{service.image}}')" ui-sref="app.service({name: '{{service.uri}}'})"></a>
-                    <table class="vgcenter">
-                        <tbody>
-                        <tr>
-                            <td>
-                                <a class="serviceDesc" ui-sref="app.service({name: '{{service.uri}}'})">{{service.text_template | translate}}</a>
-                            </td>
-                        </tr>
-                        </tbody>
-                    </table>
+            <div class="aligner center">
+                <div class="slideServices">
+                    <div>
+                        <div ng-repeat="service in $ctrl.services">
+                            <a class="serviceImage" style="background-image: url('/images/mpItems/{{service.image}}')" ui-sref="app.service({name: '{{service.uri}}'})"></a>
+                            <table class="vgcenter">
+                                <tbody>
+                                <tr>
+                                    <td>
+                                        <a class="serviceDesc" ui-sref="app.service({name: '{{service.uri}}'})">{{service.text_template | translate}}</a>
+                                    </td>
+                                </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
                 </div>
             </div>
         </div>

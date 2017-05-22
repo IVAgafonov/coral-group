@@ -8,6 +8,7 @@ header.main {
   &:hover > div.head {
     @include respond-to(desctop) {
       top: 0px;
+      height: 120px;
     }
   }
   & > div.topline {
@@ -46,6 +47,7 @@ header.main {
     height: 0px;
     top: -200px;
     transition: all 0.5s;
+    opacity: 0.95;
     &.forceShow {
       top: 0px;
       height: 120px;

@@ -2,6 +2,8 @@ footer {
   background: #001e47;
   bottom: 0px;
   width: 100%;
+  position: relative;
+  z-index: 999;
   & > div.container {
     & > div {
       @include respond-to(phone) {

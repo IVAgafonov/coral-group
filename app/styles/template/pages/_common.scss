@@ -2,6 +2,7 @@ $phone: 540px;
 $tablet: 960px;
 $small: 1100px;
 $medium: 1400px;
+$large: 2000px;
 
 @mixin respond-to($media) {
   @if $media == phone {
@@ -19,6 +20,9 @@ $medium: 1400px;
   @if $media == large {
     @media only screen and (min-width: $medium + 1) { @content }
   }
+  @if $media == toolarge {
+    @media only screen and (min-width: $large + 1) { @content }
+  }
   @if $media == mobile {
     @media only screen and (max-width: $tablet) { @content }
   }
@@ -31,6 +35,8 @@ body {
   margin: 0px;
   padding: 0px;
   font-family: 'Ubuntu', sans-serif;
+  min-width: 320px;
+  position: relative;
 }
 
 div.container {
@@ -49,5 +55,7 @@ div.container {
   @include respond-to(large) {
     margin: 0px 30px;
   }
+  height: 100%;
   position: relative;
+  z-index: 998;
 }
