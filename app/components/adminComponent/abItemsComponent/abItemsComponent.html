@@ -18,7 +18,7 @@
         <ul dnd-list="$ctrl.items" class="dndList">
             <li ng-repeat="item in $ctrl.items" dnd-draggable="item" dnd-effect-allowed="move" dnd-moved="$ctrl.items.splice($index, 1); $ctrl.sortItems()" dnd-selected="models.selected = item">
                 <div >
-                    <p class="abitem">{{item.template_year | translate}} - {{item.template_desc | translate}}
+                    <p class="abitem">{{item.template_year}} - {{item.template_desc}}
                         <span class="pull-right">
                             <button class="glyphicon glyphicon-edit" aria-hidden="true" ng-click="$ctrl.editItem(item)"></button>
                             <button class="glyphicon glyphicon-remove" aria-hidden="true" ng-click="$ctrl.deleteItem(item.id)"></button>
