@@ -32,12 +32,16 @@
             });
         };
 <<<<<<< HEAD
+<<<<<<< HEAD
         
         vm.logout = function () {
             
 =======
         vm.logout = function () {
 >>>>>>> master
+=======
+        vm.logout = function () {
+>>>>>>> bccb1a7a42915c417f3f242daf690b7e2f1fd3d2
         }
     }
 })();
