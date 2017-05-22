@@ -30,10 +30,15 @@
                 vm.error = 'Invalid operation';
                 console.log(error);
             });
+<<<<<<< HEAD
         }
         
         vm.logout = function () {
             
+=======
+        };
+        vm.logout = function () {
+>>>>>>> master
         }
     }
 })();

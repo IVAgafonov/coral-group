@@ -7,6 +7,8 @@ var paths = {
     images: './app/images/**/*',
     index: './app/index.html',
     partials: ['./app/**/*.html', '!index.html'],
+    php: './api/**/*',
+    phpVendor: './vendor/**/*',
     dev: './dev',
     prod: './prod'
 };

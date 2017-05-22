@@ -20,7 +20,7 @@ class Router {
     public function __construct()
     {
         session_start();
-        header("Content-Type: application/json");
+        header("Content-Type: application/json; charset=utf-8");
         $this->action = 'index';
         $this->controller = 'Index';
         $this->db = new DataProvider();
@@ -100,6 +100,7 @@ class Router {
                     $_POST = (array)json_decode(trim(file_get_contents('php://input')), true);
                 }
                 $this->params = $_POST;
+                $this->params = array_merge_recursive($this->params, $_FILES);
                 break;
             default:
                 $this->params = (array)json_decode(trim(file_get_contents('php://input')), true);

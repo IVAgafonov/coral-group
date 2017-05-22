@@ -1,22 +1,17 @@
-<div class="desctop">
-    <div class="language">
-        <a href="" ui-sref="app.main({locale: 'ru'})">ru</a>
-        <a href="" ui-sref="app.main({locale: 'en'})">en</a>
-        <a href="" ui-sref="app.login">login</a>
-    </div>
-</div>
+<header-component></header-component>
 <div id="fullpage">
-    <div class="section">
-        <h1>{{ 'Slide1' | translate }}</h1>
-        <a href="" >next</a>
+    <div class="section slide1">
+
     </div>
-    <div class="section">
-        <h1>{{ 'Slide2' | translate }}</h1>
-        <a href="" >prev</a>
-        <a href="" >next</a>
+    <div class="section slide2">
+        <div class="slideServices">
+            <div ng-repeat="service in $ctrl.services">
+                <a class="serviceImage" style="background-image: url('/images/mpItems/{{service.image}}')"></a>
+                <a class="serviceImage" ui-sref="{{service.menu_id}}">{{service.text_template}}</a>
+            </div>
+        </div>
     </div>
-    <div class="section">
-        <h1>{{ 'Slide3' | translate }}</h1>
-        <a href="" >prev</a>
+    <div class="section slide3">
+        <footer-component></footer-component>
     </div>
 </div>
