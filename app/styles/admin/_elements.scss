@@ -34,6 +34,7 @@ input[type=checkbox].glyphicon{
     content: "\e089";
     color: #117f15;
 }
+
 input[type=checkbox].glyphicon{
     visibility: hidden;
 }
@@ -64,6 +65,9 @@ ul.dndList > li {
     background: #d8d8d8;
     margin: 4px 0px;
     border-radius: 2px;
+    &.active {
+        background: #428bca;
+    }
 }
 
 ul.dndList > li > ul.dndList {
@@ -113,4 +117,33 @@ ul.dndList > li > ul.dndList > li {
 .abitem {
     line-height: 30px;
     margin: 0px;
+}
+
+ul.imgList {
+    list-style-type: none;
+    display: block;
+    background: #efefef;
+    width: 980px;
+    margin: 40px 0px 0px 20px;
+    padding: 10px;
+    border-radius: 2px;
+}
+
+ul.imgList > li {
+    padding: 5px 5px;
+    width: 150px;
+    height: 150px;
+    background: #9a9a9a;
+    margin: 5px;
+    border-radius: 2px;
+    display: inline-block;
+    vertical-align: top;
+}
+
+ul.imgList > li > div {
+    position: relative;
+}
+
+ul.imgList > li > div > img {
+    width: 100%;
 }

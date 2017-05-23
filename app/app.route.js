@@ -137,6 +137,23 @@
                 url: '/abitems',
                 component: 'abItemsComponent'
             });
+
+            $stateProvider.state('app.admin.service', {
+                url: '/service',
+                component: 'serviceAdmComponent'
+            });
+
+            $stateProvider.state('app.admin.service.images', {
+                url: '/images/{idService}',
+                component: 'serviceAdmImagesComponent'
+            });
+
+            $stateProvider.state('app.admin.portfolio', {
+                url: '/portfolio',
+                component: 'portfolioAdmComponent'
+            });
+
+
         }])
         .run(['$rootScope', function ($rootScope) {
 

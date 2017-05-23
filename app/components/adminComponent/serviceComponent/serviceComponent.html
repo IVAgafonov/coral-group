@@ -1,0 +1,54 @@
+<h1 class="page-header" id="addMenuHash">{{'AdmServicePage' | translate}}</h1>
+<div uib-alert ng-show="$ctrl.messageText" ng-class="'alert-' + $ctrl.messageType" close="$ctrl.messageText=''">{{$ctrl.messageText | translate}}</div>
+<h2 class="sub-header">{{'ServicePageAdd' | translate}}</h2>
+<form class="form-inline">
+    <div class="form-group">
+        <label for="abTemplate">{{'AdmServiceTemplate' | translate}}</label>
+        <input class="form-control" type="text" id="abTemplate" ng-model="$ctrl.item.nameTemplate">
+    </div>
+    <div class="form-group">
+        <label for="menuUri">{{'AdmMenuItemBind' | translate}}</label>
+        <select id="menuUri" class="form-control" ng-model="$ctrl.item.menuItemId">
+            <option ng-repeat="menuItem in $ctrl.menuList track by $index" ng-value="menuItem.id">{{menuItem.name | translate}}</option>
+        </select>
+    </div>
+    <div class="form-group">
+        <label for="descTemplate">{{'AdmServiceDescTemplate' | translate}}</label>
+        <input class="form-control" type="text" id="descTemplate" ng-model="$ctrl.item.descTemplate">
+    </div>
+    <button type="submit" class="btn btn-success" ng-click="$ctrl.saveItem()">{{'AdmSave' | translate}}</button>
+</form>
+<h2 class="sub-header">{{'AdmServicePages' | translate}}</h2>
+<div class="row">
+    <div>
+        <ul dnd-list="$ctrl.items" class="dndList">
+            <li ui-sref-active="active" ng-repeat="item in $ctrl.items" dnd-draggable="item" dnd-effect-allowed="move" dnd-moved="$ctrl.items.splice($index, 1); $ctrl.sortItems()" dnd-selected="models.selected = item">
+                <div>
+                    <table class='table-list-image'>
+                        <tbody>
+                        <tr>
+                            <td>
+                                <img ng-src="/images/services/{{item.icon ? item.icon : 'no-image.png'}}" class="rounded float-left image-thumb">
+                                <label ng-show="!item.icon" class="glyphicon glyphicon-plus pos-top-right" aria-hidden="true">
+                                    <input type="file" nv-file-select="" id="fileSelect{{item.id}}" accept=".png" uploader="$ctrl.uploader" options="{formData: [{id: item.id}], queueLimit: 1}" class="hide">
+                                </label>
+                                <button ng-show="item.icon" class="glyphicon glyphicon-remove pos-top-right" aria-hidden="true" ng-click="$ctrl.deleteIcon(item)"></button>
+                            </td>
+                            <td>
+                                <p>{{item.name_template | translate}}
+                                    <span class="pull-right">
+                                            <button class="glyphicon glyphicon-edit" aria-hidden="true" ng-click="$ctrl.editItem(item)" tooltip-placement="top" uib-tooltip="{{'editItem' | translate}}"></button>
+                                            <button class="glyphicon glyphicon-remove" aria-hidden="true" ng-click="$ctrl.deleteItem(item.id)" tooltip-placement="top" uib-tooltip="{{'deleteItem' | translate}}"></button>
+                                            <button class="glyphicon glyphicon-picture" aria-hidden="true" ui-sref="app.admin.service.images({idService: item.id})" tooltip-placement="top" uib-tooltip="{{'editImages' | translate}}"></button>
+                                    </span>
+                                </p>
+                            </td>
+                        </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </li>
+        </ul>
+    </div>
+</div>
+<ui-view></ui-view>
