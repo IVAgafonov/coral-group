@@ -50,6 +50,33 @@ return [
             '' => ['user']
         ]
     ],
+    'Service' => [
+        'get' => [
+            'GET' => ['guest']
+        ],
+        'items' => [
+            '' => ['user']
+        ],
+        'image' => [
+            'GET' => ['guest'],
+            '' => ['user']
+        ],
+        'icon' => [
+            '' => ['user']
+        ]
+    ],
+    'Portfolio' => [
+        'get' => [
+            'GET' => ['guest']
+        ],
+        'items' => [
+            '' => ['user']
+        ],
+        'image' => [
+            'GET' => ['guest'],
+            '' => ['user']
+        ],
+    ],
     'Test' => [
         '' => [
             '' => ['guest']
