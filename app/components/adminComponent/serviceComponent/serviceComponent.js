@@ -1,8 +1,8 @@
 (function () {
     angular.module('pageModule')
-        .component('serviceAdmComponent', mpItemsComponentFn());
+        .component('serviceAdmComponent', serviceComponentFn());
 
-    function mpItemsComponentFn() {
+    function serviceComponentFn() {
         return {
             templateUrl: 'components/adminComponent/serviceComponent/serviceComponent.html',
             controller:  ['serviceService', 'menuService', '$timeout', 'FileUploader', serviceControllerFn]
@@ -23,7 +23,24 @@
             removeAfterUpload: true
         });
 
+        vm.uploaderBg = new FileUploader({
+            url: '/api/v1/service/background',
+            autoUpload: true,
+            removeAfterUpload: true
+        });
+
         vm.uploader.onSuccessItem = function (fileItem, response, status, headers) {
+            if (response.error) {
+                vm.messageType = 'danger';
+                vm.messageText = response.error;
+                $timeout(function() {
+                    vm.messageText = '';
+                }, 2000);
+            }
+            vm.loadElements();
+        };
+
+        vm.uploaderBg.onSuccessItem = function (fileItem, response, status, headers) {
             if (response.error) {
                 vm.messageType = 'danger';
                 vm.messageText = response.error;
@@ -52,6 +69,16 @@
             serviceService.deleteIcon(item.id).then(function(response) {
                 if (response.data.status && response.data.status == 'ok') {
                     item.icon = '';
+                }
+            }, function(error) {
+
+            })
+        };
+
+        vm.deleteBackground = function(item) {
+            serviceService.deleteBackground(item.id).then(function(response) {
+                if (response.data.status && response.data.status == 'ok') {
+                    item.background = '';
                 }
             }, function(error) {
 

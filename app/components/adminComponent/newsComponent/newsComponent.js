@@ -1,24 +1,24 @@
 (function () {
     angular.module('pageModule')
-        .component('portfolioAdmComponent', portfolioComponentFn());
+        .component('newsAdmComponent', newsComponentFn());
 
-    function portfolioComponentFn() {
+    function newsComponentFn() {
         return {
-            templateUrl: 'components/adminComponent/portfolioComponent/portfolioComponent.html',
-            controller:  ['portfolioService', '$timeout', portfolioControllerFn]
+            templateUrl: 'components/adminComponent/newsComponent/newsComponent.html',
+            controller:  ['newsService', '$timeout', '$state', newsControllerFn]
         }
     }
 
-    function portfolioControllerFn(portfolioService, $timeout) {
+    function newsControllerFn(newsService, $timeout, $state) {
         var vm = this;
 
         vm.messageText = '';
         vm.messageType = '';
 
-        vm.item = {};
+        vm.item = {locale: 'RU'};
 
         vm.loadElements = function() {
-            portfolioService.getItems().then(function(response) {
+            newsService.getItems().then(function(response) {
                 vm.items = response.data;
             }, function(error) {
 
@@ -26,11 +26,14 @@
         };
 
         vm.editItem = function(item) {
-            vm.item.nameTemplate = item.template_name;
+            vm.item.news_name = item.news_name;
+            vm.item.date = item.date;
+            vm.item.locale = item.locale;
+            vm.item.news_desc = item.news_desc;
         };
 
         vm.saveItem = function() {
-            portfolioService.saveItem(vm.item).then(function(response) {
+            newsService.saveItem(vm.item).then(function(response) {
                 if (response.data.error) {
                     vm.messageType = 'danger';
                     vm.messageText = 'AdmInvalidOperation';
@@ -49,7 +52,7 @@
         };
 
         vm.sortItems = function() {
-            portfolioService.sortItems(vm.items).then(function(response) {
+            newsService.sortItems(vm.items).then(function(response) {
                 vm.loadElements();
             }, function(error) {
 
@@ -57,7 +60,7 @@
         };
 
         vm.changeActive = function(item) {
-            portfolioService.setActive(item).then(function(response) {
+            newsService.setActive(item).then(function(response) {
                 if (response.data.error) {
                     vm.messageType = 'danger';
                     vm.messageText = 'AdmInvalidOperation';
@@ -76,13 +79,14 @@
         };
 
         vm.deleteItem = function(id) {
-            portfolioService.deleteItem(id).then(function(response) {
+            newsService.deleteItem(id).then(function(response) {
                 if (response.data.error) {
                     vm.messageType = 'danger';
                     vm.messageText = 'AdmInvalidOperation';
                 } else {
                     vm.messageType = 'success';
                     vm.messageText = 'AdmSuccessOperation';
+                    $state.go('app.admin.news');
                     vm.loadElements();
                 }
             }, function(error) {

@@ -1,55 +1,61 @@
 (function () {
     angular.module('pageModule')
-        .component('portfolioAdmComponent', portfolioComponentFn());
+        .component('newsAdmImagesComponent', newsImagesComponentFn());
 
-    function portfolioComponentFn() {
+    function newsImagesComponentFn() {
         return {
-            templateUrl: 'components/adminComponent/portfolioComponent/portfolioComponent.html',
-            controller:  ['portfolioService', '$timeout', portfolioControllerFn]
+            templateUrl: 'components/adminComponent/newsComponent/newsImagesComponent/newsImagesComponent.html',
+            controller:  ['newsService', '$timeout', 'FileUploader', '$stateParams', newsImagesControllerFn]
         }
     }
 
-    function portfolioControllerFn(portfolioService, $timeout) {
+    function newsImagesControllerFn(newsService, $timeout, FileUploader, $stateParams) {
         var vm = this;
+
+        vm.idNews = $stateParams.idNews;
 
         vm.messageText = '';
         vm.messageType = '';
 
         vm.item = {};
 
+        vm.uploader = new FileUploader({
+            url: '/api/v1/news/image',
+            autoUpload: true,
+            removeAfterUpload: true
+        });
+
+        vm.uploader.onSuccessItem = function (fileItem, response, status, headers) {
+            if (response.error) {
+                vm.messageType = 'danger';
+                vm.messageText = response.error;
+                $timeout(function() {
+                    vm.messageText = '';
+                }, 2000);
+            }
+            vm.loadElements();
+        };
+
         vm.loadElements = function() {
-            portfolioService.getItems().then(function(response) {
+            newsService.getImages(vm.idNews).then(function(response) {
                 vm.items = response.data;
             }, function(error) {
 
             });
         };
 
-        vm.editItem = function(item) {
-            vm.item.nameTemplate = item.template_name;
-        };
-
-        vm.saveItem = function() {
-            portfolioService.saveItem(vm.item).then(function(response) {
-                if (response.data.error) {
-                    vm.messageType = 'danger';
-                    vm.messageText = 'AdmInvalidOperation';
-                } else {
-                    vm.messageType = 'success';
-                    vm.messageText = 'AdmSuccessOperation';
-                    vm.loadElements();
+        vm.deleteItem = function(item) {
+            newsService.deleteImage(item.id).then(function(response) {
+                if (response.data.status && response.data.status == 'ok') {
+                    item.icon = '';
                 }
             }, function(error) {
-                vm.messageType = 'danger';
-                vm.messageText = 'AdmInvalidOperation';
-            });
-            $timeout(function() {
-                vm.messageText = '';
-            }, 2000);
+
+            })
         };
 
         vm.sortItems = function() {
-            portfolioService.sortItems(vm.items).then(function(response) {
+            newsService.sortImages(vm.items).then(function(response) {
                 vm.loadElements();
             }, function(error) {
 
@@ -57,7 +63,7 @@
         };
 
         vm.changeActive = function(item) {
-            portfolioService.setActive(item).then(function(response) {
+            newsService.setActiveImage(item).then(function(response) {
                 if (response.data.error) {
                     vm.messageType = 'danger';
                     vm.messageText = 'AdmInvalidOperation';
@@ -75,8 +81,8 @@
             }, 2000);
         };
 
-        vm.deleteItem = function(id) {
-            portfolioService.deleteItem(id).then(function(response) {
+        vm.deleteImage = function(id) {
+            newsService.deleteImage(id).then(function(response) {
                 if (response.data.error) {
                     vm.messageType = 'danger';
                     vm.messageText = 'AdmInvalidOperation';

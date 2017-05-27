@@ -1,24 +1,25 @@
 (function () {
     angular.module('pageModule')
-        .component('portfolioAdmComponent', portfolioComponentFn());
+        .component('newsTagsComponent', newsTagsComponentFn());
 
-    function portfolioComponentFn() {
+    function newsTagsComponentFn() {
         return {
-            templateUrl: 'components/adminComponent/portfolioComponent/portfolioComponent.html',
-            controller:  ['portfolioService', '$timeout', portfolioControllerFn]
+            templateUrl: 'components/adminComponent/newsTagsComponent/newsTagsComponent.html',
+            controller:  ['newstagsService', '$timeout', newsTagsControllerFn]
         }
     }
 
-    function portfolioControllerFn(portfolioService, $timeout) {
+    function newsTagsControllerFn(newstagsService, $timeout) {
         var vm = this;
 
         vm.messageText = '';
         vm.messageType = '';
 
+
         vm.item = {};
 
         vm.loadElements = function() {
-            portfolioService.getItems().then(function(response) {
+            newstagsService.getItems().then(function(response) {
                 vm.items = response.data;
             }, function(error) {
 
@@ -26,11 +27,11 @@
         };
 
         vm.editItem = function(item) {
-            vm.item.nameTemplate = item.template_name;
+            vm.item.tag_template = item.tag_template;
         };
 
         vm.saveItem = function() {
-            portfolioService.saveItem(vm.item).then(function(response) {
+            newstagsService.saveItem(vm.item.tag_template).then(function(response) {
                 if (response.data.error) {
                     vm.messageType = 'danger';
                     vm.messageText = 'AdmInvalidOperation';
@@ -49,34 +50,15 @@
         };
 
         vm.sortItems = function() {
-            portfolioService.sortItems(vm.items).then(function(response) {
+            newstagsService.sortItems(vm.items).then(function(response) {
                 vm.loadElements();
             }, function(error) {
 
             });
         };
 
-        vm.changeActive = function(item) {
-            portfolioService.setActive(item).then(function(response) {
-                if (response.data.error) {
-                    vm.messageType = 'danger';
-                    vm.messageText = 'AdmInvalidOperation';
-                } else {
-                    vm.messageType = 'success';
-                    vm.messageText = 'AdmSuccessOperation';
-                    vm.loadElements();
-                }
-            }, function(error) {
-                vm.messageType = 'danger';
-                vm.messageText = 'AdmInvalidOperation';
-            });
-            $timeout(function() {
-                vm.messageText = '';
-            }, 2000);
-        };
-
         vm.deleteItem = function(id) {
-            portfolioService.deleteItem(id).then(function(response) {
+            newstagsService.deleteItem(id).then(function(response) {
                 if (response.data.error) {
                     vm.messageType = 'danger';
                     vm.messageText = 'AdmInvalidOperation';

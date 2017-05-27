@@ -1,0 +1,62 @@
+<h1 class="page-header" id="addMenuHash">{{'AdmVacancyItemsHead' | translate}}</h1>
+<div uib-alert ng-show="$ctrl.messageText" ng-class="'alert-' + $ctrl.messageType" close="$ctrl.messageText=''">{{$ctrl.messageText | translate}}</div>
+<h2 class="sub-header">{{'MainVacancyAdd' | translate}}</h2>
+<form class="form-adm">
+    <div class="form-group">
+        <label for="abTemplate">{{'AdmVacancyTemplate' | translate}}</label>
+        <input class="form-control" type="text" id="abTemplate" ng-model="$ctrl.item.vacancy_name">
+    </div>
+    <div class="form-group">
+        <label for="descTemplate">{{'AdmDateTemplate' | translate}}</label>
+        <input class="form-control" type="text" id="descTemplate" ng-model="$ctrl.item.date">
+    </div>
+    <div class="form-group">
+        <label for="vacancyLocale">{{'AdmVacancyLocale' | translate}}</label>
+        <select class="form-control" id="vacancyLocale" ng-model="$ctrl.item.locale">
+            <option value="RU" selected="selected">{{'LocaleRu' | translate}}</option>
+            <option value="EN">{{'LocaleEn' | translate}}</option>
+        </select>
+    </div>
+    <div class="form-group">
+        <label for="vacancyDesc">{{'AdmVacancyDesc' | translate}}</label>
+        <textarea class="form-control" id="vacancyDesc" ng-model="$ctrl.item.vacancy_desc">
+        </textarea>
+    </div>
+    <div class="form-group">
+        <label for="vacancyReq">{{'AdmVacancyRequire' | translate}}</label>
+        <textarea class="form-control" id="vacancyReq" ng-model="$ctrl.item.vacancy_require">
+        </textarea>
+    </div>
+    <div class="form-group">
+        <label for="vacancyCond">{{'AdmVacancyConditions' | translate}}</label>
+        <textarea class="form-control" id="vacancyCond" ng-model="$ctrl.item.vacancy_conditions">
+        </textarea>
+    </div>
+    <div class="form-group">
+        <label for="vacancyAddr">{{'AdmVacancyAddr' | translate}}</label>
+        <input class="form-control" type="text" id="vacancyAddr" ng-model="$ctrl.item.vacancy_addr">
+    </div>
+    <div class="form-group">
+        <label for="btTemplate">{{'AdmVacancyBusytype' | translate}}</label>
+        <input class="form-control" type="text" id="btTemplate" ng-model="$ctrl.item.busy_type">
+    </div>
+    <button type="submit" class="btn btn-success" ng-click="$ctrl.saveItem()">{{'AdmSave' | translate}}</button>
+</form>
+<h2 class="sub-header">{{'AdmVacancyItems' | translate}}</h2>
+<div class="row">
+    <div>
+        <ul dnd-list="$ctrl.items" class="dndList">
+            <li ng-repeat="item in $ctrl.items" dnd-draggable="item" dnd-effect-allowed="move" dnd-moved="$ctrl.items.splice($index, 1); $ctrl.sortItems()" dnd-selected="models.selected = item">
+                <div >
+                    <p class="abitem">{{item.vacancy_name}}
+                        <span class="pull-right">
+                            <button class="glyphicon glyphicon-edit" aria-hidden="true" ng-click="$ctrl.editItem(item)"></button>
+                            <button class="glyphicon glyphicon-remove" aria-hidden="true" ng-click="$ctrl.deleteItem(item.id)"></button>
+                            <input class="glyphicon glyphicon-remove-circle" type="checkbox" ng-change="$ctrl.changeActive(item)" ng-model="item.active" ng-true-value="'1'" ng-false-value="'0'">
+                        </span>
+                    </p>
+                </div>
+            </li>
+        </ul>
+    </div>
+</div>

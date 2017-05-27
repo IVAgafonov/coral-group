@@ -63,6 +63,9 @@ return [
         ],
         'icon' => [
             '' => ['user']
+        ],
+        'background' => [
+            '' => ['user']
         ]
     ],
     'Portfolio' => [
@@ -76,6 +79,37 @@ return [
             'GET' => ['guest'],
             '' => ['user']
         ],
+    ],
+    'News' => [
+        'get' => [
+            'GET' => ['guest']
+        ],
+        'items' => [
+            '' => ['user']
+        ],
+        'image' => [
+            'GET' => ['guest'],
+            '' => ['user']
+        ],
+        'tags' => [
+            '' => ['user']
+        ],
+    ],
+    'Newstags' => [
+        'get' => [
+            'GET' => ['guest']
+        ],
+        'items' => [
+            '' => ['user']
+        ]
+    ],
+    'Vacancy' => [
+        'get' => [
+            'GET' => ['guest']
+        ],
+        'items' => [
+            '' => ['user']
+        ]
     ],
     'Test' => [
         '' => [

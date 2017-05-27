@@ -26,6 +26,7 @@
             });
         };
 
+        /*
         vm.deleteImage = function(item) {
             abitemsService.deleteItemsImage(item.id).then(function(response) {
                 if (response.data.status && response.data.status == 'ok') {
@@ -35,6 +36,7 @@
 
             })
         };
+        */
 
         vm.editItem = function(item) {
             vm.item.itemTemplate = item.template_year;

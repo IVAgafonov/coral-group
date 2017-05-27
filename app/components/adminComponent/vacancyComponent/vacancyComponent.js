@@ -1,24 +1,25 @@
 (function () {
     angular.module('pageModule')
-        .component('portfolioAdmComponent', portfolioComponentFn());
+        .component('vacancyAdmComponent', vacancyComponentFn());
 
-    function portfolioComponentFn() {
+    function vacancyComponentFn() {
         return {
-            templateUrl: 'components/adminComponent/portfolioComponent/portfolioComponent.html',
-            controller:  ['portfolioService', '$timeout', portfolioControllerFn]
+            templateUrl: 'components/adminComponent/vacancyComponent/vacancyComponent.html',
+            controller:  ['vacancyService', '$timeout', abItemsControllerFn]
         }
     }
 
-    function portfolioControllerFn(portfolioService, $timeout) {
+    function abItemsControllerFn(vacancyService, $timeout) {
         var vm = this;
 
         vm.messageText = '';
         vm.messageType = '';
 
-        vm.item = {};
+
+        vm.item = {locale: 'RU'};
 
         vm.loadElements = function() {
-            portfolioService.getItems().then(function(response) {
+            vacancyService.getItems().then(function(response) {
                 vm.items = response.data;
             }, function(error) {
 
@@ -26,11 +27,18 @@
         };
 
         vm.editItem = function(item) {
-            vm.item.nameTemplate = item.template_name;
+            vm.item.vacancy_name = item.vacancy_name;
+            vm.item.date = item.date;
+            vm.item.locale = item.locale;
+            vm.item.vacancy_desc = item.vacancy_desc;
+            vm.item.vacancy_require = item.vacancy_require;
+            vm.item.vacancy_conditions = item.vacancy_conditions;
+            vm.item.vacancy_addr = item.vacancy_addr;
+            vm.item.busy_type = item.busy_type;
         };
 
         vm.saveItem = function() {
-            portfolioService.saveItem(vm.item).then(function(response) {
+            vacancyService.saveItem(vm.item).then(function(response) {
                 if (response.data.error) {
                     vm.messageType = 'danger';
                     vm.messageText = 'AdmInvalidOperation';
@@ -49,15 +57,15 @@
         };
 
         vm.sortItems = function() {
-            portfolioService.sortItems(vm.items).then(function(response) {
+            vacancyService.sortItems(vm.items).then(function(response) {
                 vm.loadElements();
             }, function(error) {
 
             });
         };
 
-        vm.changeActive = function(item) {
-            portfolioService.setActive(item).then(function(response) {
+        vm.deleteItem = function(id) {
+            vacancyService.deleteItem(id).then(function(response) {
                 if (response.data.error) {
                     vm.messageType = 'danger';
                     vm.messageText = 'AdmInvalidOperation';
@@ -75,8 +83,8 @@
             }, 2000);
         };
 
-        vm.deleteItem = function(id) {
-            portfolioService.deleteItem(id).then(function(response) {
+        vm.changeActive = function(item) {
+            vacancyService.setActive(item).then(function(response) {
                 if (response.data.error) {
                     vm.messageType = 'danger';
                     vm.messageText = 'AdmInvalidOperation';

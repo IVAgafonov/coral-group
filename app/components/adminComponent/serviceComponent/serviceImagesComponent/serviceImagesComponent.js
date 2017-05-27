@@ -62,6 +62,25 @@
             });
         };
 
+        vm.changeActive = function(item) {
+            serviceService.setActiveImage(item).then(function(response) {
+                if (response.data.error) {
+                    vm.messageType = 'danger';
+                    vm.messageText = 'AdmInvalidOperation';
+                } else {
+                    vm.messageType = 'success';
+                    vm.messageText = 'AdmSuccessOperation';
+                    vm.loadElements();
+                }
+            }, function(error) {
+                vm.messageType = 'danger';
+                vm.messageText = 'AdmInvalidOperation';
+            });
+            $timeout(function() {
+                vm.messageText = '';
+            }, 2000);
+        };
+
         vm.deleteImage = function(id) {
             serviceService.deleteImage(id).then(function(response) {
                 if (response.data.error) {

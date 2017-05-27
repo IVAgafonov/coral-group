@@ -49,6 +49,12 @@ button.glyphicon {
     border: 0px;
 }
 
+.imagesactive {
+    position: absolute;
+    top: 115px;
+    right: 5px;
+}
+
 ul.dndList {
     list-style-type: none;
     display: block;
@@ -87,7 +93,7 @@ ul.dndList > li > ul.dndList > li {
     width: 100%;
 }
 
-.table-list-image > tbody > tr > td:first-child {
+.table-list-image > tbody > tr > td {
     background: #9a9a9a;
     padding: 4px;
     width: 90px;
@@ -97,6 +103,7 @@ ul.dndList > li > ul.dndList > li {
 .table-list-image > tbody > tr > td:last-child {
     padding: 4px;
     vertical-align: top;
+    width: auto;
 }
 
 .table-list-image > tbody > tr > td > img {
@@ -146,4 +153,8 @@ ul.imgList > li > div {
 
 ul.imgList > li > div > img {
     width: 100%;
+}
+
+.form-adm {
+    width: 50%;
 }

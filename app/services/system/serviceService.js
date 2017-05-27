@@ -51,6 +51,15 @@
                         }
                     });
                 },
+                deleteBackground: function(idService) {
+                    return $http({
+                        url: '/api/v1/service/background',
+                        method: 'DELETE',
+                        data: {
+                            idService: idService
+                        }
+                    });
+                },
                 getImages: function(idService) {
                     return $http({
                         method: 'GET',
@@ -63,6 +72,16 @@
                         method: 'POST',
                         data: {
                             list: list
+                        }
+                    });
+                },
+                setActiveImage: function(item) {
+                    return $http({
+                        url: '/api/v1/service/image',
+                        method: 'POST',
+                        data: {
+                            id: item.id,
+                            active: item.active
                         }
                     });
                 },

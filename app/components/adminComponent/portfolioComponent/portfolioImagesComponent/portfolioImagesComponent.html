@@ -1,14 +1,14 @@
 <h2 class="sub-header">{{'AdmImages' | translate}}</h2>
 <label class="btn btn-primary" aria-hidden="true">
     {{'AddImage' | translate}}
-    <input type="file" nv-file-select="" id="fileSelectMain" accept=".png" uploader="$ctrl.uploader" options="{formData: [{idService: $ctrl.idService}], queueLimit: 1}" class="hide">
+    <input type="file" nv-file-select="" id="fileSelectMain" accept=".png" uploader="$ctrl.uploader" options="{formData: [{idPortfolio: $ctrl.idPortfolio}], queueLimit: 1}" class="hide">
 </label>
 <div class="row">
     <div>
         <ul dnd-list="$ctrl.items" class="imgList">
             <li ng-repeat="item in $ctrl.items" dnd-draggable="item" dnd-effect-allowed="move" dnd-moved="$ctrl.items.splice($index, 1); $ctrl.sortItems()" dnd-selected="models.selected = item">
                 <div>
-                    <img ng-src="/images/services/photo/{{item.file_name ? item.file_name : 'no-image.png'}}" class="rounded float-left image-thumb">
+                    <img ng-src="/images/portfolio/photo/{{item.file_name ? item.file_name : 'no-image.png'}}" class="rounded float-left image-thumb">
                     <label ng-show="!item.file_name" class="glyphicon glyphicon-plus pos-top-right" aria-hidden="true">
                         <input type="file" nv-file-select="" id="fileSelect{{item.id}}" accept=".png" uploader="$ctrl.uploader" options="{formData: [{id: item.id}], queueLimit: 1}" class="hide">
                     </label>
