@@ -24,7 +24,7 @@
 
             });
         };
-
+              
         vm.editItem = function(item) {
             vm.item.nameTemplate = item.template_name;
         };
