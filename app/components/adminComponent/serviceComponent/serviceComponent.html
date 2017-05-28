@@ -1,7 +1,7 @@
 <h1 class="page-header" id="addMenuHash">{{'AdmServicePage' | translate}}</h1>
 <div uib-alert ng-show="$ctrl.messageText" ng-class="'alert-' + $ctrl.messageType" close="$ctrl.messageText=''">{{$ctrl.messageText | translate}}</div>
 <h2 class="sub-header">{{'ServicePageAdd' | translate}}</h2>
-<form class="form-inline">
+<form class="form-adm">
     <div class="form-group">
         <label for="abTemplate">{{'AdmServiceTemplate' | translate}}</label>
         <input class="form-control" type="text" id="abTemplate" ng-model="$ctrl.item.nameTemplate">
@@ -28,11 +28,18 @@
                         <tbody>
                         <tr>
                             <td>
-                                <img ng-src="/images/services/{{item.icon ? item.icon : 'no-image.png'}}" class="rounded float-left image-thumb">
+                                <img ng-src="/images/services/{{item.icon ? item.icon : 'no-image.png'}}" class="rounded float-left image-thumb" tooltip-placement="top" uib-tooltip="{{'serviceIcon' | translate}}">
                                 <label ng-show="!item.icon" class="glyphicon glyphicon-plus pos-top-right" aria-hidden="true">
                                     <input type="file" nv-file-select="" id="fileSelect{{item.id}}" accept=".png" uploader="$ctrl.uploader" options="{formData: [{id: item.id}], queueLimit: 1}" class="hide">
                                 </label>
                                 <button ng-show="item.icon" class="glyphicon glyphicon-remove pos-top-right" aria-hidden="true" ng-click="$ctrl.deleteIcon(item)"></button>
+                            </td>
+                            <td>
+                                <img ng-src="/images/services/bg/{{item.background ? item.background : 'no-image.png'}}" class="rounded float-left image-thumb" tooltip-placement="top" uib-tooltip="{{'serviceBackground' | translate}}">
+                                <label ng-show="!item.background" class="glyphicon glyphicon-plus pos-top-right" aria-hidden="true">
+                                    <input type="file" nv-file-select="" id="fileSelectBg{{item.id}}" accept=".png" uploader="$ctrl.uploaderBg" options="{formData: [{id: item.id}], queueLimit: 1}" class="hide">
+                                </label>
+                                <button ng-show="item.background" class="glyphicon glyphicon-remove pos-top-right" aria-hidden="true" ng-click="$ctrl.deleteBackground(item)"></button>
                             </td>
                             <td>
                                 <p>{{item.name_template | translate}}

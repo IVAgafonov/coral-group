@@ -1,7 +1,7 @@
 <h1 class="page-header" id="addMenuHash">{{'AdmMenuPageTitle' | translate }}</h1>
 <div uib-alert ng-show="$ctrl.messageText" ng-class="'alert-' + $ctrl.messageType" close="$ctrl.messageText=''">{{$ctrl.messageText | translate}}</div>
 <h2 class="sub-header">{{'AdmMenuAddTitle' | translate}}</h2>
-<form class="form-inline">
+<form class="form-adm">
     <div class="form-group">
         <label for="menuTemplate">{{'AdmMenuTemplate' | translate}}</label>
         <input class="form-control" type="text" id="menuTemplate" ng-model="$ctrl.menuTemplate">

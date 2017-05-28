@@ -153,7 +153,30 @@
                 component: 'portfolioAdmComponent'
             });
 
+            $stateProvider.state('app.admin.portfolio.images', {
+                url: '/images/{idPortfolio}',
+                component: 'portfolioAdmImagesComponent'
+            });
 
+            $stateProvider.state('app.admin.news', {
+                url: '/news',
+                component: 'newsAdmComponent'
+            });
+
+            $stateProvider.state('app.admin.news.images', {
+                url: '/images/{idNews}',
+                component: 'newsAdmImagesComponent'
+            });
+
+            $stateProvider.state('app.admin.vacancy', {
+                url: '/vacancy',
+                component: 'vacancyAdmComponent'
+            });
+
+            $stateProvider.state('app.admin.newstags', {
+                url: '/newstags',
+                component: 'newsTagsComponent'
+            });
         }])
         .run(['$rootScope', function ($rootScope) {
 

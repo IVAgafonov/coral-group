@@ -1,25 +1,41 @@
-<h1 class="page-header" id="addMenuHash">{{'AdmPortfolioPage' | translate}}</h1>
+<h1 class="page-header" id="addMenuHash">{{'AdmNewsPageHead' | translate}}</h1>
 <div uib-alert ng-show="$ctrl.messageText" ng-class="'alert-' + $ctrl.messageType" close="$ctrl.messageText=''">{{$ctrl.messageText | translate}}</div>
 <h2 class="sub-header">{{'ServicePageAdd' | translate}}</h2>
 <form class="form-adm">
     <div class="form-group">
-        <label for="abTemplate">{{'AdmPortfolioTemplate' | translate}}</label>
-        <input class="form-control" type="text" id="abTemplate" ng-model="$ctrl.item.nameTemplate">
+        <label for="abTemplate">{{'AdmNewsTemplate' | translate}}</label>
+        <input class="form-control" type="text" id="abTemplate" ng-model="$ctrl.item.news_name">
+    </div>
+    <div class="form-group">
+        <label for="dateTemplate">{{'AdmNewsDateTemplate' | translate}}</label>
+        <input class="form-control" type="text" id="dateTemplate" ng-model="$ctrl.item.date">
+    </div>
+    <div class="form-group">
+        <label for="newsLocale">{{'AdmNewsLocale' | translate}}</label>
+        <select class="form-control" id="newsLocale" ng-model="$ctrl.item.locale">
+            <option value="RU" selected="selected">{{'LocaleRu' | translate}}</option>
+            <option value="EN">{{'LocaleEn' | translate}}</option>
+        </select>
+    </div>
+    <div class="form-group">
+        <label for="newsDesc">{{'AdmNewsDesc' | translate}}</label>
+        <textarea class="form-control" id="newsDesc" ng-model="$ctrl.item.news_desc">
+        </textarea>
     </div>
     <button type="submit" class="btn btn-success" ng-click="$ctrl.saveItem()">{{'AdmSave' | translate}}</button>
 </form>
-<h2 class="sub-header">{{'AdmPortfolioPages' | translate}}</h2>
+<h2 class="sub-header">{{'AdmNewsPages' | translate}}</h2>
 <div class="row">
     <div>
         <ul dnd-list="$ctrl.items" class="dndList">
             <li ui-sref-active="active" ng-repeat="item in $ctrl.items" dnd-draggable="item" dnd-effect-allowed="move" dnd-moved="$ctrl.items.splice($index, 1); $ctrl.sortItems()" dnd-selected="models.selected = item">
                 <div>
                     <div >
-                        <p class="abitem">{{item.template_name}}
+                        <p class="abitem">{{item.news_name}} - {{item.date}} ({{item.locale}})
                             <span class="pull-right">
                             <button class="glyphicon glyphicon-edit" aria-hidden="true" ng-click="$ctrl.editItem(item)" tooltip-placement="top" uib-tooltip="{{'editItem' | translate}}"></button>
                             <button class="glyphicon glyphicon-remove" aria-hidden="true" ng-click="$ctrl.deleteItem(item.id)" tooltip-placement="top" uib-tooltip="{{'deleteItem' | translate}}"></button>
-                            <button class="glyphicon glyphicon-picture" aria-hidden="true" ui-sref="app.admin.portfolio.images({idPortfolio: item.id})" tooltip-placement="top" uib-tooltip="{{'editImages' | translate}}"></button>
+                            <button class="glyphicon glyphicon-picture" aria-hidden="true" ui-sref="app.admin.news.images({idNews: item.id})" tooltip-placement="top" uib-tooltip="{{'editImages' | translate}}"></button>
                             <input class="glyphicon glyphicon-remove-circle" type="checkbox" ng-change="$ctrl.changeActive(item)" ng-model="item.active" ng-true-value="'1'" ng-false-value="'0'" tooltip-placement="top" uib-tooltip="{{'admActiveInactive' | translate}}">
                         </span>
                         </p>

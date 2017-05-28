@@ -1,7 +1,7 @@
 <h1 class="page-header" id="addTranslateHash">{{'AdmTranslationPageTitle' | translate}}</h1>
 <div uib-alert ng-show="$ctrl.messageText" ng-class="'alert-' + $ctrl.messageType" close="$ctrl.messageText=''">{{$ctrl.messageText | translate}}</div>
 <h2 class="sub-header">{{'AdmTranslationAddTitle' | translate}}</h2>
-<form class="form-inline">
+<form class="form-adm">
     <div class="form-group">
         <label for="translateTemplate">{{'AdmTranslateTemplate' | translate}}</label>
         <input class="form-control" type="text" id="translateTemplate" ng-model="$ctrl.translateTemplate">
@@ -15,7 +15,8 @@
     </div>
     <div class="form-group">
         <label for="translateTranslate">{{'AdmTranslateTranslate' | translate}}</label>
-        <input class="form-control" type="text" id="translateTranslate" ng-model="$ctrl.translateTranslate">
+        <textarea class="form-control" id="translateTranslate" ng-model="$ctrl.translateTranslate">
+        </textarea>
     </div>
     <div class="form-group">
         <label for="translateImportant">{{'AdmTranslateImportant' | translate}}</label>
