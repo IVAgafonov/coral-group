@@ -27,24 +27,24 @@ class TranslateController extends AbstractController implements ControllerInterf
             case 'GET':
                 $condition = '';
                 if (!empty($this->params['locale'])) {
-                    $condition = " WHERE `locale` = '".$this->params['locale']."'";
+                    $condition = " WHERE t.`locale` = '".$this->params['locale']."'";
                 }
                 if (!empty($this->params['is_important'])) {
                     if ($condition == '') {
-                        $condition = " WHERE `is_important` != 0";
+                        $condition = " WHERE t.`is_important` != 0";
                     } else {
-                        $condition .= " AND `is_important` != 0";
+                        $condition .= " AND t.`is_important` != 0";
                     }
                 }
 
                 if (!empty($this->params['filter'])) {
                     if ($condition == '') {
-                        $condition = " WHERE (`template` LIKE '%" . $this->params['filter'] . "%' OR `translate` LIKE '%" . $this->params['filter'] . "%')";
+                        $condition = " WHERE (`t.template` LIKE '%" . $this->params['filter'] . "%' OR `t.translate` LIKE '%" . $this->params['filter'] . "%')";
                     } else {
-                        $condition .= " AND (`template` LIKE '%" . $this->params['filter'] . "%' OR `translate` LIKE '%" . $this->params['filter'] . "%')";
+                        $condition .= " AND (`t.template` LIKE '%" . $this->params['filter'] . "%' OR `t.translate` LIKE '%" . $this->params['filter'] . "%')";
                     }
                 }
-                $translates = $this->db->getArrays("SELECT * FROM `cg_translate`".$condition." ORDER BY is_important DESC, template");
+                $translates = $this->db->getArrays("SELECT t.*, em.id as translate_id FROM `cg_translate` t LEFT JOIN `cg_translate` em ON t.template = em.template AND t.locale <> em.locale ".$condition." ORDER BY t.is_important DESC, t.template");
                 echo json_encode($translates);
                 break;
             case 'POST':

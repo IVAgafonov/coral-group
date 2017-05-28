@@ -85,6 +85,23 @@
                             id: id
                         }
                     });
+                },
+                getTagsLinks: function() {
+                    return $http({
+                        method: 'GET',
+                        url: '/api/v1/news/tagslinks/'
+                    });
+                },
+                changeTagsLinks: function(news_id, tag_id, active) {
+                    return $http({
+                        url: '/api/v1/news/tagslinks',
+                        method: 'POST',
+                        data: {
+                            news_id: news_id,
+                            tag_id: tag_id,
+                            active: active
+                        }
+                    });
                 }
             };
         }]);

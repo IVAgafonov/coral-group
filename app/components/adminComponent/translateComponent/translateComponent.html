@@ -54,7 +54,7 @@
             </tr>
         </thead>
         <tbody>
-            <tr ng-repeat="translate in $ctrl.translateList track by $index">
+            <tr ng-repeat="translate in $ctrl.translateList track by $index" ng-class="{'emptytranslate': !translate.translate_id}">
                 <td>{{$index + 1}}</td>
                 <td>{{translate.template}}</td>
                 <td>{{translate.translate}}</td>

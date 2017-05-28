@@ -5,11 +5,11 @@
     function newsComponentFn() {
         return {
             templateUrl: 'components/adminComponent/newsComponent/newsComponent.html',
-            controller:  ['newsService', '$timeout', '$state', newsControllerFn]
+            controller:  ['newsService', 'newstagsService', '$timeout', '$state', newsControllerFn]
         }
     }
 
-    function newsControllerFn(newsService, $timeout, $state) {
+    function newsControllerFn(newsService, newstagsService, $timeout, $state) {
         var vm = this;
 
         vm.messageText = '';
@@ -20,6 +20,27 @@
         vm.loadElements = function() {
             newsService.getItems().then(function(response) {
                 vm.items = response.data;
+                newstagsService.getItems().then(function(response) {
+                    vm.tags = response.data;
+                    newsService.getTagsLinks().then(function(response) {
+                        vm.tagsLinks = response.data;
+                        for (var key in vm.items) {
+                            vm.items[key].tags = vm.tags;
+                            for (var tkey in vm.items[key].tags) {
+                                vm.items[key].tags[tkey].active = 0;
+                                for (var lkey in vm.tagsLinks) {
+                                    if (vm.tagsLinks[lkey].news_id == vm.items[key].id && vm.tagsLinks[lkey].tag_id == vm.items[key].tags[tkey].id) {
+                                        vm.items[key].tags[tkey].active = 1;
+                                    }
+                                }
+                            }
+                        }
+                    }, function(error) {
+
+                    });
+                }, function(error) {
+
+                });
             }, function(error) {
 
             });
@@ -89,6 +110,18 @@
                     $state.go('app.admin.news');
                     vm.loadElements();
                 }
+            }, function(error) {
+                vm.messageType = 'danger';
+                vm.messageText = 'AdmInvalidOperation';
+            });
+            $timeout(function() {
+                vm.messageText = '';
+            }, 2000);
+        };
+
+        vm.changeNewsTags = function(news_id, tag_id, active) {
+
+            newsService.changeTagsLinks(news_id, tag_id, active).then(function(response) {
             }, function(error) {
                 vm.messageType = 'danger';
                 vm.messageText = 'AdmInvalidOperation';
