@@ -91,7 +91,7 @@ return [
             'GET' => ['guest'],
             '' => ['user']
         ],
-        'tags' => [
+        'tagslinks' => [
             '' => ['user']
         ],
     ],

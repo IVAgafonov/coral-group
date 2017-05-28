@@ -11,7 +11,29 @@ class NewsController extends AbstractController implements ControllerInterface {
     public function get() {
         switch ($this->method) {
             case 'GET':
-                $items = $this->db->getArrays("SELECT * FROM `cg_news` WHERE active > 0 ORDER BY priority");
+                $langCondition = '';
+                if (!empty($this->params['local']) && in_array(strtoupper($this->params['local']), ['RU', 'EN'])) {
+                    $langCondition = "AND n.locale = '".strtoupper($this->params['local'])."'";
+                }
+                if (!empty($this->params['tags'])) {
+                    $tags = [];
+                    foreach ($this->params['tags'] as $tag) {
+                        $tags[] = $this->db->quote($tag);
+                    }
+
+                    if (count($tags)) {
+                        $items = $this->db->getArrays(
+                            "SELECT n.* FROM `cg_news` n ".
+                            "JOIN `cg_news_links_tags` l ".
+                            "JOIN `cg_news_tags` t ".
+                            "ON t.id = l.tag_id AND n.id = l.news_id ".
+                            "WHERE t.tag_template IN (".implode(",", $tags).") AND n.active > 0 $langCondition ORDER BY n.priority");
+                        echo json_encode($items);
+                        return;
+                    }
+
+                }
+                $items = $this->db->getArrays("SELECT n.* FROM `cg_news` n WHERE n.active > 0 $langCondition ORDER BY n.priority");
                 echo json_encode($items);
                 break;
             default:
@@ -131,6 +153,30 @@ class NewsController extends AbstractController implements ControllerInterface {
                     $this->db->doQuery("DELETE FROM `cg_news_photos` WHERE id = ".(int)$this->params['id']);
                     if ($this->db->getAffectedRows()) {
                         echo json_encode(['status' => 'ok']);
+                        return;
+                    }
+                }
+                echo json_encode(['error' => 'ErrorInvalidRequest']);
+                break;
+            default:
+                header('HTTP/1.1 405 Method not allowed');
+                return;
+        }
+    }
+
+    public function tagslinks() {
+        switch ($this->method) {
+            case 'GET':
+                    $items = $this->db->getArrays("SELECT * FROM `cg_news_links_tags`");
+                    echo json_encode($items);
+                break;
+            case 'POST':
+                if (!empty($this->params['news_id']) && !empty($this->params['tag_id']) && isset($this->params['active'])) {
+                    if (!empty($this->params['active'])) {
+                        $this->db->doQuery("INSERT IGNORE INTO `cg_news_links_tags` (news_id, tag_id) VALUES (".$this->params['news_id'].", ".$this->params['tag_id'].")");
+                        return;
+                    } else {
+                        $this->db->doQuery("DELETE FROM `cg_news_links_tags` WHERE news_id = ".$this->params['news_id']." AND tag_id = ".$this->params['tag_id']);
                         return;
                     }
                 }
