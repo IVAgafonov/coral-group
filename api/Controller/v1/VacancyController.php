@@ -11,7 +11,11 @@ class VacancyController extends AbstractController implements ControllerInterfac
     public function get() {
         switch ($this->method) {
             case 'GET':
-                $items = $this->db->getArrays("SELECT * FROM `cg_vacancy` WHERE active = 1 ORDER BY priority");
+                $langCondition = '';
+                if (!empty($this->params['local']) && in_array(strtoupper($this->params['local']), ['RU', 'EN'])) {
+                    $langCondition = "AND locale = '".strtoupper($this->params['local'])."'";
+                }
+                $items = $this->db->getArrays("SELECT * FROM `cg_vacancy` WHERE active = 1 $langCondition ORDER BY priority");
                 echo json_encode($items);
                 break;
             default:

@@ -1,9 +1,9 @@
 <ul>
     <li ng-repeat="item in $root.mainMenu track by $index" ui-sref-active="active">
-        <a ui-sref="{{'app.' + item.uri}}" ng-click="item.child && $event.preventDefault()">{{item.name | translate}}</a>
-        <ul ng-show="item.child">
-            <li ng-repeat="subItem in item.child" ui-sref-active="active">
-                <a ui-sref="{{'app.' + item.uri  + '({name: \'' + subItem.uri + '\'})'}}">{{subItem.name  | translate}}</a>
+        <a ui-sref="{{'app.' + item.uri}}">{{item.name | translate}}</a>
+        <ul ng-show="item.child" id="parentmenu1">
+            <li ng-repeat="subItem in item.child" ui-sref-active="active" data-menuanchor="{{subItem.uri}}">
+                <a ui-sref="{{'app.' + item.uri + '({service: \'' + subItem.uri + '\'})'}}">{{subItem.name  | translate}}</a>
             </li>
         </ul>
     </li>

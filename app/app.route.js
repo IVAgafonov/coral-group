@@ -65,9 +65,30 @@
                 }
             });
 
+            $stateProvider.state('app.portfolio', {
+                url: '/portfolio',
+                component: 'portfolioComponent',
+                data: {
+                    requiresLogin: false
+                }
+            });
+
+            $stateProvider.state('app.vacancy', {
+                url: '/vacancy',
+                component: 'vacancyComponent',
+                data: {
+                    requiresLogin: false
+                }
+            });
+
             $stateProvider.state('app.service', {
-                url: '/service/{name}',
+                url: '/service/{service}',
                 component: 'serviceComponent',
+                params: {
+                    service: {
+                        dynamic: true
+                    }
+                },
                 data: {
                     requiresLogin: false
                 }

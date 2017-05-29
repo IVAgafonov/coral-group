@@ -61,10 +61,17 @@
                     });
                 },
                 getImages: function(idService) {
-                    return $http({
-                        method: 'GET',
-                        url: '/api/v1/service/image?idService=' + idService
-                    });
+                    if (idService) {
+                        return $http({
+                            method: 'GET',
+                            url: '/api/v1/service/image?idService=' + idService
+                        });
+                    } else {
+                        return $http({
+                            method: 'GET',
+                            url: '/api/v1/service/image'
+                        });
+                    }
                 },
                 sortImages: function(list) {
                     return $http({

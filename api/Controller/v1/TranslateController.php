@@ -39,9 +39,9 @@ class TranslateController extends AbstractController implements ControllerInterf
 
                 if (!empty($this->params['filter'])) {
                     if ($condition == '') {
-                        $condition = " WHERE (`t.template` LIKE '%" . $this->params['filter'] . "%' OR `t.translate` LIKE '%" . $this->params['filter'] . "%')";
+                        $condition = " WHERE (t.`template` LIKE '%" . $this->params['filter'] . "%' OR t.`translate` LIKE '%" . $this->params['filter'] . "%')";
                     } else {
-                        $condition .= " AND (`t.template` LIKE '%" . $this->params['filter'] . "%' OR `t.translate` LIKE '%" . $this->params['filter'] . "%')";
+                        $condition .= " AND (t.`template` LIKE '%" . $this->params['filter'] . "%' OR t.`translate` LIKE '%" . $this->params['filter'] . "%')";
                     }
                 }
                 $translates = $this->db->getArrays("SELECT t.*, em.id as translate_id FROM `cg_translate` t LEFT JOIN `cg_translate` em ON t.template = em.template AND t.locale <> em.locale ".$condition." ORDER BY t.is_important DESC, t.template");

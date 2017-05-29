@@ -1,12 +1,16 @@
 <header-component></header-component>
-<h1>service</h1>
-<p>service</p>
-<p>service</p>
-<p>service</p>
-<p>service</p>
-<p>service</p>
-<p>service</p>
-<p>service</p>
-<p>service</p>
-<p>service</p>
-<footer-component></footer-component>
+<div id="fullpage">
+    <div class="section servicesection" style="background-image: url('/images/services/bg/{{service.background}}')" ng-repeat="service in $ctrl.services" >
+        <div class="container">
+            <img src="/images/services/{{service.icon}}" class="serviceicon" alt="">
+            <h1>{{service.name_template | translate}}</h1>
+            <div class="imgslider">
+
+            </div>
+            <p>{{service.desc_template | translate}}</p>
+        </div>
+    </div>
+</div>
+<div class="servicepage">
+    <footer-component></footer-component>
+</div>
