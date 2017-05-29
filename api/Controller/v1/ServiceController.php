@@ -11,7 +11,7 @@ class ServiceController extends AbstractController implements ControllerInterfac
     public function get() {
         switch ($this->method) {
             case 'GET':
-                $items = $this->db->getArrays("SELECT serv.* FROM `cg_services` serv JOIN cg_menu menu ON serv.menu_id = menu.id WHERE menu.active > 0 ORDER BY serv.priority");
+                $items = $this->db->getArrays("SELECT serv.*, menu.uri  FROM `cg_services` serv JOIN cg_menu menu ON serv.menu_id = menu.id WHERE menu.active > 0 ORDER BY serv.priority");
                 echo json_encode($items);
                 break;
             default:
@@ -160,7 +160,8 @@ class ServiceController extends AbstractController implements ControllerInterfac
                     $items = $this->db->getArrays("SELECT * FROM `cg_service_photos` WHERE service_id = ".(int)$this->params['idService']." ORDER BY priority");
                     echo json_encode($items);
                 } else {
-                    echo json_encode(['error' => 'ErrorInvalidRequest']);
+                    $items = $this->db->getArrays("SELECT * FROM `cg_service_photos` WHERE Active > 0 ORDER BY priority");
+                    echo json_encode($items);
                 }
                 break;
             case 'POST':
