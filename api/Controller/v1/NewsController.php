@@ -16,9 +16,11 @@ class NewsController extends AbstractController implements ControllerInterface {
                     $langCondition = "AND n.locale = '".strtoupper($this->params['local'])."'";
                 }
                 if (!empty($this->params['tags'])) {
-                    $tags = [];
-                    foreach ($this->params['tags'] as $tag) {
-                        $tags[] = $this->db->quote($tag);
+                    $tagsJson = json_decode($this->params['tags'], true);
+                    foreach ($tagsJson as $tag) {
+                        if ($tag['active'] == true) {
+                            $tags[] = $this->db->quote($tag['tag']);
+                        }
                     }
 
                     if (count($tags)) {
@@ -87,6 +89,10 @@ class NewsController extends AbstractController implements ControllerInterface {
                         unlink( __DIR__."/../../../images/news/photo/".$photo['file_name']);
                         $this->db->doQuery("DELETE FROM `cg_news_photos` WHERE id = ".$photo['id']);
                     }
+                    $bg = $this->db->getValue("SELECT background FROM cg_news WHERE id = ".(int)$this->params['id']);
+                    if ($bg) {
+                        unlink( __DIR__."/../../../images/news/bg/".$bg);
+                    }
                     $this->db->doQuery("DELETE FROM `cg_news` WHERE id = ".(int)$this->params['id']);
                     if ($this->db->getAffectedRows()) {
                         echo json_encode(['status' => 'ok']);
@@ -108,7 +114,8 @@ class NewsController extends AbstractController implements ControllerInterface {
                     $items = $this->db->getArrays("SELECT * FROM `cg_news_photos` WHERE news_id = ".(int)$this->params['idNews']." ORDER BY priority");
                     echo json_encode($items);
                 } else {
-                    echo json_encode(['error' => 'ErrorInvalidRequest']);
+                    $items = $this->db->getArrays("SELECT * FROM `cg_news_photos` ORDER BY priority");
+                    echo json_encode($items);
                 }
                 break;
             case 'POST':
@@ -177,6 +184,46 @@ class NewsController extends AbstractController implements ControllerInterface {
                         return;
                     } else {
                         $this->db->doQuery("DELETE FROM `cg_news_links_tags` WHERE news_id = ".$this->params['news_id']." AND tag_id = ".$this->params['tag_id']);
+                        return;
+                    }
+                }
+                echo json_encode(['error' => 'ErrorInvalidRequest']);
+                break;
+            default:
+                header('HTTP/1.1 405 Method not allowed');
+                return;
+        }
+    }
+
+    public function background() {
+        switch ($this->method) {
+            case 'POST':
+                if (!empty($this->params['idNews'])) {
+                    if (file_exists( __DIR__."/../../../images/news/bg/".$this->params['file']['name'])) {
+                        echo json_encode(['error' => 'FileAlreadyExists']);
+                        return;
+                    }
+                    if (copy($this->params['file']['tmp_name'], __DIR__."/../../../images/news/bg/".$this->params['file']['name'])) {
+                        $this->db->doQuery("UPDATE `cg_news` SET background = '".$this->params['file']['name']."' WHERE id = ".(int)$this->params['idNews']);
+                        if ($this->db->getAffectedRows()) {
+                            echo json_encode(['status' => 'ok']);
+                            return;
+                        } else {
+                            unlink( __DIR__."/../../../images/news/bg/".$this->params['file']['name']);
+                            header('HTTP/1.1 500 Internal server error');
+                            return;
+                        }
+                    }
+                }
+                echo json_encode(['error' => 'ErrorInvalidRequest']);
+                break;
+            case 'DELETE':
+                if (isset($this->params['id'])) {
+                    $fileName = $this->db->getValue("SELECT background FROM `cg_news` WHERE id = ".(int)$this->params['id']);
+                    unlink( __DIR__."/../../../images/news/bg/".$fileName);
+                    $this->db->doQuery("UPDATE `cg_news` SET background = '' WHERE id = ".(int)$this->params['id']);
+                    if ($this->db->getAffectedRows()) {
+                        echo json_encode(['status' => 'ok']);
                         return;
                     }
                 }

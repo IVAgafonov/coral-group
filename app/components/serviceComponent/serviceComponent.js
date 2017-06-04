@@ -19,6 +19,8 @@
             $.fn.fullpage.silentMoveTo(newParams.service, 1);
         };
 
+
+
         vm.loadServices = function() {
             serviceService.get().then(function (response) {
                 vm.services = response.data;
@@ -41,7 +43,7 @@
                             menu: '#parentmenu1',
                             lockAnchors: true,
                             afterLoad: function (anchorLink, index) {
-                                console.log($stateParams.service + ' - '+ anchorLink);
+
                                 if (anchorLink != $stateParams.service) {
                                     $state.go('app.service', {service: anchorLink}, {
                                         notify: false,

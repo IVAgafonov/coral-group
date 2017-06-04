@@ -42,7 +42,8 @@ header.main {
   & > div.head {
     background: #bfc0c8;
     display: inline-block;
-    position: relative;
+    position: absolute;
+    margin: 40px 0px 0px 0px;
     width: 100%;
     top: -200px;
     transition: all 0.5s;
@@ -57,7 +58,7 @@ header.main {
           width: 209px;
           height: 56px;
           display: block;
-          background: url(/images/template/logomain.png);
+          background: url('/images/template/logomain.png');
           float: left;
           margin: 30px 0px 0px 0px;
         }
@@ -73,8 +74,8 @@ div.language {
   & > a {
     text-decoration: none;
     text-transform: uppercase;
-    color: #a5a5a5;
-    background: #ffffff;
+    color: #e0e0e0;
+    background: #0097d4;
     font-size: 9pt;
     display: inline-block;
     border-radius: 50%;
@@ -83,8 +84,67 @@ div.language {
     text-align: center;
     line-height: 26px;
     &.active {
-      color: #e0e0e0;
-      background: #0097d4;
+      color: #a5a5a5;
+      background: #ffffff;
+    }
+  }
+}
+
+.show-large header .head {
+  @media only screen and (min-width: 1580px) {
+    top: 0px !important;
+  }
+}
+
+.loginForm {
+  position: fixed;
+  z-index: 9999;
+  top: 50%;
+  left: 50%;
+  display: block !important;
+  width: 260px;
+  margin: -120px 0px 0px -130px;
+  background: #dcdcdc;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
+  & > form {
+    & > h2 {
+      margin: 0px;
+      color: #ffffff;
+      padding: 20px 10px;
+      background: #00204b;
+      font-size: 14pt;
+      font-weight: 100;
+    }
+    & > .closeLoginForm {
+      position: absolute;
+      transform: rotate(45deg);
+      width: 30px;
+      height: 30px;
+      font-size: 18pt;
+      border: 2px solid #dcdcdc;
+      background: #00204b;
+      color: #ffffff;
+      border-radius: 50%;
+      top: -14px;
+      right: -11px;
+      cursor: pointer;
+      box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
+      line-height: 28px;
+      text-align: center;
+      outline: none;
+    }
+    & > div {
+      text-align: center;
+      & > input {
+        margin: 15px 0px 0px 0px;
+        font-size: 14pt;
+        padding: 7px 10px;
+        width: 190px;
+        &[type="submit"] {
+          margin: 15px 0px 15px 0px;
+          width: 214px;
+        }
+      }
     }
   }
 }

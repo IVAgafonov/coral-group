@@ -1,0 +1,330 @@
+.vacancyhead {
+  text-transform: uppercase;
+}
+
+.vacancywrap {
+  position: absolute;
+  width: 100%;
+}
+
+.vacancybg {
+  background-image: url('/images/vacancy/bg.jpg');
+  background-position: 50%;
+  background-size: cover;
+  position: fixed;
+  width: 100%;
+  height: 100%;
+}
+
+.vacsmargins {
+  @include respond-to(phone) {
+    margin: 100px 0px 200px 0px;
+  }
+  @include respond-to(tablet) {
+    margin: 100px 0px 200px 0px;
+  }
+  @include respond-to(small) {
+    margin: 150px 0px 200px 0px;
+  }
+  @include respond-to(medium) {
+    margin: 150px 0px 200px 0px;
+  }
+  @include respond-to(large) {
+    margin: 150px 0px 200px 0px;
+  }
+  @include respond-to(toolarge) {
+    margin: 200px 0px 200px 0px;
+  }
+  min-height: 400px;
+  position: relative;
+}
+
+.vacancyhead {
+  text-align: center;
+  color: #ffffff;
+  font-size: 28pt;
+  font-weight: 100;
+  margin: 0px 0px 30px 0px;
+}
+
+.singlename, .multiname {
+  margin: 0px auto;
+  text-align: center;
+  background: #ffffff;
+  width: 60%;
+  font-size: 14pt;
+  padding: 10px 0px;
+  color: #006994;
+  @include respond-to(phone) {
+    width: 80%;
+    font-size: 12pt;
+  }
+  @include respond-to(tablet) {
+    width: 75%;
+    font-size: 12pt;
+  }
+  @include respond-to(small) {
+    width: 60%;
+  }
+  @include respond-to(medium) {
+    width: 50%;
+  }
+  @include respond-to(large) {
+    width: 50%;
+  }
+  @include respond-to(toolarge) {
+    width: 40%;
+  }
+}
+
+.multiname {
+  display: block;
+  outline: none;
+  text-align: center;
+  border: none;
+}
+
+.vacancydesc {
+  margin: 50px auto;
+  width: 60%;
+  @include respond-to(phone) {
+    margin: 50px auto;
+    width: 100%;
+  }
+  @include respond-to(tablet) {
+    margin: 50px auto;
+    width: 100%;
+  }
+}
+
+.vacancyform {
+  margin: 60px auto;
+  width: 60%;
+  @include respond-to(phone) {
+    margin: 50px auto;
+    width: 100%;
+  }
+  @include respond-to(tablet) {
+    margin: 50px auto;
+    width: 100%;
+  }
+}
+
+.segment {
+  display: inline-block;
+  width: 100%;
+  @include respond-to(phone) {
+    margin: 0px 0px 30px 0px;
+  }
+  @include respond-to(tablet) {
+    margin: 0px 0px 30px 0px;
+  }
+  & > .left {
+    width: 20%;
+    @include respond-to(phone) {
+      width: 100%;;
+    }
+    @include respond-to(tablet) {
+      width: 100%;;
+    }
+    display: inline-block;
+    vertical-align: top;
+    text-align: left;
+  }
+  & > .right {
+    width: 79%;
+    display: inline-block;
+    vertical-align: top;
+    text-align: left;
+    @include respond-to(phone) {
+      width: 100%;;
+    }
+    @include respond-to(tablet) {
+      width: 100%;;
+    }
+    & > p {
+      padding: 0px 0px 0px 25px;
+    }
+  }
+  & > .center {
+    width: 100%;
+    display: inline-block;
+    vertical-align: top;
+    text-align: center;
+    & > input {
+      border: 2px solid #fff;
+      outline: 0;
+      background: rgba(51,51,51,0);
+      text-align: center;
+      padding: 12px 10px;
+      margin: 5px 3px;
+      width: 260px;
+      color: #fff;
+      font-size: 10pt;
+      font-weight: 600;
+      &::-webkit-input-placeholder {
+        color: #ffffff;
+      }
+      &::-moz-placeholder {
+        color: #ffffff;
+      }
+      &:-ms-input-placeholder {
+        color: #ffffff;
+      }
+      &:-moz-placeholder {
+        color: #ffffff;
+      }
+    }
+    & > label {
+      border: 2px solid #fff;
+      outline: 0;
+      background: #ffffff;
+      text-align: center;
+      padding: 12px 10px;
+      margin: 5px 3px;
+      color: #006b96;
+      font-size: 10pt;
+      font-weight: 600;
+      width: 262px;
+      display: inline-block;
+      cursor: pointer;
+      transition: all 0.5s;
+      &:hover {
+        background: #c3c3c3;
+        border: 2px solid #c3c3c3;
+      }
+      &.disabledUpload {
+        color: #848484;
+      }
+    }
+  }
+  & > div {
+    & > p {
+      color: #ffffff;
+    }
+    & > ul {
+
+      & > li {
+        color: #ffffff;
+      }
+    }
+  }
+}
+
+.infoForm {
+  position: fixed;
+  z-index: 9999;
+  top: 50%;
+  left: 50%;
+  display: block !important;
+  width: 260px;
+  margin: -120px 0px 0px -130px;
+  background: #dcdcdc;
+  box-shadow: 0 0 10px rgba(0,0,0,0.5);
+  &.success > h2 {
+    background: #00204b;
+  }
+  &.danger > h2 {
+    background: #960909;
+  }
+  &.success > button.infoClose {
+    background: #00204b;
+  }
+  &.danger > button.infoClose {
+    background: #960909;
+  }
+  & > h2 {
+    margin: 0px;
+    color: #ffffff;
+    padding: 10px;
+    font-size: 12pt;
+  }
+  & > p {
+    padding: 10px;
+    margin: 3px 0px;
+  }
+  & > button.infoCloseMobile {
+    text-align: center;
+    margin: 0px auto 10px auto;
+    display: block;
+    padding: 10px 40px 10px 40px;
+    background: #ffffff;
+    border: 1px solid #cecece;
+    cursor: pointer;
+    color: #00204b;
+    box-shadow: 0 0 10px rgba(0,0,0,0.5);
+    outline: none;
+  }
+  & > button.infoClose {
+    position: absolute;
+    transform: rotate(45deg);
+    width: 30px;
+    height: 30px;
+    font-size: 16pt;
+    border: 2px solid #dcdcdc;
+    background: #00204b;
+    color: #fff;
+    border-radius: 50%;
+    top: -14px;
+    right: -11px;
+    cursor: pointer;
+    box-shadow: 0 0 10px rgba(0,0,0,.5);
+    line-height: 26px;
+    text-align: center;
+  }
+  @include respond-to(phone) {
+    & > button.infoClose {
+      display: none;
+    }
+  }
+  @include respond-to(tablet) {
+    & > button.infoClose {
+      display: none;
+    }
+  }
+  @include respond-to(small) {
+    & > button.infoClose {
+      display: none;
+    }
+  }
+  @include respond-to(medium) {
+    & > button.infoCloseMobile {
+      display: none;
+    }
+  }
+  @include respond-to(large) {
+    & > button.infoCloseMobile {
+      display: none;
+    }
+  }
+  @include respond-to(toolarge) {
+    & > button.infoClose {
+      display: none;
+    }
+  }
+}
+
+.novacancy {
+  text-align: center;
+  color: #ffffff;
+  margin: 110px 0px 100px;
+  font-size: 20pt;
+  @include respond-to(phone) {
+    margin: 210px 0 400px;
+  }
+  @include respond-to(tablet) {
+    margin: 210px 0 400px;
+  }
+  @include respond-to(small) {
+    margin: 210px 0 200px;
+  }
+  @include respond-to(medium) {
+    margin: 210px 0 300px;
+  }
+  @include respond-to(large) {
+    margin: 210px 0 400px;
+  }
+  @include respond-to(toolarge) {
+    margin: 250px 0 500px;
+  }
+}

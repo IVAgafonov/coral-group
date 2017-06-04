@@ -93,10 +93,14 @@ module.exports = function (gulp, plugins, paths) {
 
         var v = Date.now();
 
+        var transformFn = function (filepath, file, i, length) {
+            return '<script src="' + filepath + '" defer></script>';
+        };
+
         return gulp.src(paths.index)
             .pipe(gulp.dest(paths.dev))
-            .pipe(plugins.inject(vendorScripts, {relative: true, name: 'bower'}))
-            .pipe(plugins.inject(otherScripts, {relative: true, addSuffix: '?v=' + v}))
+            .pipe(plugins.inject(vendorScripts, {relative: true, transform: transformFn ,name: 'bower'}))
+            .pipe(plugins.inject(otherScripts, {relative: true, transform: transformFn ,addSuffix: '?v=' + v}))
             .pipe(plugins.inject(stylesCss, {relative: true, addSuffix: '?v=' + v}))
             .pipe(gulp.dest(paths.dev));
     };

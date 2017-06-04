@@ -30,28 +30,47 @@
         <ul dnd-list="$ctrl.items" class="dndList">
             <li ui-sref-active="active" ng-repeat="(inew, item) in $ctrl.items" dnd-draggable="item" dnd-effect-allowed="move" dnd-moved="$ctrl.items.splice($index, 1); $ctrl.sortItems()" dnd-selected="models.selected = item">
                 <div>
-                    <div>
-                        <div class="abitem">{{item.news_name}} - {{item.date}} ({{item.locale}})
-                            <div class="pull-right">
-                                <div class="btn-group dropdown" uib-dropdown auto-close="outsideClick" is-open="isOpen">
-                                    <button id="single-button" type="button" class="btn btn-primary btn-xs" uib-dropdown-toggle>{{"tagsTmp" | translate}} <span class="caret"></span>
-                                    </button>
-                                    <ul class="dropdown-menu" uib-dropdown-menu >
-                                        <li ng-repeat="(itag, tag) in item.tags track by $index">
-                                            <div class="dd-checkbox">
-                                                <input class="" type="checkbox" id="tag_{{item.id}}_{{tag.id}}" ng-change="$ctrl.changeNewsTags(item.id, tag.id, tag.active)" ng-model="$ctrl.items[inew].tags[itag].active"  ng-true-value="1" ng-false-value="0">
-                                                <label for="tag_{{item.id}}_{{tag.id}}">{{tag.tag_template | translate}}</label>
+                    <table class='table-list-image'>
+                        <tbody>
+                        <tr>
+                            <td>
+                                <img ng-src="/images/news/bg/{{item.background ? item.background : 'no-image.png'}}" class="rounded float-left image-thumb" tooltip-placement="top" uib-tooltip="{{'newsBackground' | translate}}">
+                                <label ng-show="!item.background" class="glyphicon glyphicon-plus pos-top-right" aria-hidden="true">
+                                    <input type="file" nv-file-select="" id="fileSelect{{item.id}}" accept="" uploader="$ctrl.uploaderBg" options="{formData: [{idNews: item.id}], queueLimit: 1}" class="hide">
+                                </label>
+                                <button ng-show="item.background" class="glyphicon glyphicon-remove pos-top-right" aria-hidden="true" ng-click="$ctrl.deleteBackground(item)"></button>
+                            </td>
+                            <td>
+                                <div>
+                                    <div class="abitem">
+                                        <div style="width: 50%; display: inline-block;">
+                                            {{item.news_name}} <br/> {{item.date}} ({{item.locale}})
+                                        </div>
+                                        <div class="pull-right">
+                                            <div class="btn-group dropdown" uib-dropdown auto-close="outsideClick" is-open="isOpen">
+                                                <button id="single-button" type="button" class="btn btn-primary btn-xs" uib-dropdown-toggle>{{"tagsTmp" | translate}} <span class="caret"></span>
+                                                </button>
+                                                <ul class="dropdown-menu" uib-dropdown-menu >
+                                                    <li ng-repeat="(itag, tag) in item.tags track by $index">
+                                                        <div class="dd-checkbox">
+                                                            <input class="" type="checkbox" id="tag_{{item.id}}_{{tag.id}}" ng-change="$ctrl.changeNewsTags(item.id, tag.id, tag.active)" ng-model="$ctrl.items[inew].tags[itag].active"  ng-true-value="1" ng-false-value="0">
+                                                            <label for="tag_{{item.id}}_{{tag.id}}">{{tag.tag_template | translate}}</label>
+                                                        </div>
+                                                    </li>
+                                                </ul>
                                             </div>
-                                        </li>
-                                    </ul>
+                                            <button class="glyphicon glyphicon-edit" aria-hidden="true" ng-click="$ctrl.editItem(item)" tooltip-placement="top" uib-tooltip="{{'editItem' | translate}}"></button>
+                                            <button class="glyphicon glyphicon-remove" aria-hidden="true" ng-click="$ctrl.deleteItem(item.id)" tooltip-placement="top" uib-tooltip="{{'deleteItem' | translate}}"></button>
+                                            <button class="glyphicon glyphicon-picture" aria-hidden="true" ui-sref="app.admin.news.images({idNews: item.id})" tooltip-placement="top" uib-tooltip="{{'editImages' | translate}}"></button>
+                                            <input class="glyphicon glyphicon-remove-circle" type="checkbox" ng-change="$ctrl.changeActive(item)" ng-model="item.active" ng-true-value="'1'" ng-false-value="'0'" tooltip-placement="top" uib-tooltip="{{'admActiveInactive' | translate}}">
+                                        </div>
+                                    </div>
                                 </div>
-                                <button class="glyphicon glyphicon-edit" aria-hidden="true" ng-click="$ctrl.editItem(item)" tooltip-placement="top" uib-tooltip="{{'editItem' | translate}}"></button>
-                                <button class="glyphicon glyphicon-remove" aria-hidden="true" ng-click="$ctrl.deleteItem(item.id)" tooltip-placement="top" uib-tooltip="{{'deleteItem' | translate}}"></button>
-                                <button class="glyphicon glyphicon-picture" aria-hidden="true" ui-sref="app.admin.news.images({idNews: item.id})" tooltip-placement="top" uib-tooltip="{{'editImages' | translate}}"></button>
-                                <input class="glyphicon glyphicon-remove-circle" type="checkbox" ng-change="$ctrl.changeActive(item)" ng-model="item.active" ng-true-value="'1'" ng-false-value="'0'" tooltip-placement="top" uib-tooltip="{{'admActiveInactive' | translate}}">
-                            </div>
-                        </div>
-                    </div>
+                            </td>
+                        </tr>
+                        </tbody>
+                    </table>
+
                 </div>
             </li>
         </ul>

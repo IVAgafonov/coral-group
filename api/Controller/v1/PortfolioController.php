@@ -82,7 +82,8 @@ class PortfolioController extends AbstractController implements ControllerInterf
                     $items = $this->db->getArrays("SELECT * FROM `cg_portfolio_photos` WHERE portfolio_id = ".(int)$this->params['idPortfolio']." ORDER BY priority");
                     echo json_encode($items);
                 } else {
-                    echo json_encode(['error' => 'ErrorInvalidRequest']);
+                    $items = $this->db->getArrays("SELECT * FROM `cg_portfolio_photos` WHERE `Active` > 0 ORDER BY priority");
+                    echo json_encode($items);
                 }
                 break;
             case 'POST':

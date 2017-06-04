@@ -3,11 +3,22 @@
     angular.module('systemModule')
         .service('newsService', ['$http', function($http) {
             return {
-                get: function() {
-                    return $http({
-                        method: 'GET',
-                        url: '/api/v1/news/get'
-                    });
+                get: function(tags) {
+                    if (tags) {
+                        return $http({
+                            method: 'GET',
+                            url: '/api/v1/news/get',
+                            params: {
+                                tags: tags
+                            }
+                        });
+                    } else {
+                        return $http({
+                            method: 'GET',
+                            url: '/api/v1/news/get'
+                        });
+                    }
+
                 },
                 getItems: function() {
                     return $http({
@@ -53,10 +64,18 @@
                     });
                 },
                 getImages: function(idNews) {
-                    return $http({
-                        method: 'GET',
-                        url: '/api/v1/news/image?idNews=' + idNews
-                    });
+                    if (idNews) {
+                        return $http({
+                            method: 'GET',
+                            url: '/api/v1/news/image?idNews=' + idNews
+                        });
+                    } else {
+                        return $http({
+                            method: 'GET',
+                            url: '/api/v1/news/image'
+                        });
+                    }
+
                 },
                 sortImages: function(list) {
                     return $http({
@@ -100,6 +119,15 @@
                             news_id: news_id,
                             tag_id: tag_id,
                             active: active
+                        }
+                    });
+                },
+                deleteBackground: function(id) {
+                    return $http({
+                        url: '/api/v1/news/background',
+                        method: 'DELETE',
+                        data: {
+                            id: id
                         }
                     });
                 }

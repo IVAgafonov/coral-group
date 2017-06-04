@@ -25,9 +25,10 @@ div.menumain > nav > menu-component{
         @include respond-to(small) {
           font-size: 10pt;
         }
-        &:hover {
+      }
+      &:hover > a {
           border-top: 5px solid #0097d4;
-        }
+          color: #0097d4;
       }
       & > ul {
         background: #bfc0c8;
@@ -41,12 +42,14 @@ div.menumain > nav > menu-component{
             line-height: 40px;
             padding: 0px 40px 0px 14px;
             text-transform: none;
-            color: #0097d4;
+            color: #383838;
+            transition: all 0.5s;
             @include respond-to(small) {
               font-size: 10pt;
             }
             &:hover {
-              background: #e1e3ec;
+              color: #ffffff;
+              background-color: #0097d4;
             }
           }
         }
