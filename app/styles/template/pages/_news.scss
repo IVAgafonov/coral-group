@@ -50,12 +50,12 @@
     margin: 200px 0px;
   }
   @include respond-to(large) {
-    margin: 300px 0px;
+    margin: 200px 0px;
   }
   @include respond-to(toolarge) {
-    margin: 400px 0px;
+    margin: 300px 0px;
   }
-  min-height: 400px;
+  min-height: 600px;
 }
 
 
@@ -134,6 +134,21 @@
 }
 
 .newsitem {
+  @include respond-to(tablet) {
+    margin: 0px 10px;
+  }
+  @include respond-to(small) {
+    margin: 0px 10px;
+  }
+  @include respond-to(medium) {
+    margin: 0px 10px;
+  }
+  @include respond-to(large) {
+    margin: 0px 10px;
+  }
+  @include respond-to(toolarge) {
+    margin: 0px 10px;
+  }
   & > h2 {
     color: #ffffff;
     font-weight: 100;
@@ -145,7 +160,7 @@
 
 .newsdate {
   color: #ffffff;
-  margin: 0px 0px 0px 1px;
+  margin: 0px 0px 0px 0px;
   &::before {
     content: '';
     display: inline-block;
@@ -196,6 +211,16 @@
       color: #ffffff;
       font-weight: bold;
     }
+    &::after {
+      content: ",";
+      color: #ffffff;
+    }
+    &:last-child {
+      &::after {
+        content: "";
+        color: #ffffff;
+      }
+    }
   }
 }
 
@@ -213,3 +238,5 @@
     margin: 10px 0px 0px 0px;
   }
 }
+
+

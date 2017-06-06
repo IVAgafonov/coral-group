@@ -44,8 +44,8 @@
                     }
 
                     $timeout(function () {
-                        $('.mobileowl').owlCarousel('destroy');
-                        $('.mobileowl').owlCarousel({
+                        //$('.mobileowl').owlCarousel('destroy');
+                        var owldesc = $('.mobileowl').owlCarousel({
                             autoPlay: 2000,
                             stopOnHover: true,
                             slideSpeed : 300,
@@ -59,8 +59,8 @@
                             navText: ['', '']
                         });
 
-                        $('.desctopowl').owlCarousel('destroy');
-                        $('.desctopowl').owlCarousel({
+                        //$('.desctopowl').owlCarousel('destroy');
+                        var owlmob = $('.desctopowl').owlCarousel({
                             autoPlay: 2000,
                             stopOnHover: true,
                             slideSpeed : 300,
@@ -72,6 +72,40 @@
                             nav: true,
                             mouseDrag: false,
                             navText: ['', '']
+                        });
+
+                        owldesc.on('resize.owl.carousel', function(event) {
+                            $('.desctopowl').owlCarousel('destroy');
+                            var owlmob = $('.desctopowl').owlCarousel({
+                                autoPlay: 2000,
+                                stopOnHover: true,
+                                slideSpeed : 300,
+                                paginationSpeed : 400,
+                                singleItem : true,
+                                items: 1,
+                                animateOut: 'slideOutUp',
+                                animateIn: 'slideInUp',
+                                nav: true,
+                                mouseDrag: false,
+                                navText: ['', '']
+                            });
+                        });
+
+                        owlmob.on('resize.owl.carousel', function(event) {
+                            $('.mobileowl').owlCarousel('destroy');
+                            var owldesc = $('.mobileowl').owlCarousel({
+                                autoPlay: 2000,
+                                stopOnHover: true,
+                                slideSpeed : 300,
+                                paginationSpeed : 400,
+                                singleItem : true,
+                                items: 1,
+                                animateOut: 'slideOutUp',
+                                animateIn: 'slideInUp',
+                                nav: true,
+                                mouseDrag: false,
+                                navText: ['', '']
+                            });
                         });
                     });
 

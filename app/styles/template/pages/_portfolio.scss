@@ -117,6 +117,24 @@
     & > .owl-prev {
       transform: rotate(270deg);
       top: -420px;
+      @include respond-to(phone) {
+        top: -430px;
+      }
+      @include respond-to(tablet) {
+        top: -430px;
+      }
+      @include respond-to(small) {
+        top: -430px;
+      }
+      @include respond-to(medium) {
+        top: -420px;
+      }
+      @include respond-to(large) {
+        top: -430px;
+      }
+      @include respond-to(toolarge) {
+        top: -430px;
+      }
     }
     & > .owl-next {
       transform: rotate(90deg);

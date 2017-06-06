@@ -38,9 +38,16 @@ class ServiceController extends AbstractController implements ControllerInterfac
                 break;
             case 'UPDATE':
                 if (!empty($this->params['item']['nameTemplate']) && !empty($this->params['item']['descTemplate']) && !empty($this->params['item']['menuItemId'])) {
-                    $this->db->doQuery("INSERT INTO `cg_services` (name_template, desc_template, menu_id) ".
-                        "VALUES (".$this->db->quote($this->params['item']['nameTemplate']).",".$this->db->quote($this->params['item']['descTemplate']).", ".$this->params['item']['menuItemId'].") ".
-                        "ON DUPLICATE KEY UPDATE desc_template = ".$this->db->quote($this->params['item']['descTemplate']).", menu_id = ".$this->params['item']['menuItemId']);
+                    if ($this->params['item']['Id']) {
+                        $this->db->doQuery("INSERT INTO `cg_services` (id, name_template, desc_template, menu_id) ".
+                            "VALUES (".$this->db->quote($this->params['item']['Id']).", ".$this->db->quote($this->params['item']['nameTemplate']).",".$this->db->quote($this->params['item']['descTemplate']).", ".$this->params['item']['menuItemId'].") ".
+                            "ON DUPLICATE KEY UPDATE name_template = ".$this->db->quote($this->params['item']['nameTemplate'])." , desc_template = ".$this->db->quote($this->params['item']['descTemplate']).", menu_id = ".$this->params['item']['menuItemId']);
+
+                    } else {
+                        $this->db->doQuery("INSERT INTO `cg_services` (name_template, desc_template, menu_id) ".
+                            "VALUES (".$this->db->quote($this->params['item']['nameTemplate']).",".$this->db->quote($this->params['item']['descTemplate']).", ".$this->params['item']['menuItemId'].") ".
+                            "ON DUPLICATE KEY UPDATE desc_template = ".$this->db->quote($this->params['item']['descTemplate']).", menu_id = ".$this->params['item']['menuItemId']);
+                    }
                     if ($this->db->getAffectedRows()) {
                         echo json_encode(['status' => 'ok']);
                         return;

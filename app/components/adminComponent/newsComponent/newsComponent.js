@@ -71,6 +71,9 @@
             vm.item.date = item.date;
             vm.item.locale = item.locale;
             vm.item.news_desc = item.news_desc;
+            if (item.id) {
+                vm.item.id = item.id;
+            }
         };
 
         vm.saveItem = function() {

@@ -13,6 +13,7 @@
     function serviceControllerFn(serviceService, $rootScope, $timeout, $stateParams, $state, $location) {
         var vm = this;
         $rootScope.showHeader = false;
+        $rootScope.showOnlyDesctop = true;
 
         vm.anchors = [];
         vm.uiOnParamsChanged = function(newParams) {

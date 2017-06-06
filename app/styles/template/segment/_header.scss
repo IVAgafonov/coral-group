@@ -1,6 +1,6 @@
 
 header.main {
-  position: absolute;
+  position: fixed;
   top: 0px;
   width: 100%;
   z-index: 999;
@@ -146,5 +146,26 @@ div.language {
         }
       }
     }
+  }
+}
+
+.showOnlyDesctop {
+  @include respond-to(phone) {
+
+  }
+  @include respond-to(tablet) {
+
+  }
+  @include respond-to(small) {
+
+  }
+  @include respond-to(medium) {
+
+  }
+  @include respond-to(large) {
+    top: 0px !important;
+  }
+  @include respond-to(toolarge) {
+    top: 0px !important;
   }
 }

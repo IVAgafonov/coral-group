@@ -69,12 +69,24 @@ class NewsController extends AbstractController implements ControllerInterface {
                 break;
             case 'UPDATE':
                 if (!empty($this->params['item']['news_name']) && !empty($this->params['item']['date']) && !empty($this->params['item']['locale']) && !empty($this->params['item']['news_desc'])) {
-                    $this->db->doQuery("INSERT INTO `cg_news` (`news_name`, `date`, `locale`, `news_desc`) ".
-                        "VALUES (".$this->db->quote($this->params['item']['news_name']).", ".$this->db->quote($this->params['item']['date']).", ".
-                        $this->db->quote($this->params['item']['locale']).", ".$this->db->quote($this->params['item']['news_desc']).") ON DUPLICATE KEY UPDATE ".
-                        "`date` = ".$this->db->quote($this->params['item']['date']).", ".
-                        "`locale` = ".$this->db->quote($this->params['item']['locale']).", ".
-                        "`news_desc` = ".$this->db->quote($this->params['item']['news_desc']));
+                    $id = '';
+                    if ($this->params['item']['id']) {
+                        $this->db->doQuery("INSERT INTO `cg_news` (`id`, `news_name`, `date`, `locale`, `news_desc`) ".
+                            "VALUES (".$this->params['item']['id'].", ".$this->db->quote($this->params['item']['news_name']).", ".$this->db->quote($this->params['item']['date']).", ".
+                            $this->db->quote($this->params['item']['locale']).", ".$this->db->quote($this->params['item']['news_desc']).") ON DUPLICATE KEY UPDATE ".
+                            "`news_name` = ".$this->db->quote($this->params['item']['news_name']).", ".
+                            "`date` = ".$this->db->quote($this->params['item']['date']).", ".
+                            "`locale` = ".$this->db->quote($this->params['item']['locale']).", ".
+                            "`news_desc` = ".$this->db->quote($this->params['item']['news_desc']));
+                    } else {
+                        $this->db->doQuery("INSERT INTO `cg_news` (`news_name`, `date`, `locale`, `news_desc`) ".
+                            "VALUES (".$this->db->quote($this->params['item']['news_name']).", ".$this->db->quote($this->params['item']['date']).", ".
+                            $this->db->quote($this->params['item']['locale']).", ".$this->db->quote($this->params['item']['news_desc']).") ON DUPLICATE KEY UPDATE ".
+                            "`date` = ".$this->db->quote($this->params['item']['date']).", ".
+                            "`locale` = ".$this->db->quote($this->params['item']['locale']).", ".
+                            "`news_desc` = ".$this->db->quote($this->params['item']['news_desc']));
+                    }
+
                     if ($this->db->getAffectedRows()) {
                         echo json_encode(['status' => 'ok']);
                         return;

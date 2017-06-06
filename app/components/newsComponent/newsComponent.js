@@ -77,10 +77,7 @@
                                 });
                             }
                         }
-                        console.log(event);
-
                     });
-
 
                     var owlimgs = $('.owlnewsimg').owlCarousel({
                         autoPlay: 2000,

@@ -18,19 +18,19 @@
 
 .vacsmargins {
   @include respond-to(phone) {
-    margin: 100px 0px 200px 0px;
+    margin: 200px 0px 200px 0px;
   }
   @include respond-to(tablet) {
-    margin: 100px 0px 200px 0px;
+    margin: 200px 0px 200px 0px;
   }
   @include respond-to(small) {
-    margin: 150px 0px 200px 0px;
+    margin: 200px 0px 200px 0px;
   }
   @include respond-to(medium) {
-    margin: 150px 0px 200px 0px;
+    margin: 200px 0px 200px 0px;
   }
   @include respond-to(large) {
-    margin: 150px 0px 200px 0px;
+    margin: 200px 0px 200px 0px;
   }
   @include respond-to(toolarge) {
     margin: 200px 0px 200px 0px;

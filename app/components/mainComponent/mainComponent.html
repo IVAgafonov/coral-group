@@ -9,12 +9,12 @@
                 <div class="slideServices sliderWrap">
                     <div>
                         <div ng-repeat="service in $ctrl.services">
-                            <a class="serviceImage" style="background-image: url('/images/mpItems/{{service.image}}')" ui-sref="app.service({name: '{{service.uri}}'})"></a>
+                            <a class="serviceImage" style="background-image: url('/images/mpItems/{{service.image}}')" ui-sref="app.service({service: '{{service.uri}}'})"></a>
                             <table class="vgcenter">
                                 <tbody>
                                 <tr>
                                     <td>
-                                        <a class="serviceDesc" ui-sref="app.service({name: '{{service.uri}}'})">{{service.text_template | translate}}</a>
+                                        <a class="serviceDesc" ui-sref="app.service({service: '{{service.uri}}'})">{{service.text_template | translate}}</a>
                                     </td>
                                 </tr>
                                 </tbody>

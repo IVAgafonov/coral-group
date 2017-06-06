@@ -5,7 +5,7 @@
     <div class="container">
         <h2 class="abouttext">{{"aboutMainText" | translate}}</h2>
         <div class="play">
-            <a class="showcoralfilm">{{"showCoralFilm" | translate}}</a>
+            <a class="showcoralfilm" ng-click="$ctrl.runVideo()">{{"showCoralFilm" | translate}}</a>
         </div>
         <div class="aboutitems">
             <div class="aboutitem" ng-repeat="item in $ctrl.items track by $index">
@@ -17,3 +17,4 @@
     </div>
     <footer-component></footer-component>
 </div>
+<div id="player" style="display: block; width: 0px; height: 0px;"></div>
