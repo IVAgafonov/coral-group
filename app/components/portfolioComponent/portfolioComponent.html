@@ -2,38 +2,17 @@
     <header-component></header-component>
 </div>
 <div class="portfolio">
-    <div class="aligner center desctopslider">
-        <div class="sliderWrap" >
-            <owlcarousel class="owl-carousel vertical desctopowl">
-                <div ng-repeat="itemDesctop in $ctrl.itemsDesctop track by $index">
-                    <div ng-repeat="item in itemDesctop track by $index">
-                        <h2>{{item.template_name | translate}}</h2>
-                        <div class="images">
-                            <div class="image" ng-repeat="image in item.images track by $index">
-                                <a id="portfoiliod_{{item.id}}_{{image.id}}" rel="group_{{item.id}}" href="/images/portfolio/photo/{{image.file_name}}" fancyboxable style="background-image: url('/images/portfolio/photo/{{image.file_name}}')"></a>
-                            </div>
-                        </div>
-                    </div>
+    <owlcarousel class="owl-carousel owl porft">
+        <div ng-repeat="item in $ctrl.items track by $index">
+            <h2>{{item.template_name | translate}}</h2>
+            <div class="images">
+                <div class="image" ng-repeat="image in item.images track by $index">
+                    <a id="portfoilio_{{item.id}}_{{image.id}}" rel="group_{{item.id}}" href="/images/portfolio/photo/{{image.file_name}}" data-lightbox="portfolio_{{item.id}}" style="background-image: url('/images/portfolio/photo/{{image.file_name}}')"></a>
                 </div>
-
-            </owlcarousel>
+            </div>
         </div>
-    </div>
-    <div class="aligner center mobileslider" >
-        <div class="sliderWrap" >
-            <owlcarousel class="owl-carousel vertical mobileowl">
-                <div ng-repeat="item in $ctrl.items track by $index">
-                    <h2>{{item.template_name | translate}}</h2>
-                    <div class="images">
-                        <div class="image" ng-repeat="image in item.images track by $index">
-                            <a id="portfoilio_{{item.id}}_{{image.id}}" rel="group_{{item.id}}" href="/images/portfolio/photo/{{image.file_name}}" fancyboxable style="background-image: url('/images/portfolio/photo/{{image.file_name}}')"></a>
-                        </div>
-                    </div>
-                </div>
-            </owlcarousel>
-        </div>
-    </div>
+    </owlcarousel>
 </div>
-<div class="hidden-medium">
+<div class="hidden-phone old" ng-class="{'hiddenpgoneng': $ctrl.heddenphone}" ng-click="$ctrl.heddenphone = !$ctrl.heddenphone">
     <footer-component></footer-component>
 </div>

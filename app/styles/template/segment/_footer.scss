@@ -1,13 +1,15 @@
 .hidden-phone {
   position: fixed;
+  z-index: 999;
   bottom: 0px;
   width: 100%;
   min-height: 40px;
   background-position: 50%;
-  background-size: 10%;
+  background-size: 36px;
   background-repeat: no-repeat;
   background-image: url(data:image/svg+xml;utf8;base64,PD94bWwgdmVyc2lvbj0iMS4wIiBlbmNvZGluZz0iaXNvLTg4NTktMSI/Pgo8IS0tIEdlbmVyYXRvcjogQWRvYmUgSWxsdXN0cmF0b3IgMTkuMC4wLCBTVkcgRXhwb3J0IFBsdWctSW4gLiBTVkcgVmVyc2lvbjogNi4wMCBCdWlsZCAwKSAgLS0+CjxzdmcgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIiB4bWxuczp4bGluaz0iaHR0cDovL3d3dy53My5vcmcvMTk5OS94bGluayIgdmVyc2lvbj0iMS4xIiBpZD0iQ2FwYV8xIiB4PSIwcHgiIHk9IjBweCIgdmlld0JveD0iMCAwIDI0MC44MzUgMjQwLjgzNSIgc3R5bGU9ImVuYWJsZS1iYWNrZ3JvdW5kOm5ldyAwIDAgMjQwLjgzNSAyNDAuODM1OyIgeG1sOnNwYWNlPSJwcmVzZXJ2ZSIgd2lkdGg9IjEyOHB4IiBoZWlnaHQ9IjEyOHB4Ij4KPGc+Cgk8cGF0aCBpZD0iRXhwYW5kX0xlc3MiIGQ9Ik0xMjkuMDA3LDU3LjgxOWMtNC42OC00LjY4LTEyLjQ5OS00LjY4LTE3LjE5MSwwTDMuNTU1LDE2NS44MDNjLTQuNzQsNC43NC00Ljc0LDEyLjQyNywwLDE3LjE1NSAgIGM0Ljc0LDQuNzQsMTIuNDM5LDQuNzQsMTcuMTc5LDBsOTkuNjgzLTk5LjQwNmw5OS42NzEsOTkuNDE4YzQuNzUyLDQuNzQsMTIuNDM5LDQuNzQsMTcuMTkxLDBjNC43NC00Ljc0LDQuNzQtMTIuNDI3LDAtMTcuMTU1ICAgTDEyOS4wMDcsNTcuODE5eiIgZmlsbD0iI0ZGRkZGRiIvPgoJPGc+Cgk8L2c+Cgk8Zz4KCTwvZz4KCTxnPgoJPC9nPgoJPGc+Cgk8L2c+Cgk8Zz4KCTwvZz4KCTxnPgoJPC9nPgo8L2c+CjxnPgo8L2c+CjxnPgo8L2c+CjxnPgo8L2c+CjxnPgo8L2c+CjxnPgo8L2c+CjxnPgo8L2c+CjxnPgo8L2c+CjxnPgo8L2c+CjxnPgo8L2c+CjxnPgo8L2c+CjxnPgo8L2c+CjxnPgo8L2c+CjxnPgo8L2c+CjxnPgo8L2c+CjxnPgo8L2c+Cjwvc3ZnPgo=);
-  &:hover {
+
+  &.hiddenpgoneng {
     @include respond-to(phone) {
       footer {
         bottom: 0px;
@@ -49,6 +51,12 @@
     @include respond-to(toolarge) {
 
     }
+  }
+}
+
+.hidden-phone.old {
+  &:hover footer {
+    bottom: 0;
   }
 }
 
@@ -122,6 +130,7 @@ footer {
   width: 100%;
   position: absolute;
   z-index: 999;
+  transition: all 0.5s;
   & > div.container {
     & > div {
       @include respond-to(phone) {
@@ -146,6 +155,9 @@ footer {
         width: 33%;
         text-align: center;
         vertical-align: bottom;
+        @include respond-to(nobig) {
+          height: 80px;
+        }
         &:first-child {
           text-align: right;
         }
@@ -218,6 +230,23 @@ footer {
               margin: 20px 0px 0px 26px;
             }
           }
+          @include respond-to(nobig) {
+            &.phone {
+              margin: 15px 0px 0px 0px;
+            }
+            &.email {
+              margin: 20px 0px 0px 0px;
+            }
+            &.addr {
+              margin: 50px 0px 0px 0px;
+            }
+            &.social {
+              margin: 10px 0px 0px 0px;
+            }
+            &.comp {
+              margin: 5px 0px 0px 26px;
+            }
+          }
         }
       }
     }
@@ -264,4 +293,11 @@ footer {
   @media only screen and (min-height: 1020px) and (orientation: portrait) {
     position: fixed;
   }
+}
+
+.hiddenpgoneng footer {
+  @include respond-to(mobile) {
+    bottom: -200px !important;
+  }
+
 }

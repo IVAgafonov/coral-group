@@ -13,7 +13,7 @@
     function vacancyControllerFn($rootScope, vacancyService, FileUploader, $timeout) {
         var vm = this;
         $rootScope.showHeader = true;
-
+        $rootScope.showOnlyDesctop = false;
         vm.messageText = '';
         vm.messageType = '';
         vm.messageHead = '';

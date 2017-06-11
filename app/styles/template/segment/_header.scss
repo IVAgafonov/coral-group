@@ -5,10 +5,16 @@ header.main {
   width: 100%;
   z-index: 999;
   height: 40px;
+  @include respond-to(nobig) {
+    height: 30px;
+  }
   &:hover > div.head {
     @include respond-to(desctop) {
       top: 0px;
       height: 120px;
+      @include respond-to(nobig) {
+        height: 80px;
+      }
     }
   }
   & > div.topline {
@@ -16,6 +22,9 @@ header.main {
     height: 40px;
     position: relative;
     z-index: 999;
+    @include respond-to(nobig) {
+      height: 30px;
+    }
     & > div.container {
       & > p {
         display: block;
@@ -30,8 +39,16 @@ header.main {
           color: #fff;
           text-decoration: none;
           float: right;
-          line-height: 20px;
+          line-height: 23px;
           padding: 10px 0px 0px 0px;
+          @include respond-to(nobig) {
+            padding: 3px 0px 0px 0px;
+            font-size: 10pt;
+          }
+          @include respond-to(phone) {
+            padding: 3px 0px 0px 0px;
+            font-size: 10pt;
+          }
           &:hover {
             border-bottom: 1px dashed #ffffff;
           }
@@ -48,9 +65,15 @@ header.main {
     top: -200px;
     transition: all 0.5s;
     opacity: 0.95;
+    @include respond-to(nobig) {
+      margin: 30px 0px 0px 0px;
+    }
     &.forceShow {
       top: 0px;
       height: 120px;
+      @include respond-to(nobig) {
+        height: 80px;
+      }
     }
     & > div.container {
       & > div.mainlogo {
@@ -61,6 +84,9 @@ header.main {
           background: url('/images/template/logomain.png');
           float: left;
           margin: 30px 0px 0px 0px;
+          @include respond-to(nobig) {
+            margin: 12px 0px 0px 0px;
+          }
         }
       }
     }
@@ -71,6 +97,9 @@ div.language {
   position: absolute;
   top: 47px;
   right: 0px;
+  @include respond-to(nobig) {
+    top: 28px;
+  }
   & > a {
     text-decoration: none;
     text-transform: uppercase;
@@ -83,6 +112,7 @@ div.language {
     width: 26px;
     text-align: center;
     line-height: 26px;
+
     &.active {
       color: #a5a5a5;
       background: #ffffff;
@@ -114,6 +144,7 @@ div.language {
       background: #00204b;
       font-size: 14pt;
       font-weight: 100;
+      text-align: center;
     }
     & > .closeLoginForm {
       position: absolute;
@@ -151,10 +182,10 @@ div.language {
 
 .showOnlyDesctop {
   @include respond-to(phone) {
-
+    top: -200px !important;
   }
   @include respond-to(tablet) {
-
+    top: -200px !important;
   }
   @include respond-to(small) {
 

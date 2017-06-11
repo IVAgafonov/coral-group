@@ -27,8 +27,9 @@
     "angular-css": "^1.0.8",
     "angular-drag-and-drop-lists": "^2.1.0",
     "angular-file-upload": "^2.5.0",
-    "angular-fancybox-plus": "^1.0.3",
-    "owl.carousel": "^2.2.1"
+    "owl.carousel": "^2.2.1",
+    "angular-sanitize": "^1.6.4",
+    "lightbox2": "^2.9.0"
   },
   "devDependencies": {
   },

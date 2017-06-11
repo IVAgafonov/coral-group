@@ -1658,21 +1658,8 @@
   animation-name: slideOutRight;
 }
 
-@keyframes slideOutUp {
-  from {
-    transform: translate3d(0, 0, 0);
-  }
 
-  to {
-    visibility: hidden;
-    transform: translate3d(0, -100%, 0);
-  }
-}
-
-.slideOutUp {
-  animation-name: slideOutUp;
-}
-
+/*
 @include respond-to(phone) {
   .owl-stage-outer {
     max-width: 540px;
@@ -1690,16 +1677,21 @@
 }
 @include respond-to(medium) {
   .owl-stage-outer {
-    max-width: 1400px;
+    max-width: 1100px;
   }
 }
 @include respond-to(large) {
   .owl-stage-outer {
-    max-width: 1920px;
+    max-width: 1300px;
   }
 }
 @include respond-to(toolarge) {
   .owl-stage-outer {
-    max-width: 1920px;
+    max-width: 1600px;
   }
 }
+
+.owl-item  {
+  padding: 0px 40px;
+}
+*/

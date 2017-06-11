@@ -19,12 +19,14 @@
                     <div ng-repeat="nimg in news.images track by $index" class="newsimageitem" style="background-image: url('/images/news/photo/{{nimg.file_name}}')">
                     </div>
                 </owlcarousel>
-                <div class="newsdesc">
-                    <p ng-repeat="row in news.news_desc track by $index">{{row}}</p>
+                <div class="newsdesc" ng-bind-html="news.news_desc">
+
                 </div>
             </div>
         </owlcarousel>
     </div>
 </div>
-    <footer-component></footer-component>
+    <div class="hidden-phone old">
+        <footer-component></footer-component>
+    </div>
 </div>

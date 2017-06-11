@@ -35,10 +35,7 @@
       margin: 50px 0px;
     }
   }
-  & p {
-    color: #ffffff;
-    text-align: center;
-
+  & .servdesc {
     margin: 0px auto;
     @include respond-to(phone) {
       width: 100%;
@@ -58,6 +55,15 @@
     }
     @include respond-to(toolarge) {
       width: 40%;
+    }
+    & > p {
+      color: #ffffff;
+      text-align: center;
+    }
+    & > ul {
+      padding: 0px 0px 0px 20px;
+      color: #fff;
+      margin: 0px;
     }
   }
 }
@@ -81,7 +87,7 @@
     height: 120px;
   }
   @include respond-to(medium) {
-    padding: 100px 0 20px 0;
+    padding: 120px 0 20px 0;
     width: 120px;
     height: 120px;
   }

@@ -1,4 +1,4 @@
 (function () {
     'use strict';
-    angular.module('pageModule', ['dndLists', 'fancyboxplus']);
+    angular.module('pageModule', ['dndLists']);
 })();

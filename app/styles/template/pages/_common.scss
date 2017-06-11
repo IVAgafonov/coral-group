@@ -2,6 +2,7 @@ $phone: 540px;
 $tablet: 960px;
 $small: 1100px;
 $medium: 1400px;
+$nobig: 1600px;
 $large: 2000px;
 
 @mixin respond-to($media) {
@@ -29,6 +30,19 @@ $large: 2000px;
   @if $media == desctop {
     @media only screen and (min-width: $tablet + 1) { @content }
   }
+  @if $media == nobig {
+    @media only screen and (min-width: $tablet + 1) and (max-width: $nobig)  { @content }
+  }
+}
+
+@font-face {
+  font-family: 'Ubuntu', sans-serif;
+  src: url("/fonts/UbuntuRegular.eot");
+  src: url("/fonts/UbuntuRegular.eot?#iefix" ) format ("embedded-opentype"),
+  url("/fonts/UbuntuRegular.woff") format("woff"),
+  url("/fonts/UbuntuRegular.ttf") format("truetype");
+  font-style: normal;
+  font-weight: normal;
 }
 
 body {
@@ -37,6 +51,7 @@ body {
   font-family: 'Ubuntu', sans-serif;
   min-width: 320px;
   position: relative;
+  background: #001e47;
 }
 
 div.container {
@@ -70,4 +85,8 @@ div.container {
     vertical-align: middle;
     width: 100%;
   }
+}
+
+#fbplus-left, #fbplus-right {
+  width: 50% !important;
 }

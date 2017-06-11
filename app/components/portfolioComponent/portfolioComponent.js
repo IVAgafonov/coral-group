@@ -12,7 +12,9 @@
 
     function portfolioControllerFn(portfolioService, $rootScope, $timeout) {
         var vm = this;
-        $rootScope.showHeader = false;
+        $rootScope.showHeader = true;
+        $rootScope.showOnlyDesctop = true;
+        vm.heddenphone = true;
         vm.items = [];
         vm.itemsDesctop = [];
         vm.loadElements = function() {
@@ -45,70 +47,69 @@
 
                     $timeout(function () {
                         //$('.mobileowl').owlCarousel('destroy');
-                        var owldesc = $('.mobileowl').owlCarousel({
+                        var owl = $('.owl').owlCarousel({
+                            loop: false,
                             autoPlay: 2000,
                             stopOnHover: true,
-                            slideSpeed : 300,
-                            paginationSpeed : 400,
-                            singleItem : true,
-                            items: 1,
-                            animateOut: 'slideOutUp',
-                            animateIn: 'slideInUp',
+                            slideSpeed: 300,
+                            paginationSpeed: 400,
+                            singleItem: true,
+                            autoWidth:false,
+                            items: 3,
+                            animateOut: '',
+                            animateIn: '',
                             nav: true,
                             mouseDrag: false,
+                            rewindNav   : false,
+                            responsive : {
+                                0 : {
+                                    items: 1,
+                                },
+                                700 : {
+                                    items: 2,
+                                },
+                                1100 : {
+                                    items: 3,
+                                }
+                            },
                             navText: ['', '']
                         });
+
 
                         //$('.desctopowl').owlCarousel('destroy');
-                        var owlmob = $('.desctopowl').owlCarousel({
-                            autoPlay: 2000,
-                            stopOnHover: true,
-                            slideSpeed : 300,
-                            paginationSpeed : 400,
-                            singleItem : true,
-                            items: 1,
-                            animateOut: 'slideOutUp',
-                            animateIn: 'slideInUp',
-                            nav: true,
-                            mouseDrag: false,
-                            navText: ['', '']
-                        });
-
-                        owldesc.on('resize.owl.carousel', function(event) {
-                            $('.desctopowl').owlCarousel('destroy');
-                            var owlmob = $('.desctopowl').owlCarousel({
+                        owl.on('resize.owl.carousel', function(event) {
+                            $('.owl').owlCarousel('destroy');
+                            var owl = $('.owl').owlCarousel({
+                                loop: false,
                                 autoPlay: 2000,
                                 stopOnHover: true,
                                 slideSpeed : 300,
+                                autoWidth:false,
                                 paginationSpeed : 400,
                                 singleItem : true,
-                                items: 1,
-                                animateOut: 'slideOutUp',
-                                animateIn: 'slideInUp',
+                                items: 3,
+                                rewindNav   : false,
+                                responsive : {
+                                    0 : {
+                                        items: 1,
+                                    },
+                                    700 : {
+                                        items: 2,
+                                    },
+                                    1100 : {
+                                        items: 3,
+                                    }
+                                },
+                                animateOut: '',
+                                animateIn: '',
                                 nav: true,
                                 mouseDrag: false,
                                 navText: ['', '']
                             });
-                        });
 
-                        owlmob.on('resize.owl.carousel', function(event) {
-                            $('.mobileowl').owlCarousel('destroy');
-                            var owldesc = $('.mobileowl').owlCarousel({
-                                autoPlay: 2000,
-                                stopOnHover: true,
-                                slideSpeed : 300,
-                                paginationSpeed : 400,
-                                singleItem : true,
-                                items: 1,
-                                animateOut: 'slideOutUp',
-                                animateIn: 'slideInUp',
-                                nav: true,
-                                mouseDrag: false,
-                                navText: ['', '']
-                            });
+
                         });
                     });
-
                 }, function(error) {
 
                 });

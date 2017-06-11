@@ -10,7 +10,7 @@ var paths = {
     index: './app/index.html',
     favicon: './app/favicon.ico',
     partials: ['./app/**/*.html', '!app/index.html'],
-    fonts: './node_modules/bootstrap-sass/assets/fonts/**/*',
+    fonts: ['./node_modules/bootstrap-sass/assets/fonts/**/*', './app/fonts/**/*'],
     php: ['./api/**/*', './api/**/.*'],
     phpVendor: './vendor/**/*',
     dev : './dev',
