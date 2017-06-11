@@ -89,6 +89,9 @@
             vm.item.nameTemplate = item.name_template;
             vm.item.descTemplate = item.desc_template;
             vm.item.menuItemId = item.menu_id;
+            if (item.id) {
+                vm.item.Id = item.id;
+            }
         };
 
         vm.saveItem = function() {

@@ -1,12 +1,101 @@
+<div class="infoForm {{$ctrl.messageType}}" ng-show="$ctrl.messageText">
+    <h2>{{$ctrl.messageHead | translate}}</h2>
+    <p>{{$ctrl.messageText | translate}}</p>
+    <button class="infoClose" ng-click="$ctrl.messageText = ''">+</button>
+    <button class="infoCloseMobile" ng-click="$ctrl.messageText = ''">OK</button>
+</div>
 <header-component></header-component>
-<h1>vacancy</h1>
-<p>news</p>
-<p>news</p>
-<p>news</p>
-<p>news</p>
-<p>news</p>
-<p>news</p>
-<p>news</p>
-<p>news</p>
-<p>news</p>
-<footer-component></footer-component>
+<div class="vacancywrap">
+    <div class="vacancybg">
+    </div>
+    <div class="container">
+        <div class="vacsmargins">
+            <h2 class="vacancyhead">{{'vacancyStr' | translate}}</h2>
+            <div ng-show="$ctrl.items.length == 0">
+                <p class="novacancy">{{'noVacancyStr' | translate}}</p>
+            </div>
+            <div ng-show="$ctrl.items.length != 0">
+                <div ng-show="$ctrl.items.length == 1">
+                    <h2 class="singlename">{{$ctrl.currentItem.vacancy_name}}</h2>
+                </div>
+                <div ng-show="$ctrl.items.length > 1">
+                    <select class="multiname" ng-model="$ctrl.currentItem" ng-options="item.vacancy_name for item in $ctrl.items track by item.id">
+                    </select>
+                </div>
+                <div class="vacancydesc">
+                    <div class="segment" ng-show="$ctrl.currentItem.date">
+                        <div class="left">
+                            <p><strong>{{'vacancyDate' | translate}}:</strong></p>
+                        </div>
+                        <div class="right">
+                            <p>{{$ctrl.currentItem.date}}</p>
+                        </div>
+                    </div>
+                    <div class="segment" ng-show="$ctrl.currentItem.vacancy_desc.length != 0">
+                        <div class="left">
+                            <p><strong>{{'vacancyDesc' | translate}}:</strong></p>
+                        </div>
+                        <div class="right">
+                            <ul>
+                                <li ng-repeat="vacancy_desc in $ctrl.currentItem.vacancy_desc track by $index">{{vacancy_desc}}</li>
+                            </ul>
+                        </div>
+                    </div>
+                    <div class="segment" ng-show="$ctrl.currentItem.vacancy_require.length != 0">
+                        <div class="left">
+                            <p><strong>{{'vacancyRequire' | translate}}:</strong></p>
+                        </div>
+                        <div class="right">
+                            <ul>
+                                <li ng-repeat="vacancy_require in $ctrl.currentItem.vacancy_require track by $index">{{vacancy_require}}</li>
+                            </ul>
+                        </div>
+                    </div>
+                    <div class="segment" ng-show="$ctrl.currentItem.vacancy_conditions.length != 0">
+                        <div class="left">
+                            <p><strong>{{'vacancyCond' | translate}}:</strong></p>
+                        </div>
+                        <div class="right">
+                            <ul>
+                                <li ng-repeat="vacancy_conditions in $ctrl.currentItem.vacancy_conditions track by $index">{{vacancy_conditions}}</li>
+                            </ul>
+                        </div>
+                    </div>
+                    <div class="segment" ng-show="$ctrl.currentItem.vacancy_addr">
+                        <div class="left">
+                            <p><strong>{{'vacancyAddr' | translate}}:</strong></p>
+                        </div>
+                        <div class="right">
+                            <p>{{$ctrl.currentItem.vacancy_addr}}</p>
+                        </div>
+                    </div>
+                    <div class="segment" ng-show="$ctrl.currentItem.busy_type">
+                        <div class="left">
+                            <p><strong>{{'vacancyBusy' | translate}}:</strong></p>
+                        </div>
+                        <div class="right">
+                            <p>{{$ctrl.currentItem.busy_type}}</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="vacancyform">
+                    <div class="segment">
+                        <div class="center">
+                            <input ng-change="$ctrl.checkForm()" type="text" ng-model="$ctrl.fio" placeholder="{{'vacancyFioStr' | translate}}">
+                            <input ng-change="$ctrl.checkForm()" type="text" ng-model="$ctrl.email" placeholder="{{'vacancyEmailStr' | translate}}">
+                        </div>
+                        <div class="center">
+                            <input ng-change="$ctrl.checkForm()" type="text" ng-model="$ctrl.phone" placeholder="{{'vacancyPhoneStr' | translate}}">
+                            <label class="vacancyUpload" ng-class="{'disabledUpload': $ctrl.formWrong}">{{'vacancyUploadStr' | translate}}
+                                <input ng-disabled="$ctrl.formWrong" type="file" nv-file-select="" id="fileSelect" accept="" uploader="$ctrl.uploader" options="{formData: [{fio: $ctrl.fio, email: $ctrl.email, phone: $ctrl.phone, job: $ctrl.currentItem.vacancy_name}], queueLimit: 1}" style="display: none;">
+                            </label>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="hidden-phone old">
+        <footer-component></footer-component>
+    </div>
+</div>

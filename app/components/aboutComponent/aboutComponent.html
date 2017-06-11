@@ -1,11 +1,12 @@
+<div class="aboutbg">
+</div>
 <div class="aboutpage">
     <header-component></header-component>
-    <div class="aboutbg">
-    </div>
     <div class="container">
         <h2 class="abouttext">{{"aboutMainText" | translate}}</h2>
         <div class="play">
-            <a class="showcoralfilm">{{"showCoralFilm" | translate}}</a>
+            <a class="showcoralfilm" ng-click="$ctrl.runVideo()" ng-class="{'safary': $ctrl.safary, 'nosafary': !$ctrl.safary}"></a>
+            <div id="player" allowfullscreen class="applekostil" ng-class="{'safary': $ctrl.safary, 'nosafary': !$ctrl.safary}"></div>
         </div>
         <div class="aboutitems">
             <div class="aboutitem" ng-repeat="item in $ctrl.items track by $index">

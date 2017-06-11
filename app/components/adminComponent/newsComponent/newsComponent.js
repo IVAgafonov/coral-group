@@ -5,17 +5,34 @@
     function newsComponentFn() {
         return {
             templateUrl: 'components/adminComponent/newsComponent/newsComponent.html',
-            controller:  ['newsService', 'newstagsService', '$timeout', '$state', newsControllerFn]
+            controller:  ['newsService', 'newstagsService', '$timeout', '$state', 'FileUploader', newsControllerFn]
         }
     }
 
-    function newsControllerFn(newsService, newstagsService, $timeout, $state) {
+    function newsControllerFn(newsService, newstagsService, $timeout, $state, FileUploader) {
         var vm = this;
 
         vm.messageText = '';
         vm.messageType = '';
 
         vm.item = {locale: 'RU'};
+
+        vm.uploaderBg = new FileUploader({
+            url: '/api/v1/news/background',
+            autoUpload: true,
+            removeAfterUpload: true
+        });
+
+        vm.uploaderBg.onSuccessItem = function (fileItem, response, status, headers) {
+            if (response.error) {
+                vm.messageType = 'danger';
+                vm.messageText = response.error;
+                $timeout(function() {
+                    vm.messageText = '';
+                }, 2000);
+            }
+            vm.loadElements();
+        };
 
         vm.loadElements = function() {
             newsService.getItems().then(function(response) {
@@ -25,9 +42,9 @@
                     newsService.getTagsLinks().then(function(response) {
                         vm.tagsLinks = response.data;
                         for (var key in vm.items) {
-                            vm.items[key].tags = vm.tags;
-                            for (var tkey in vm.items[key].tags) {
-                                vm.items[key].tags[tkey].active = 0;
+                            vm.items[key].tags = [];
+                            for (var tkey in vm.tags) {
+                                vm.items[key].tags[tkey] = {tag_template: vm.tags[tkey].tag_template, id: vm.tags[tkey].id, active: 0};
                                 for (var lkey in vm.tagsLinks) {
                                     if (vm.tagsLinks[lkey].news_id == vm.items[key].id && vm.tagsLinks[lkey].tag_id == vm.items[key].tags[tkey].id) {
                                         vm.items[key].tags[tkey].active = 1;
@@ -35,15 +52,18 @@
                                 }
                             }
                         }
+                        console.log(vm.items);
                     }, function(error) {
 
                     });
                 }, function(error) {
 
                 });
+
             }, function(error) {
 
             });
+
         };
 
         vm.editItem = function(item) {
@@ -51,6 +71,9 @@
             vm.item.date = item.date;
             vm.item.locale = item.locale;
             vm.item.news_desc = item.news_desc;
+            if (item.id) {
+                vm.item.id = item.id;
+            }
         };
 
         vm.saveItem = function() {
@@ -129,6 +152,14 @@
             $timeout(function() {
                 vm.messageText = '';
             }, 2000);
+        };
+
+        vm.deleteBackground = function(item) {
+            newsService.deleteBackground(item.id).then(function(response) {
+                vm.loadElements();
+            }, function(error) {
+
+            });
         };
 
         vm.loadElements();

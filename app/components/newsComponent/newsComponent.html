@@ -1,12 +1,32 @@
 <header-component></header-component>
-<h1>news</h1>
-<p>news</p>
-<p>news</p>
-<p>news</p>
-<p>news</p>
-<p>news</p>
-<p>news</p>
-<p>news</p>
-<p>news</p>
-<p>news</p>
-<footer-component></footer-component>
+<div class="newswrapper" ng-style="{'background-image':'url(/images/news/bg/' + $ctrl.items[$ctrl.bgIndex].background + ')'}">
+</div>
+<div class="newscontainer">
+<div class="container">
+    <div class="newsmargins" >
+        <owlcarousel class="owl-carousel owlnews news">
+            <div class="newsitem" ng-repeat="news in $ctrl.items track by $index">
+                <h2>{{news.news_name}}</h2>
+                <p>
+                    <span class="newsdate">{{news.date}}</span>
+                    <span class="newscompany">{{'newsCompanyStr' | translate}}</span>
+                    <span class="newstagslist">
+                        {{'newsTagsStr' | translate}}:
+                        <a ng-class="{'active': tag.active}" ng-repeat="tag in $ctrl.itemsTags track by $index" ng-click="$ctrl.changeTagStatus($index)">{{tag.tag | translate}}</a>
+                    </span>
+                </p>
+                <owlcarousel class="owl-carousel owlnewsimg owl-theme">
+                    <div ng-repeat="nimg in news.images track by $index" class="newsimageitem" style="background-image: url('/images/news/photo/{{nimg.file_name}}')">
+                    </div>
+                </owlcarousel>
+                <div class="newsdesc" ng-bind-html="news.news_desc">
+
+                </div>
+            </div>
+        </owlcarousel>
+    </div>
+</div>
+    <div class="hidden-phone old">
+        <footer-component></footer-component>
+    </div>
+</div>

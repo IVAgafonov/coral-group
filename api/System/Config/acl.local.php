@@ -94,6 +94,9 @@ return [
         'tagslinks' => [
             '' => ['user']
         ],
+        'background' => [
+            '' => ['user']
+        ],
     ],
     'Newstags' => [
         'get' => [
@@ -109,6 +112,9 @@ return [
         ],
         'items' => [
             '' => ['user']
+        ],
+        'resume' => [
+            'POST' => ['guest']
         ]
     ],
     'Test' => [

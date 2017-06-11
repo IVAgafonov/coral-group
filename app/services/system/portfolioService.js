@@ -53,10 +53,18 @@
                     });
                 },
                 getImages: function(idPortfolio) {
-                    return $http({
-                        method: 'GET',
-                        url: '/api/v1/portfolio/image?idPortfolio=' + idPortfolio
-                    });
+                    if (idPortfolio) {
+                        return $http({
+                            method: 'GET',
+                            url: '/api/v1/portfolio/image?idPortfolio=' + idPortfolio
+                        });
+                    } else {
+                        return $http({
+                            method: 'GET',
+                            url: '/api/v1/portfolio/image'
+                        });
+                    }
+
                 },
                 sortImages: function(list) {
                     return $http({

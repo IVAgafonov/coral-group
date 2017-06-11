@@ -1,3 +1,16 @@
+<div class="loginForm" ng-show="$ctrl.showLoginForm">
+    <form name="pf_login_form" action="http://jti.system.gmc-group.ru/" method="post">
+        <h2>{{'PersonalAccount' | translate}}</h2>
+        <div style="margin: 15px 0px;">
+            <input type="text" name="Login" placeholder="{{'inputLoginStr' | translate}}">
+            <input password="text" name="Password" placeholder="{{'inputPasswordStr' | translate}}">
+            <input type="hidden" value="Core_Users-Login" name="controller" >
+            <input type="hidden" value="Login" name="action">
+            <input type="submit" name="e" value="{{'loginInterStr' | translate}}">
+        </div>
+        <a class="closeLoginForm" ng-click="$ctrl.showLoginForm = false">+</a>
+    </form>
+</div>
 <header class="main">
     <div class="topline">
         <div class="container">
@@ -5,8 +18,8 @@
                 <a ng-click="showMenu = !showMenu" ng-class="{'active' : showMenu}" class="mobile-menu-btn">
 
                 </a>
-                <a class="personal" href="" ui-sref="app.main">
-                    {{ 'PersonalAccount' | translate }}
+                <a class="personal" href="javascript:void(0);" ng-click="$ctrl.showLoginForm = true">
+                    {{ 'PersonalAccountHead' | translate }}
                 </a>
             </p>
         </div>
@@ -16,7 +29,7 @@
             <menu-component></menu-component>
         </nav>
     </div>
-    <div class="head" ng-class="{'forceShow': $root.showHeader == true}">
+    <div class="head" ng-class="{'forceShow': $root.showHeader == true, 'showOnlyDesctop': $root.showOnlyDesctop == true}">
         <div class="container">
             <div class="mainlogo">
                 <a href="" ui-sref="app.main"></a>

@@ -1,14 +1,20 @@
 
 header.main {
-  position: absolute;
+  position: fixed;
   top: 0px;
   width: 100%;
   z-index: 999;
   height: 40px;
+  @include respond-to(nobig) {
+    height: 30px;
+  }
   &:hover > div.head {
     @include respond-to(desctop) {
       top: 0px;
       height: 120px;
+      @include respond-to(nobig) {
+        height: 80px;
+      }
     }
   }
   & > div.topline {
@@ -16,6 +22,9 @@ header.main {
     height: 40px;
     position: relative;
     z-index: 999;
+    @include respond-to(nobig) {
+      height: 30px;
+    }
     & > div.container {
       & > p {
         display: block;
@@ -30,8 +39,16 @@ header.main {
           color: #fff;
           text-decoration: none;
           float: right;
-          line-height: 20px;
+          line-height: 23px;
           padding: 10px 0px 0px 0px;
+          @include respond-to(nobig) {
+            padding: 3px 0px 0px 0px;
+            font-size: 10pt;
+          }
+          @include respond-to(phone) {
+            padding: 3px 0px 0px 0px;
+            font-size: 10pt;
+          }
           &:hover {
             border-bottom: 1px dashed #ffffff;
           }
@@ -42,14 +59,21 @@ header.main {
   & > div.head {
     background: #bfc0c8;
     display: inline-block;
-    position: relative;
+    position: absolute;
+    margin: 40px 0px 0px 0px;
     width: 100%;
     top: -200px;
     transition: all 0.5s;
     opacity: 0.95;
+    @include respond-to(nobig) {
+      margin: 30px 0px 0px 0px;
+    }
     &.forceShow {
       top: 0px;
       height: 120px;
+      @include respond-to(nobig) {
+        height: 80px;
+      }
     }
     & > div.container {
       & > div.mainlogo {
@@ -57,9 +81,12 @@ header.main {
           width: 209px;
           height: 56px;
           display: block;
-          background: url(/images/template/logomain.png);
+          background: url('/images/template/logomain.png');
           float: left;
           margin: 30px 0px 0px 0px;
+          @include respond-to(nobig) {
+            margin: 12px 0px 0px 0px;
+          }
         }
       }
     }
@@ -70,11 +97,14 @@ div.language {
   position: absolute;
   top: 47px;
   right: 0px;
+  @include respond-to(nobig) {
+    top: 28px;
+  }
   & > a {
     text-decoration: none;
     text-transform: uppercase;
-    color: #a5a5a5;
-    background: #ffffff;
+    color: #e0e0e0;
+    background: #0097d4;
     font-size: 9pt;
     display: inline-block;
     border-radius: 50%;
@@ -82,9 +112,91 @@ div.language {
     width: 26px;
     text-align: center;
     line-height: 26px;
+
     &.active {
-      color: #e0e0e0;
-      background: #0097d4;
+      color: #a5a5a5;
+      background: #ffffff;
     }
+  }
+}
+
+.show-large header .head {
+  @media only screen and (min-width: 1580px) {
+    top: 0px !important;
+  }
+}
+
+.loginForm {
+  position: fixed;
+  z-index: 9999;
+  top: 50%;
+  left: 50%;
+  display: block !important;
+  width: 260px;
+  margin: -120px 0px 0px -130px;
+  background: #dcdcdc;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
+  & > form {
+    & > h2 {
+      margin: 0px;
+      color: #ffffff;
+      padding: 20px 10px;
+      background: #00204b;
+      font-size: 14pt;
+      font-weight: 100;
+      text-align: center;
+    }
+    & > .closeLoginForm {
+      position: absolute;
+      transform: rotate(45deg);
+      width: 30px;
+      height: 30px;
+      font-size: 18pt;
+      border: 2px solid #dcdcdc;
+      background: #00204b;
+      color: #ffffff;
+      border-radius: 50%;
+      top: -14px;
+      right: -11px;
+      cursor: pointer;
+      box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
+      line-height: 28px;
+      text-align: center;
+      outline: none;
+    }
+    & > div {
+      text-align: center;
+      & > input {
+        margin: 15px 0px 0px 0px;
+        font-size: 14pt;
+        padding: 7px 10px;
+        width: 190px;
+        &[type="submit"] {
+          margin: 15px 0px 15px 0px;
+          width: 214px;
+        }
+      }
+    }
+  }
+}
+
+.showOnlyDesctop {
+  @include respond-to(phone) {
+    top: -200px !important;
+  }
+  @include respond-to(tablet) {
+    top: -200px !important;
+  }
+  @include respond-to(small) {
+
+  }
+  @include respond-to(medium) {
+
+  }
+  @include respond-to(large) {
+    top: 0px !important;
+  }
+  @include respond-to(toolarge) {
+    top: 0px !important;
   }
 }

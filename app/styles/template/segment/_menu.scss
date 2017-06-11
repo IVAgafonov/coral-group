@@ -17,6 +17,12 @@ div.menumain > nav > menu-component{
     & > li {
       display: inline-block;
       height: 120px;
+      @include respond-to(nobig) {
+        height: 80px;
+      }
+      &.mobileonly {
+          display:none;
+      }
       & > a {
         border-top: 5px solid #bfc0c8;
         padding: 0px 14px;
@@ -25,9 +31,13 @@ div.menumain > nav > menu-component{
         @include respond-to(small) {
           font-size: 10pt;
         }
-        &:hover {
-          border-top: 5px solid #0097d4;
+        @include respond-to(nobig) {
+          line-height: 75px;
         }
+      }
+      &:hover > a {
+          border-top: 5px solid #0097d4;
+          color: #0097d4;
       }
       & > ul {
         background: #bfc0c8;
@@ -41,12 +51,14 @@ div.menumain > nav > menu-component{
             line-height: 40px;
             padding: 0px 40px 0px 14px;
             text-transform: none;
-            color: #0097d4;
+            color: #383838;
+            transition: all 0.5s;
             @include respond-to(small) {
               font-size: 10pt;
             }
             &:hover {
-              background: #e1e3ec;
+              color: #ffffff;
+              background-color: #0097d4;
             }
           }
         }
@@ -77,6 +89,7 @@ div.menumobile > nav > menu-component{
     @include respond-to(desctop) {
       display:none;
     };
+
     & > li:hover > ul {
 
     }
@@ -89,7 +102,7 @@ div.menumobile > nav > menu-component{
       & > a {
         margin: 0;
         padding: 0px 80px 0px 40px;
-        line-height: 32px;
+        line-height: 30px;
         font-size: 10pt;
         text-align: left;
         &:hover {
@@ -170,6 +183,9 @@ menu-component > ul {
   background-position: 50%;
   cursor: pointer;
   transition: all 0.3s;
+  @include respond-to(small) {
+    line-height: 30px;
+  }
   &.active {
     border: 1px solid #e4e7ec;
     background-color: #e4e7ec;

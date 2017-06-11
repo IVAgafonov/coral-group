@@ -1,9 +1,136 @@
+.hidden-phone {
+  position: fixed;
+  z-index: 999;
+  bottom: 0px;
+  width: 100%;
+  min-height: 40px;
+  background-position: 50%;
+  background-size: 36px;
+  background-repeat: no-repeat;
+  background-image: url(data:image/svg+xml;utf8;base64,PD94bWwgdmVyc2lvbj0iMS4wIiBlbmNvZGluZz0iaXNvLTg4NTktMSI/Pgo8IS0tIEdlbmVyYXRvcjogQWRvYmUgSWxsdXN0cmF0b3IgMTkuMC4wLCBTVkcgRXhwb3J0IFBsdWctSW4gLiBTVkcgVmVyc2lvbjogNi4wMCBCdWlsZCAwKSAgLS0+CjxzdmcgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIiB4bWxuczp4bGluaz0iaHR0cDovL3d3dy53My5vcmcvMTk5OS94bGluayIgdmVyc2lvbj0iMS4xIiBpZD0iQ2FwYV8xIiB4PSIwcHgiIHk9IjBweCIgdmlld0JveD0iMCAwIDI0MC44MzUgMjQwLjgzNSIgc3R5bGU9ImVuYWJsZS1iYWNrZ3JvdW5kOm5ldyAwIDAgMjQwLjgzNSAyNDAuODM1OyIgeG1sOnNwYWNlPSJwcmVzZXJ2ZSIgd2lkdGg9IjEyOHB4IiBoZWlnaHQ9IjEyOHB4Ij4KPGc+Cgk8cGF0aCBpZD0iRXhwYW5kX0xlc3MiIGQ9Ik0xMjkuMDA3LDU3LjgxOWMtNC42OC00LjY4LTEyLjQ5OS00LjY4LTE3LjE5MSwwTDMuNTU1LDE2NS44MDNjLTQuNzQsNC43NC00Ljc0LDEyLjQyNywwLDE3LjE1NSAgIGM0Ljc0LDQuNzQsMTIuNDM5LDQuNzQsMTcuMTc5LDBsOTkuNjgzLTk5LjQwNmw5OS42NzEsOTkuNDE4YzQuNzUyLDQuNzQsMTIuNDM5LDQuNzQsMTcuMTkxLDBjNC43NC00Ljc0LDQuNzQtMTIuNDI3LDAtMTcuMTU1ICAgTDEyOS4wMDcsNTcuODE5eiIgZmlsbD0iI0ZGRkZGRiIvPgoJPGc+Cgk8L2c+Cgk8Zz4KCTwvZz4KCTxnPgoJPC9nPgoJPGc+Cgk8L2c+Cgk8Zz4KCTwvZz4KCTxnPgoJPC9nPgo8L2c+CjxnPgo8L2c+CjxnPgo8L2c+CjxnPgo8L2c+CjxnPgo8L2c+CjxnPgo8L2c+CjxnPgo8L2c+CjxnPgo8L2c+CjxnPgo8L2c+CjxnPgo8L2c+CjxnPgo8L2c+CjxnPgo8L2c+CjxnPgo8L2c+CjxnPgo8L2c+CjxnPgo8L2c+CjxnPgo8L2c+Cjwvc3ZnPgo=);
+
+  &.hiddenpgoneng {
+    @include respond-to(phone) {
+      footer {
+        bottom: 0px;
+      }
+    }
+    @include respond-to(tablet) {
+
+    }
+    @include respond-to(small) {
+
+    }
+    @include respond-to(medium) {
+
+    }
+    @include respond-to(large) {
+
+    }
+    @include respond-to(toolarge) {
+
+    }
+  }
+  footer {
+    @include respond-to(phone) {
+      bottom: -200px;
+      transition: bottom 0.3s;
+    }
+    @include respond-to(tablet) {
+
+    }
+    @include respond-to(small) {
+
+    }
+    @include respond-to(medium) {
+
+    }
+    @include respond-to(large) {
+
+    }
+    @include respond-to(toolarge) {
+
+    }
+  }
+}
+
+.hidden-phone.old {
+  &:hover footer {
+    bottom: 0;
+  }
+}
+
+.hidden-medium {
+  position: fixed;
+  z-index: 999;
+  bottom: 0px;
+  width: 100%;
+  min-height: 40px;
+  background-position: 50%;
+  background-size: 3%;
+  background-repeat: no-repeat;
+  background-image: url(data:image/svg+xml;utf8;base64,PD94bWwgdmVyc2lvbj0iMS4wIiBlbmNvZGluZz0iaXNvLTg4NTktMSI/Pgo8IS0tIEdlbmVyYXRvcjogQWRvYmUgSWxsdXN0cmF0b3IgMTkuMC4wLCBTVkcgRXhwb3J0IFBsdWctSW4gLiBTVkcgVmVyc2lvbjogNi4wMCBCdWlsZCAwKSAgLS0+CjxzdmcgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIiB4bWxuczp4bGluaz0iaHR0cDovL3d3dy53My5vcmcvMTk5OS94bGluayIgdmVyc2lvbj0iMS4xIiBpZD0iQ2FwYV8xIiB4PSIwcHgiIHk9IjBweCIgdmlld0JveD0iMCAwIDI0MC44MzUgMjQwLjgzNSIgc3R5bGU9ImVuYWJsZS1iYWNrZ3JvdW5kOm5ldyAwIDAgMjQwLjgzNSAyNDAuODM1OyIgeG1sOnNwYWNlPSJwcmVzZXJ2ZSIgd2lkdGg9IjEyOHB4IiBoZWlnaHQ9IjEyOHB4Ij4KPGc+Cgk8cGF0aCBpZD0iRXhwYW5kX0xlc3MiIGQ9Ik0xMjkuMDA3LDU3LjgxOWMtNC42OC00LjY4LTEyLjQ5OS00LjY4LTE3LjE5MSwwTDMuNTU1LDE2NS44MDNjLTQuNzQsNC43NC00Ljc0LDEyLjQyNywwLDE3LjE1NSAgIGM0Ljc0LDQuNzQsMTIuNDM5LDQuNzQsMTcuMTc5LDBsOTkuNjgzLTk5LjQwNmw5OS42NzEsOTkuNDE4YzQuNzUyLDQuNzQsMTIuNDM5LDQuNzQsMTcuMTkxLDBjNC43NC00Ljc0LDQuNzQtMTIuNDI3LDAtMTcuMTU1ICAgTDEyOS4wMDcsNTcuODE5eiIgZmlsbD0iI0ZGRkZGRiIvPgoJPGc+Cgk8L2c+Cgk8Zz4KCTwvZz4KCTxnPgoJPC9nPgoJPGc+Cgk8L2c+Cgk8Zz4KCTwvZz4KCTxnPgoJPC9nPgo8L2c+CjxnPgo8L2c+CjxnPgo8L2c+CjxnPgo8L2c+CjxnPgo8L2c+CjxnPgo8L2c+CjxnPgo8L2c+CjxnPgo8L2c+CjxnPgo8L2c+CjxnPgo8L2c+CjxnPgo8L2c+CjxnPgo8L2c+CjxnPgo8L2c+CjxnPgo8L2c+CjxnPgo8L2c+CjxnPgo8L2c+Cjwvc3ZnPgo=);
+  &:hover {
+    @include respond-to(phone) {
+      footer {
+        bottom: 0px;
+      }
+    }
+    @include respond-to(tablet) {
+      footer {
+        bottom: 0px;
+      }
+    }
+    @include respond-to(small) {
+      footer {
+        bottom: 0px;
+      }
+    }
+    @include respond-to(medium) {
+      footer {
+        bottom: 0px;
+      }
+    }
+    @include respond-to(large) {
+
+    }
+    @include respond-to(toolarge) {
+
+    }
+  }
+  footer {
+    @include respond-to(phone) {
+      bottom: -200px;
+      transition: bottom 0.3s;
+    }
+    @include respond-to(tablet) {
+      bottom: -200px;
+      transition: bottom 0.3s;
+    }
+    @include respond-to(small) {
+      bottom: -200px;
+      transition: bottom 0.3s;
+    }
+    @include respond-to(medium) {
+      bottom: -200px;
+      transition: bottom 0.3s;
+    }
+    @include respond-to(large) {
+
+    }
+    @include respond-to(toolarge) {
+
+    }
+  }
+}
+
 footer {
   background: #001e47;
   bottom: 0px;
   width: 100%;
-  position: relative;
+  position: absolute;
   z-index: 999;
+  transition: all 0.5s;
   & > div.container {
     & > div {
       @include respond-to(phone) {
@@ -28,6 +155,9 @@ footer {
         width: 33%;
         text-align: center;
         vertical-align: bottom;
+        @include respond-to(nobig) {
+          height: 80px;
+        }
         &:first-child {
           text-align: right;
         }
@@ -97,7 +227,24 @@ footer {
               margin: 17px 0px 0px 0px;
             }
             &.comp {
+              margin: 20px 0px 0px 26px;
+            }
+          }
+          @include respond-to(nobig) {
+            &.phone {
+              margin: 15px 0px 0px 0px;
+            }
+            &.email {
               margin: 20px 0px 0px 0px;
+            }
+            &.addr {
+              margin: 50px 0px 0px 0px;
+            }
+            &.social {
+              margin: 10px 0px 0px 0px;
+            }
+            &.comp {
+              margin: 5px 0px 0px 26px;
             }
           }
         }
@@ -140,4 +287,17 @@ footer {
 
 .social-btn.instagram {
   background-image: url(data:image/svg+xml;utf8;base64,PD94bWwgdmVyc2lvbj0iMS4wIiBlbmNvZGluZz0iaXNvLTg4NTktMSI/Pgo8IS0tIEdlbmVyYXRvcjogQWRvYmUgSWxsdXN0cmF0b3IgMTYuMC4wLCBTVkcgRXhwb3J0IFBsdWctSW4gLiBTVkcgVmVyc2lvbjogNi4wMCBCdWlsZCAwKSAgLS0+CjwhRE9DVFlQRSBzdmcgUFVCTElDICItLy9XM0MvL0RURCBTVkcgMS4xLy9FTiIgImh0dHA6Ly93d3cudzMub3JnL0dyYXBoaWNzL1NWRy8xLjEvRFREL3N2ZzExLmR0ZCI+CjxzdmcgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIiB4bWxuczp4bGluaz0iaHR0cDovL3d3dy53My5vcmcvMTk5OS94bGluayIgdmVyc2lvbj0iMS4xIiBpZD0iTGF5ZXJfMSIgeD0iMHB4IiB5PSIwcHgiIHdpZHRoPSIyNTZweCIgaGVpZ2h0PSIyNTZweCIgdmlld0JveD0iMCAwIDE2OS4wNjMgMTY5LjA2MyIgc3R5bGU9ImVuYWJsZS1iYWNrZ3JvdW5kOm5ldyAwIDAgMTY5LjA2MyAxNjkuMDYzOyIgeG1sOnNwYWNlPSJwcmVzZXJ2ZSI+CjxnPgoJPHBhdGggZD0iTTEyMi40MDYsMEg0Ni42NTRDMjAuOTI5LDAsMCwyMC45MywwLDQ2LjY1NXY3NS43NTJjMCwyNS43MjYsMjAuOTI5LDQ2LjY1NSw0Ni42NTQsNDYuNjU1aDc1Ljc1MiAgIGMyNS43MjcsMCw0Ni42NTYtMjAuOTMsNDYuNjU2LTQ2LjY1NVY0Ni42NTVDMTY5LjA2MywyMC45MywxNDguMTMzLDAsMTIyLjQwNiwweiBNMTU0LjA2MywxMjIuNDA3ICAgYzAsMTcuNDU1LTE0LjIwMSwzMS42NTUtMzEuNjU2LDMxLjY1NUg0Ni42NTRDMjkuMiwxNTQuMDYzLDE1LDEzOS44NjIsMTUsMTIyLjQwN1Y0Ni42NTVDMTUsMjkuMjAxLDI5LjIsMTUsNDYuNjU0LDE1aDc1Ljc1MiAgIGMxNy40NTUsMCwzMS42NTYsMTQuMjAxLDMxLjY1NiwzMS42NTVWMTIyLjQwN3oiIGZpbGw9IiMwMDFlNDciLz4KCTxwYXRoIGQ9Ik04NC41MzEsNDAuOTdjLTI0LjAyMSwwLTQzLjU2MywxOS41NDItNDMuNTYzLDQzLjU2M2MwLDI0LjAyLDE5LjU0Miw0My41NjEsNDMuNTYzLDQzLjU2MXM0My41NjMtMTkuNTQxLDQzLjU2My00My41NjEgICBDMTI4LjA5NCw2MC41MTIsMTA4LjU1Miw0MC45Nyw4NC41MzEsNDAuOTd6IE04NC41MzEsMTEzLjA5M2MtMTUuNzQ5LDAtMjguNTYzLTEyLjgxMi0yOC41NjMtMjguNTYxICAgYzAtMTUuNzUsMTIuODEzLTI4LjU2MywyOC41NjMtMjguNTYzczI4LjU2MywxMi44MTMsMjguNTYzLDI4LjU2M0MxMTMuMDk0LDEwMC4yODEsMTAwLjI4LDExMy4wOTMsODQuNTMxLDExMy4wOTN6IiBmaWxsPSIjMDAxZTQ3Ii8+Cgk8cGF0aCBkPSJNMTI5LjkyMSwyOC4yNTFjLTIuODksMC01LjcyOSwxLjE3LTcuNzcsMy4yMmMtMi4wNTEsMi4wNC0zLjIzLDQuODgtMy4yMyw3Ljc4YzAsMi44OTEsMS4xOCw1LjczLDMuMjMsNy43OCAgIGMyLjA0LDIuMDQsNC44OCwzLjIyLDcuNzcsMy4yMmMyLjksMCw1LjczLTEuMTgsNy43OC0zLjIyYzIuMDUtMi4wNSwzLjIyLTQuODksMy4yMi03Ljc4YzAtMi45LTEuMTctNS43NC0zLjIyLTcuNzggICBDMTM1LjY2MSwyOS40MjEsMTMyLjgyMSwyOC4yNTEsMTI5LjkyMSwyOC4yNTF6IiBmaWxsPSIjMDAxZTQ3Ii8+CjwvZz4KPGc+CjwvZz4KPGc+CjwvZz4KPGc+CjwvZz4KPGc+CjwvZz4KPGc+CjwvZz4KPGc+CjwvZz4KPGc+CjwvZz4KPGc+CjwvZz4KPGc+CjwvZz4KPGc+CjwvZz4KPGc+CjwvZz4KPGc+CjwvZz4KPGc+CjwvZz4KPGc+CjwvZz4KPGc+CjwvZz4KPC9zdmc+Cg==);
+}
+
+footer {
+  @media only screen and (min-height: 1020px) and (orientation: portrait) {
+    position: fixed;
+  }
+}
+
+.hiddenpgoneng footer {
+  @include respond-to(mobile) {
+    bottom: -200px !important;
+  }
+
 }

@@ -15,21 +15,92 @@
     text-align: center;
     color: #ffffff;
     font-weight: 300;
+    @include respond-to(phone) {
+      margin: 0px;
+      font-size: 14pt;
+    }
+    @include respond-to(tablet) {
+
+    }
+    @include respond-to(small) {
+
+    }
+    @include respond-to(medium) {
+
+    }
+    @include respond-to(large) {
+
+    }
+    @include respond-to(toolarge) {
+      margin: 50px 0px;
+    }
   }
-  & p {
-    color: #ffffff;
-    text-align: center;
-    width: 70%;
+  & .servdesc {
     margin: 0px auto;
+    @include respond-to(phone) {
+      width: 100%;
+      font-size: 10pt;
+    }
+    @include respond-to(tablet) {
+      width: 90%;
+    }
+    @include respond-to(small) {
+      width: 80%;
+    }
+    @include respond-to(medium) {
+      width: 70%;
+    }
+    @include respond-to(large) {
+      width: 60%;
+    }
+    @include respond-to(toolarge) {
+      width: 40%;
+    }
+    & > p {
+      color: #ffffff;
+      text-align: center;
+    }
+    & > ul {
+      padding: 0px 0px 0px 20px;
+      color: #fff;
+      margin: 0px;
+    }
   }
 }
 
 .serviceicon {
   margin: 0px auto;
   display: block;
-  padding: 100px 0px 20px 0px;
-  width: 120px;
-  height: 120px;
+  @include respond-to(phone) {
+    padding: 20% 0 20px 0;
+    width: 80px;
+    height: 80px;
+  }
+  @include respond-to(tablet) {
+    padding: 20% 0 20px 0;
+    width: 120px;
+    height: 120px;
+  }
+  @include respond-to(small) {
+    padding: 20% 0 20px 0;
+    width: 120px;
+    height: 120px;
+  }
+  @include respond-to(medium) {
+    padding: 120px 0 20px 0;
+    width: 120px;
+    height: 120px;
+  }
+  @include respond-to(large) {
+    padding: 180px 0px 40px 0px;
+    width: 120px;
+    height: 120px;
+  }
+  @include respond-to(toolarge) {
+    padding: 230px 0 50px 0;
+    width: 160px;
+    height: 160px;
+  }
 }
 
 .servicepage {
@@ -37,3 +108,129 @@
   bottom: 0px;
   width:100%;
 }
+
+.imgslider {
+  width: 70%;
+  margin: 0px auto;
+  @include respond-to(phone) {
+    margin: 20px auto;
+    width: 70%;
+  }
+  @include respond-to(tablet) {
+    margin: 20px auto;
+    width: 70%;
+  }
+  @include respond-to(small) {
+    margin: 20px auto;
+    width: 70%;
+  }
+  @include respond-to(medium) {
+    margin: 20px auto;
+    width: 70%;
+  }
+  @include respond-to(large) {
+    margin: 30px auto;
+    width: 70%;
+  }
+  @include respond-to(toolarge) {
+    margin: 50px auto;
+    width: 70%;
+  }
+  & > div {
+    @include respond-to(phone) {
+      &:nth-child(1), &:nth-child(2) {
+        display: inline-block;
+        height: 80px;
+        width: 50%;
+      }
+    }
+    @include respond-to(tablet) {
+      &:nth-child(1), &:nth-child(2), &:nth-child(3), &:nth-child(4) {
+        display: inline-block;
+        height: 80px;
+        width: 25%;
+      }
+    }
+    @include respond-to(small) {
+      &:nth-child(1), &:nth-child(2), &:nth-child(3), &:nth-child(4) {
+        display: inline-block;
+        height: 80px;
+        width: 25%;
+      }
+    }
+    @include respond-to(medium) {
+      &:nth-child(1), &:nth-child(2), &:nth-child(3), &:nth-child(4), &:nth-child(5), &:nth-child(6) {
+        display: inline-block;
+        height: 80px;
+        width: 16.66%;
+      }
+    }
+    @include respond-to(large) {
+      &:nth-child(1), &:nth-child(2), &:nth-child(3), &:nth-child(4), &:nth-child(5), &:nth-child(6) {
+        display: inline-block;
+        height: 90px;
+        width: 16.66%;
+      }
+    }
+    @include respond-to(toolarge) {
+      height: 165px;
+      &:nth-child(1), &:nth-child(2), &:nth-child(3), &:nth-child(4), &:nth-child(5), &:nth-child(6) {
+        display: inline-block;
+        height: 130px;
+        width: 16.66%;
+      }
+    }
+
+    display: none;
+
+    & > a {
+      display: block;
+      background-position: 50%;
+      background-size: cover;
+      @include respond-to(phone) {
+        width: 84%;
+        margin: 0px 8%;
+        height: 100%;
+      }
+      @include respond-to(tablet) {
+        width: 84%;
+        margin: 0px 8%;
+        height: 100%;
+      }
+      @include respond-to(small) {
+        width: 84%;
+        margin: 0px 8%;
+        height: 100%;
+      }
+      @include respond-to(medium) {
+        width: 84%;
+        margin: 0px 8%;
+        height: 100%;
+      }
+      @include respond-to(large) {
+        width: 84%;
+        margin: 0px 8%;
+        height: 100%;
+      }
+      @include respond-to(toolarge) {
+        width: 84%;
+        margin: 0px 8%;
+        height: 100%;
+      }
+    }
+  }
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+

@@ -4,13 +4,15 @@
         .config(['$stateProvider', '$urlServiceProvider', '$translateProvider', function($stateProvider, $urlServiceProvider, $translateProvider) {
             $urlServiceProvider.rules.otherwise('/nolang/');
 
+            $translateProvider.useSanitizeValueStrategy('sanitizeParameters');
+
             $stateProvider.state('app', {
                 abstract: true,
                 url: '/{locale}',
                 controller: ['$rootScope', '$state', '$stateParams', '$translate', 'translateService', '$cookies', 'menuService' ,function($rootScope, $state, $stateParams, $translate, translateService, $cookies, menuService) {
                     var cookiesLocale = $cookies.get('locale');
-                    if (!['ru', 'en'].includes($stateParams.locale)) {
-                        if (!['ru', 'en'].includes(cookiesLocale)) {
+                    if (!(['ru', 'en'].indexOf($stateParams.locale) !== -1)) {
+                        if (!(['ru', 'en'].indexOf(cookiesLocale) !== -1)) {
                             cookiesLocale = 'ru';
                         }
                         $state.go('app.main', {locale: cookiesLocale});
@@ -26,7 +28,6 @@
                     }, function(error) {
 
                     });
-                    $translateProvider.useSanitizeValueStrategy('escape');
                     translateService.get(locale).then(function(response) {
                         $translateProvider.translations(locale, response.data);
                         $translate.use(locale);
@@ -54,6 +55,10 @@
                 component: 'newsComponent',
                 data: {
                     requiresLogin: false
+                },
+                onExit: function() {
+                    $('.owlnews').owlCarousel('destroy');
+                    $('.owlnewsimg').owlCarousel('destroy');
                 }
             });
 
@@ -70,6 +75,9 @@
                 component: 'portfolioComponent',
                 data: {
                     requiresLogin: false
+                },
+                onExit: function() {
+                    $('.owl').owlCarousel('destroy');
                 }
             });
 
@@ -91,6 +99,11 @@
                 },
                 data: {
                     requiresLogin: false
+                },
+                onExit: function() {
+                    if ($.fn.fullpage.destroy) {
+                        $.fn.fullpage.destroy('all');
+                    }
                 }
             });
 

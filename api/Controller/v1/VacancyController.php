@@ -92,4 +92,52 @@ class VacancyController extends AbstractController implements ControllerInterfac
                 exit();
         }
     }
+
+    public function resume() {
+        switch ($this->method) {
+            case 'POST':
+                if (!empty($this->params['fio']) && !empty($this->params['email']) && !empty($this->params['phone']) && !empty($this->params['job'])) {
+                    $this->config['vacancyEmail'];
+
+                    $file = $this->params['file']['tmp_name'];
+                    $content = file_get_contents($file);
+                    $content = chunk_split(base64_encode($content));
+                    $uid = md5(uniqid(time()));
+                    $filename = basename($file);
+
+                    $message = "New resume: \r\n";
+                    $message .= "Fio: ".$this->params['fio']."\r\n";
+                    $message .= "E-mail: ".$this->params['email']."\r\n";
+                    $message .= "Phone: ".$this->params['phone']."\r\n";
+
+                    $header = "From: Coral-Group <info@coral-group.ru>\r\n";
+                    $header .= "Reply-To: ".$this->config['vacancyEmail']."\r\n";
+                    $header .= "MIME-Version: 1.0\r\n";
+                    $header .= "Content-Type: multipart/mixed; boundary=\"".$uid."\"\r\n\r\n";
+
+                    $nmessage = "--".$uid."\r\n";
+                    $nmessage .= "Content-type:text/plain; charset=iso-8859-1\r\n";
+                    $nmessage .= "Content-Transfer-Encoding: 7bit\r\n\r\n";
+                    $nmessage .= $message."\r\n\r\n";
+                    $nmessage .= "--".$uid."\r\n";
+                    $nmessage .= "Content-Type: application/octet-stream; name=\"".$filename."\"\r\n";
+                    $nmessage .= "Content-Transfer-Encoding: base64\r\n";
+                    $nmessage .= "Content-Disposition: attachment; filename=\"".$filename."\"\r\n\r\n";
+                    $nmessage .= $content."\r\n\r\n";
+                    $nmessage .= "--".$uid."--";
+
+                    if (mail($this->config['vacancyEmail'], "New resume (".$this->params['job'].")", $nmessage, $header)) {
+                        echo json_encode(['status' => 'ok']);
+                        return;
+                    }
+                }
+                header('HTTP/1.1 400 Bad request');
+                echo json_encode(['error' => 'InvalidParamsError']);
+                exit();
+                break;
+            default:
+                header('HTTP/1.1 405 Method not allowed');
+                exit();
+        }
+    }
 }

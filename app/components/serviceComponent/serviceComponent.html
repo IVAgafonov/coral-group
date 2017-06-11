@@ -5,12 +5,17 @@
             <img src="/images/services/{{service.icon}}" class="serviceicon" alt="">
             <h1>{{service.name_template | translate}}</h1>
             <div class="imgslider">
-
+                <div ng-repeat="image in service.images track by $index">
+                    <a id="fbplusp{{service.id}}_{{$index}}" rel=group{{service.id}}" fancyboxable href="/images/services/photo/{{image.file_name}}" style="background-image: url('/images/services/photo/{{image.file_name}}');">
+                    </a>
+                </div>
             </div>
-            <p>{{service.desc_template | translate}}</p>
+            <div class="servdesc" ng-bind-html="service.desc_template">
+            </div>
         </div>
     </div>
 </div>
-<div class="servicepage">
+<div class="hidden-phone" ng-class="{'hiddenpgoneng': $ctrl.heddenphone}" ng-click="$ctrl.heddenphone = !$ctrl.heddenphone">
     <footer-component></footer-component>
 </div>
+<a class="arrowBottom" ng-model="$ctrl.arrowBottom" ng-click="$ctrl.nextSlide()" ng-class="{'toup' : $ctrl.toUp, 'footermargin': $ctrl.footerMargin}"></a>

@@ -149,10 +149,12 @@ ul.imgList > li {
 
 ul.imgList > li > div {
     position: relative;
+    height: 100%;
 }
 
 ul.imgList > li > div > img {
     width: 100%;
+    height: 100%;
 }
 
 .form-adm {
