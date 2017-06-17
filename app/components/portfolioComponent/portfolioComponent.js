@@ -14,6 +14,7 @@
         var vm = this;
         $rootScope.showHeader = true;
         $rootScope.showOnlyDesctop = true;
+        $rootScope.showOnTabletVertical = true;
         vm.heddenphone = true;
         vm.items = [];
         vm.itemsDesctop = [];

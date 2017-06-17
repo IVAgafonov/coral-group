@@ -13,7 +13,8 @@
     function newsControllerFn($rootScope, newsService, newstagsService, $timeout, $sce) {
         var vm = this;
         $rootScope.showHeader = true;
-        $rootScope.showOnlyDesctop = false;
+        $rootScope.showOnlyDesctop = true;
+        $rootScope.showOnTabletVertical = true;
         vm.bgIndex = 0;
         vm.items = [];
         vm.itemsTags = [];

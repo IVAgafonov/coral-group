@@ -57,10 +57,13 @@
 
 .newsmargins {
   @include respond-to(phone) {
-    margin: 200px 0px;
+    margin: 70px 0px 150px 0px;
   }
   @include respond-to(tablet) {
-    margin: 200px 0px;
+    margin: 70px 0px 150px 0px;
+    @media only screen and (min-height: 900px) and (min-width: 540px) {
+      margin: 180px 0px 150px 0px;
+    }
   }
   @include respond-to(small) {
     margin: 200px 0px;
@@ -83,6 +86,9 @@
 
 .owl-carousel.news {
   width: 60%;
+  @include respond-to(tablet) {
+    width: 80%;
+  }
   @include respond-to(phone) {
     width: 100%;
   }
@@ -136,20 +142,11 @@
   }
   @include respond-to(tablet) {
     & .owl-nav {
-      width: 100%;
-      top: 0px;
-      height: 50px;
-      margin: 10px 0px;
-      position: relative;
       & > .owl-prev {
-        left: 0px;
-        float: left;
-        top: 0px;
+        left: -70px;
       }
       & > .owl-next {
-        left: 0px;
-        float: right;
-        top: 0px;
+        left: 70px;
       }
     }
   }
@@ -264,4 +261,10 @@
   }
 }
 
-
+@include respond-to(small) {
+  .newsitem > p > span {
+    width: 100%;
+    display: block;
+    margin: 10px 0px 0px 0px;
+  }
+}

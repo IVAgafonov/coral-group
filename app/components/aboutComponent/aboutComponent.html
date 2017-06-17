@@ -4,7 +4,7 @@
     <header-component></header-component>
     <div class="container">
         <h2 class="abouttext">{{"aboutMainText" | translate}}</h2>
-        <div class="play">
+        <div class="play" ng-class="{'safary': $ctrl.safary, 'nosafary': !$ctrl.safary}">
             <a class="showcoralfilm" ng-click="$ctrl.runVideo()" ng-class="{'safary': $ctrl.safary, 'nosafary': !$ctrl.safary}"></a>
             <div id="player" allowfullscreen class="applekostil" ng-class="{'safary': $ctrl.safary, 'nosafary': !$ctrl.safary}"></div>
         </div>
@@ -14,7 +14,6 @@
                 <p>{{item.template_desc | translate}}</p>
             </div>
         </div>
-
     </div>
     <footer-component></footer-component>
 </div>
