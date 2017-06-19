@@ -78,6 +78,9 @@
   }
   @include respond-to(tablet) {
     padding: 20% 0 20px 0;
+    @media only screen and (min-height: 900px) and (min-width: 540px) {
+      padding: 26% 0 20px 0;
+    }
     width: 120px;
     height: 120px;
   }

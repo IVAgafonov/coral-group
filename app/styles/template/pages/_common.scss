@@ -35,14 +35,14 @@ $large: 2000px;
   }
 }
 
-@font-face {
-  font-family: 'Ubuntu', sans-serif;
-  src: url("/fonts/UbuntuRegular.eot");
-  src: url("/fonts/UbuntuRegular.eot?#iefix" ) format ("embedded-opentype"),
-  url("/fonts/UbuntuRegular.woff") format("woff"),
-  url("/fonts/UbuntuRegular.ttf") format("truetype");
-  font-style: normal;
+@font-face{
+  font-family: 'Ubuntu';
+  src: url('/fonts/UbuntuRegular.eot'),
+  url('/fonts/UbuntuRegular.eot?#iefix') format('embedded-opentype'),
+  url('/fonts/UbuntuRegular.woff') format('woff'),
+  url('/fonts/UbuntuRegular.ttf') format('truetype');
   font-weight: normal;
+  font-style: normal;
 }
 
 body {

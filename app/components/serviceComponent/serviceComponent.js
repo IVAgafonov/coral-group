@@ -14,6 +14,7 @@
         var vm = this;
         $rootScope.showHeader = true;
         $rootScope.showOnlyDesctop = true;
+        $rootScope.showOnTabletVertical = true;
         vm.toUp = true;
         vm.footerMargin = true;
         var translate = $filter;

@@ -15,9 +15,12 @@
         vm.safary = false;
         vm.items = [];
         $rootScope.showHeader = true;
-        $rootScope.showOnlyDesctop = false;
+        $rootScope.showOnlyDesctop = true;
+        $rootScope.showOnTabletVertical = true;
+
         var userAgent = window.navigator.userAgent.toLowerCase();
-        vm.safary = /safari/.test( userAgent );
+        vm.safary = /ipad|iphone|ipod/.test( userAgent );
+        vm.uag = window.navigator.userAgent.toLowerCase();
 
 
         vm.getItems = function() {
@@ -32,7 +35,6 @@
         var $ = document.querySelector.bind(document);
 
         function onYouTubeIframeAPIReady() {
-            if (!vm.safary) {
                 player = new YT.Player('player', {
                     height: '200',
                     width: '300',
@@ -49,7 +51,6 @@
                         'onReady': onPlayerReady,
                     }
                 });
-            }
         }
 
         function onPlayerReady(event) {
