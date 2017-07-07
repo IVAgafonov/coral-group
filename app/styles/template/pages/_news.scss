@@ -57,7 +57,7 @@
 
 .newsmargins {
   @include respond-to(phone) {
-    margin: 70px 0px 150px 0px;
+    margin: 70px 0px 70px 0px;
   }
   @include respond-to(tablet) {
     margin: 70px 0px 150px 0px;
@@ -113,12 +113,20 @@
       display: inline-block;
       left: -100px;
       float: left;
+      &.disabled {
+        opacity: 0.2;
+        cursor: default;
+      }
     }
     & > .owl-next {
       top: 50%;
       display: inline-block;
       left: 100px;
       float: right;
+      &.disabled {
+        opacity: 0.2;
+        cursor: default;
+      }
     }
   }
   @include respond-to(phone) {
@@ -132,21 +140,38 @@
         left: 0px;
         float: left;
         top: 0px;
+        &.disabled {
+          opacity: 0.2;
+          cursor: default;
+        }
       }
       & > .owl-next {
         left: 0px;
         float: right;
         top: 0px;
+        &.disabled {
+          opacity: 0.2;
+          cursor: default;
+        }
       }
+
     }
   }
   @include respond-to(tablet) {
     & .owl-nav {
       & > .owl-prev {
         left: -70px;
+        &.disabled {
+          opacity: 0.2;
+          cursor: default;
+        }
       }
       & > .owl-next {
         left: 70px;
+        &.disabled {
+          opacity: 0.2;
+          cursor: default;
+        }
       }
     }
   }

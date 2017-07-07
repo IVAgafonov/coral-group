@@ -27,12 +27,12 @@
 
 .vacsmargins {
   @include respond-to(phone) {
-    margin: 70px 0px 200px 0px;
+    margin: 70px 0px 70px 0px;
   }
   @include respond-to(tablet) {
-    margin: 70px 0px 200px 0px;
+    margin: 70px 0px 70px 0px;
     @media only screen and (min-height: 900px) and (min-width: 540px) {
-      margin: 180px 0px 150px 0px;
+      margin: 180px 0px 70px 0px;
     }
   }
   @include respond-to(small) {

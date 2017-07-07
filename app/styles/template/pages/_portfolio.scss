@@ -104,15 +104,22 @@ owlcarousel.owl  {
       @include respond-to(tablet) {
         left: -10px;
       }
+      &.disabled {
+        opacity: 0.2;
+        cursor: default;
+      }
     }
     & > .owl-next {
-
       top: 0px;
       float: right;
       right: -100px;
       opacity: 0.5;
       @include respond-to(tablet) {
         right: -10px;
+      }
+      &.disabled {
+        opacity: 0.2;
+        cursor: default;
       }
     }
   }

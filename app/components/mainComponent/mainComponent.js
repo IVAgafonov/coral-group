@@ -14,10 +14,16 @@
         vm.footerMargin = true;
         vm.toUp = false;
         $timeout(function() {
+            var speedScrool = 700;
+
+            if (window.innerWidth <= 960) {
+                speedScrool = 1300;
+            }
             if ($.fn.fullpage.destroy) {
                 $.fn.fullpage.destroy('all');
             }
             $('#fullpage').fullpage({
+                scrollingSpeed: speedScrool,
                 afterLoad: function (anchorLink, index) {
                     if (index == 1) {
                         vm.toUp = false;
