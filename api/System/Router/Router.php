@@ -59,7 +59,6 @@ class Router {
                 $this->action = strtolower(array_shift($path));
             }
         }
-
     }
 
     protected function controllerInit()

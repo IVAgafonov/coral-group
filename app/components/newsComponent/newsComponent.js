@@ -18,6 +18,7 @@
         vm.bgIndex = 0;
         vm.items = [];
         vm.itemsTags = [];
+        vm.heddenphone = true;
         vm.loadElements = function() {
             vm.items = [];
 
@@ -33,8 +34,14 @@
             }
 
             newsService.get(JSON.stringify(vm.itemsTags)).then(function(response) {
-                vm.items = response.data;
+                vm.itemsRaw = response.data;
                 newsService.getImages().then(function(response) {
+                    vm.items = vm.itemsRaw.filter(function(item) {
+                        if ($rootScope.locale.toUpperCase() == item.locale) {
+                            return true;
+                        }
+                        return false;
+                    });
                     var images = response.data;
                     for (var keys in vm.items) {
                         vm.items[keys].news_desc = $sce.trustAsHtml(vm.items[keys].news_desc);
@@ -47,6 +54,7 @@
                             }
                         }
                     }
+                    console.log(vm.items);
                 });
 
                 $timeout(function() {

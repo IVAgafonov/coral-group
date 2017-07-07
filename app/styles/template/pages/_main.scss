@@ -27,13 +27,14 @@
   }
 }
 
-.slide3 {
+.slide3ru {
   background-image: url('/images/template/bunnerp3_1366.png');
   @include respond-to(phone) {
     background-image: url('/images/template/bunnerp3_540.png');
-  }  @include respond-to(tablet) {
-       background-image: url('/images/template/bunnerp3_960.png');
-     }
+  }
+  @include respond-to(tablet) {
+    background-image: url('/images/template/bunnerp3_960.png');
+  }
   @include respond-to(small) {
     background-image: url('/images/template/bunnerp3_1100.png');
   }
@@ -45,13 +46,32 @@
   }
 }
 
-.slide1, .slide2, .slide3 {
+.slide3en {
+  background-image: url('/images/template/en_bunnerp3_1366.png');
+  @include respond-to(phone) {
+    background-image: url('/images/template/en_bunnerp3_540.png');
+  }
+  @include respond-to(tablet) {
+    background-image: url('/images/template/en_bunnerp3_960.png');
+  }
+  @include respond-to(small) {
+    background-image: url('/images/template/en_bunnerp3_1100.png');
+  }
+  @include respond-to(medium) {
+    background-image: url('/images/template/en_bunnerp3_1366.png');
+  }
+  @include respond-to(large) {
+    background-image: url('/images/template/en_bunnerp3_1920.png');
+  }
+}
+
+.slide1, .slide2, .slide3ru, .slide3en {
   background-position: 50%;
   background-size: cover;
   position: relative;
 }
 
-.slide3 footer {
+.slide3ru footer, .slide3en footer {
   position: absolute;
 }
 

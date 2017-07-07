@@ -16,6 +16,7 @@
         $rootScope.showOnlyDesctop = true;
         $rootScope.showOnTabletVertical = true;
 
+        vm.heddenphone = true;
         vm.messageText = '';
         vm.messageType = '';
         vm.messageHead = '';
