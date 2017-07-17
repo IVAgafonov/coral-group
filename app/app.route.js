@@ -2,14 +2,26 @@
     'use strict';
     angular.module('app.router', ['ui.router', 'pascalprecht.translate', 'angularCSS'])
         .config(['$stateProvider', '$urlServiceProvider', '$translateProvider', function($stateProvider, $urlServiceProvider, $translateProvider) {
+
             $urlServiceProvider.rules.otherwise('/nolang/');
-
             $translateProvider.useSanitizeValueStrategy('sanitizeParameters');
-
             $stateProvider.state('app', {
                 abstract: true,
                 url: '/{locale}',
-                controller: ['$rootScope', '$state', '$stateParams', '$translate', 'translateService', '$cookies', 'menuService' ,function($rootScope, $state, $stateParams, $translate, translateService, $cookies, menuService) {
+                controller: ['$rootScope', '$state', '$stateParams', '$translate', 'translateService', '$cookies', 'menuService', '$timeout',function($rootScope, $state, $stateParams, $translate, translateService, $cookies, menuService, $timeout) {
+                    $rootScope.showOrientationBlock = false;
+
+                    function checkOrintation() {
+                        if (window.innerWidth < 900 && window.innerHeight < 400 && window.innerWidth > window.innerHeight) {
+                            $rootScope.showOrientationBlock = true;
+                        } else {
+                            $rootScope.showOrientationBlock = false;
+                        }
+                        $timeout(checkOrintation, 50);
+                    }
+
+                    checkOrintation();
+
                     var cookiesLocale = $cookies.get('locale');
                     if (!(['ru', 'en'].indexOf($stateParams.locale) !== -1)) {
                         if (!(['ru', 'en'].indexOf(cookiesLocale) !== -1)) {
