@@ -103,10 +103,10 @@ class VacancyController extends AbstractController implements ControllerInterfac
                     $content = file_get_contents($file);
                     $content = chunk_split(base64_encode($content));
                     $uid = md5(uniqid(time()));
-                    $filename = basename($file);
 
+                    $filename = basename($this->params['file']['name']);
                     $message = "New resume: \r\n";
-                    $message .= "Fio: ".$this->params['fio']."\r\n";
+                    $message .= "Name: ".$this->params['fio']."\r\n";
                     $message .= "E-mail: ".$this->params['email']."\r\n";
                     $message .= "Phone: ".$this->params['phone']."\r\n";
 

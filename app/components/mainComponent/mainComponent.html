@@ -8,7 +8,7 @@
             <div class="aligner center">
                 <div class="slideServices sliderWrap">
                     <div>
-                        <div ng-repeat="service in $ctrl.services">
+                        <div ng-repeat="service in $ctrl.services track by $index">
                             <a class="serviceImage" style="background-image: url('/images/mpItems/{{service.image}}')" ui-sref="app.service({service: '{{service.uri}}'})"></a>
                             <table class="vgcenter">
                                 <tbody>

@@ -90,3 +90,24 @@ div.container {
 #fbplus-left, #fbplus-right {
   width: 50% !important;
 }
+
+.showOrientationBlock {
+  width: 100%;
+  height: 150%;
+  position: fixed;
+  z-index: 999999;
+  background: rgba(51, 51, 51, 0.90);
+  & div {
+    background-image: url(/images/template/z1.png);
+    background-size: cover;
+    width: 320px;
+    height: 220px;
+    left: 50%;
+    top: 50%;
+    position: fixed;
+    margin: -110px 0 0 -160px;
+  }
+  &.forceShow {
+    display: block !important;
+  }
+}

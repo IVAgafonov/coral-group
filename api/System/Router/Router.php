@@ -29,7 +29,7 @@ class Router {
 
         if (!empty($_SESSION['userId'])) {
             $userId = (int)$_SESSION['userId'];
-            $this->user = $this->db->getObject("SELECT * FROM `cg_users` WHERE id = ".$userId."", User::class);
+            $this->user = $this->db->getObject("SELECT * FROM `cg_users` WHERE id = ".$userId, User::class);
         }
         if (!$this->user) {
             $this->user = new User();
@@ -47,7 +47,11 @@ class Router {
     protected function dispatch()
     {
         $path = explode("/", $_SERVER['PATH_INFO']);
-        array_shift($path);
+        while(!preg_match('/v\d{1,3}/i', $path[0])) {
+            array_shift($path);
+            $path = array_filter($path);
+        }
+
         if (is_array($path) && count($path) > 1) {
             if (!empty($path)) {
                 $this->apiVersion = strtolower(array_shift($path));
